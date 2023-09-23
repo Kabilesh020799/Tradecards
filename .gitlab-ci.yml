@@ -2,4 +2,4 @@ build project:
   image: node:20.5.1
   script:
     - npm install
-    - npm build
+    - npm run build
