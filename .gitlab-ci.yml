@@ -12,10 +12,10 @@ build project:
     paths:
       - build/
 
-netlify:
-  stage: deploy
-  image: node:20.5.1
-  script:
-    - npm install -g netlify-cli
-    - netlify deploy --dir=build --prod
+# netlify:
+#   stage: deploy
+#   image: node:20.5.1
+#   script:
+#     - npm install -g netlify-cli
+#     - netlify deploy --dir=build --prod
 
