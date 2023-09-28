@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        Welcome to Trade Cards Testing
+        Welcome to Trade Cards Testing12
       </header>
     </div>
   );
