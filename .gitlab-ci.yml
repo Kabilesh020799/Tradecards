@@ -1,0 +1,56 @@
+variables:
+  MAVEN_IMAGE_TAG: "3.8.4"
+  NODE_IMAGE_TAG: "20.5.1"
+
+stages:
+  - build
+  - test
+  - deploy
+
+backend_build:
+  stage: build
+  image: maven:$MAVEN_IMAGE_TAG # Use a Maven image with Java 17
+  script:
+    - cd backend/tradecards # Navigate to the backend directory
+    - mvn clean install
+  artifacts:
+    paths:
+      - backend/tradecards/target/*.jar # Archive the generated JAR file
+
+frontend_build:
+  stage: build
+  image: node:$NODE_IMAGE_TAG # Use a Node.js image
+  script:
+    - cd frontend/tradecards_ui # Navigate to the frontend directory
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - frontend/tradecards_ui/build # Archive the build directory for deployment
+
+backend_test:
+  stage: test
+  image: maven:$MAVEN_IMAGE_TAG # Use a Maven image with Java 17
+  script:
+    - cd backend/tradecards # Navigate to the backend directory
+    - mvn test
+
+frontend_test:
+  stage: test
+  image: node:$NODE_IMAGE_TAG # Use a Node.js image
+  script:
+    - cd frontend/tradecards_ui # Navigate to the frontend directory
+    - npm install
+    - npm test
+
+netlify:
+  stage: deploy
+  image: node:$NODE_IMAGE_TAG
+  script:
+    - npm install -g netlify-cli
+    - netlify deploy --dir=build --prod
+
+cache:
+  paths:
+    - backend/tradecards/.m2/repository/ # Cache Maven dependencies
+    - frontend/tradecards_ui/node_modules/
