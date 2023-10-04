@@ -5,7 +5,6 @@ variables:
 stages:
   - build
   - test
-  - deploy
 
 backend_build:
   stage: build
@@ -42,13 +41,6 @@ frontend_test:
     - cd frontend/tradecards_ui # Navigate to the frontend directory
     - npm install
     - npm test
-
-netlify:
-  stage: deploy
-  image: node:$NODE_IMAGE_TAG
-  script:
-    - npm install -g netlify-cli
-    - netlify deploy --dir=build --prod
 
 cache:
   paths:
