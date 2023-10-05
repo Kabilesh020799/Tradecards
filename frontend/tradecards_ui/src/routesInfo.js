@@ -12,6 +12,11 @@ const routes = [
     route: 'signup',
     component: <Login />,
   },
+  {
+    id: 'forget-password',
+    route: 'forget-password',
+    component: <div></div>,
+  },
 ];
 
 export default routes;
