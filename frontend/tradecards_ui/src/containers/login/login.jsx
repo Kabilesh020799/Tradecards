@@ -1,9 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Button, Input } from '@mui/material';
+import { Button } from '@mui/material';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { onLogin, onSignup } from './apiUtils';
 import { useNavigate } from 'react-router-dom';
+import InputHolder from './components/input';
 
 function Login (props) {
   const { isLogin, } = props;
@@ -29,43 +30,45 @@ function Login (props) {
   };
 
   return (
-    <div className='login'>
+    <div className='login-wrapper'>
+      <img
+        src="https://media.istockphoto.com/id/1481883501/photo/percent-icon-price-tag-sticker-or-badge-sale-discount-and-promotion-design-element.webp?b=1&s=170667a&w=0&k=20&c=KtOvwZ0Ryk0Hzteu0qYjU4ofZWG0UaFLjJ4-_8l3f7o="
+        alt="Coupon"
+        className='login-image'
+      />
+     <div className='login'>
       {isLogin
         ? (
-            <div className='login-heading'>Login In</div>
+              <div className='login-heading'>Login In</div>
           )
         : (
-            <div className='login-heading'>Sign up</div>
+              <div className='login-heading'>Sign up</div>
           )}
-      <div className='login-username'>
-        <label>User Name</label>
-        <Input
-          type='text'
+        <InputHolder
           value={userName}
-          onChange={(e) => setUserName(e.target.value)}
+          onChange={setUserName}
+          label='User Name'
         />
-      </div>
-      <div className='login-password'>
-        <label>Password</label>
-        <Input
-          type='password'
+        <InputHolder
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={setPassword}
+          type='password'
+          label='Password'
         />
-      </div>
-      <Button
-        variant="contained"
-        onClick={onSubmit}
-        className='login-submit'
-      >
-        Submit
-      </Button>
-      <div
-        onClick={onNavigate}
-        className='login-switch'
-      >
-        {`${isLogin ? 'Do you want to Signup' : 'Have an account? Login'}`}
-      </div>
+        <Button
+          variant="contained"
+          onClick={onSubmit}
+          className='login-submit'
+        >
+          Submit
+        </Button>
+        <div
+          onClick={onNavigate}
+          className='login-switch'
+        >
+          {`${isLogin ? 'Do you want to Signup' : 'Have an account? Login'}`}
+        </div>
+     </div>
     </div>
   );
 }

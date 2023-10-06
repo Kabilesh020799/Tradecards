@@ -1,34 +1,38 @@
-.login {
-  height: 100%;
+.login-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+  height: 100%;
+
+  .login-image {
+    height: 100%;
+    width: 60%;
+  }
+  .login {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 40%;
+
+    &-heading {
+    }
   
-  &-heading {
+    &-input {
+      width: 400px;
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    &-submit {
+      margin-top: 20px !important;
+    }
+  
+    &-switch {
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  
   }
-
-  &-username {
-    width: 400px;
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &-password {
-    width: 400px;
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &-submit {
-    margin-top: 20px !important;
-  }
-
-  &-switch {
-    cursor: pointer;
-    margin-top: 20px;
-  }
-
 }
