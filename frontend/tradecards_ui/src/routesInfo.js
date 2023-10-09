@@ -20,7 +20,7 @@ const routes = [
   {
     id: 'home',
     route: 'home',
-    component: <div></div>,
+    component: <div></div>
   },
 ];
 
