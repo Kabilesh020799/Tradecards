@@ -45,11 +45,13 @@ function Login (props) {
         <InputHolder
           value={userName}
           onChange={setUserName}
+          placeholder="User Name"
         />
         <InputHolder
           value={password}
           onChange={setPassword}
           type='password'
+          placeholder="Password"
         />
         <Button
           variant="contained"

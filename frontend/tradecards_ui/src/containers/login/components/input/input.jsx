@@ -8,6 +8,8 @@ const InputHolder = (props) => {
     onChange,
     value,
     type,
+    placeholder,
+    ...params
   } = props;
 
   return (
@@ -16,6 +18,8 @@ const InputHolder = (props) => {
       value={value}
       onChange={(e) => onChange(e.target.value)}
       className={`login-input ${className}`}
+      placeholder={placeholder}
+      {...params}
     />
   );
 };
@@ -24,12 +28,14 @@ InputHolder.propTypes = {
   className: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   type: PropTypes.string,
 };
 
 InputHolder.defaultProps = {
   className: '',
   type: 'text',
+  placeholder: '',
 };
 
 export default InputHolder;
