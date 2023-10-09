@@ -31,9 +31,7 @@ function Login (props) {
 
   return (
     <div className='login-wrapper'>
-      <img
-        src="https://media.istockphoto.com/id/1481883501/photo/percent-icon-price-tag-sticker-or-badge-sale-discount-and-promotion-design-element.webp?b=1&s=170667a&w=0&k=20&c=KtOvwZ0Ryk0Hzteu0qYjU4ofZWG0UaFLjJ4-_8l3f7o="
-        alt="Coupon"
+      <div
         className='login-image'
       />
      <div className='login'>
@@ -47,13 +45,11 @@ function Login (props) {
         <InputHolder
           value={userName}
           onChange={setUserName}
-          label='User Name'
         />
         <InputHolder
           value={password}
           onChange={setPassword}
           type='password'
-          label='Password'
         />
         <Button
           variant="contained"
@@ -66,7 +62,7 @@ function Login (props) {
           onClick={onNavigate}
           className='login-switch'
         >
-          {`${isLogin ? 'Do you want to Signup' : 'Have an account? Login'}`}
+          {`${isLogin ? 'Do you want to Signup?' : 'Have an account? Login'}`}
         </div>
      </div>
     </div>

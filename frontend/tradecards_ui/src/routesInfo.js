@@ -17,6 +17,11 @@ const routes = [
     route: 'forget-password',
     component: <div></div>,
   },
+  {
+    id: 'home',
+    route: 'home',
+    component: <div></div>,
+  },
 ];
 
 export default routes;
