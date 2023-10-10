@@ -19,6 +19,7 @@ function Login (props) {
     } else {
       onSignup(userName, password);
     }
+    navigate('/home');
   };
 
   const onNavigate = () => {
