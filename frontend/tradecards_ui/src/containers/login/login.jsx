@@ -31,8 +31,9 @@ function Login (props) {
 
   return (
     <div className='login-wrapper'>
-      <div
+      <img
         className='login-image'
+        src='/img/logo.png'
       />
      <div className='login'>
       {isLogin
