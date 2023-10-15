@@ -5,6 +5,7 @@ variables:
 stages:
   - build
   - test
+  - deploy
 
 backend_build:
   stage: build
@@ -41,6 +42,17 @@ frontend_test:
     - cd frontend/tradecards_ui # Navigate to the frontend directory
     - npm install
     - npm test
+
+deploy:
+  stage: deploy
+  script:
+    - echo "testing deploy"
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - ssh student@csci5308vm13.research.cs.dal.ca "mkdir -p /var/www/html/tradecards-ui && mkdir -p /opt/tradecards"
+    - scp -r frontend/tradecards_ui/build/* student@csci5308vm13.research.cs.dal.ca:/var/www/html/tradecards-ui
+    - scp backend/tradecards/target/*.jar student@csci5308vm13.research.cs.dal.ca:/opt/tradecards
+    - ssh student@csci5308vm13.research.cs.dal.ca "cd /opt/tradecards && java -jar /opt/tradecards/tradecards.jar &"
 
 cache:
   paths:
