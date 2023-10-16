@@ -46,6 +46,7 @@ frontend_test:
 
 deploy:
   stage: deploy
+  image: kroniak/ssh-client
   script:
     - echo "testing deploy script"
     - apt-get update  # Update package list (for Debian/Ubuntu based runners)
