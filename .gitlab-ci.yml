@@ -50,13 +50,13 @@ deploy:
     - echo "testing deploy script"
     - apt-get update  # Update package list (for Debian/Ubuntu based runners)
     - apt-get install -y openssh-client
-    - ssh -o StrictHostKeyChecking=no student@csci5308vm13.research.cs.dal.ca "mkdir -p /var/www/html/tradecards-ui && mkdir -p /opt/tradecards"
+    - chmod 400 "${SSH_PRIVATE_KEY}"
+    - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "mkdir -p /var/www/html/tradecards-ui && mkdir -p /opt/tradecards"
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - ssh -v -o StrictHostKeyChecking=no student@csci5308vm13.research.cs.dal.ca "mkdir -p /var/www/html/tradecards-ui && mkdir -p /opt/tradecards"
     - scp -r frontend/tradecards_ui/build/* student@csci5308vm13.research.cs.dal.ca:/var/www/html/tradecards-ui
     - scp backend/tradecards/target/*.jar student@csci5308vm13.research.cs.dal.ca:/opt/tradecards
-    - ssh student@csci5308vm13.research.cs.dal.ca "cd /opt/tradecards && java -jar /opt/tradecards/tradecards.jar &"
+    - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "cd /opt/tradecards && java -jar /opt/tradecards/tradecards.jar &"
 
 cache:
   paths:
