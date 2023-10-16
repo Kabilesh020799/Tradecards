@@ -52,13 +52,14 @@ deploy:
     - chmod 400 "${SSH_PRIVATE_KEY}"
     - apt-get update -qy
     - apt-get install openssh-client -y
-    - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "mkdir -p ./tradecards-ui && mkdir -p ./tradecards"
     - mkdir -p ~/.ssh
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/authorized_keys
-    - chmod 600 ~/.ssh/authorized_keys
-    - scp -o StrictHostKeyChecking=no -i ~/.ssh/authorized_keys -r frontend/tradecards_ui/build/* student@csci5308vm13.research.cs.dal.ca:/tradecards-ui
-    - scp -o StrictHostKeyChecking=no -i ~/.ssh/authorized_keys backend/tradecards/target/*.jar student@csci5308vm13.research.cs.dal.ca:/tradecards
-    - ssh -o StrictHostKeyChecking=no -i ~/.ssh/authorized_keys student@csci5308vm13.research.cs.dal.ca "cd /tradecards && java -jar /tradecards/tradecards.jar"
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keygen -y -f ~/.ssh/id_rsa > ~/.ssh/id_rsa.pub
+    - cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+    - scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r frontend/tradecards_ui/build/* student@csci5308vm13.research.cs.dal.ca:/tradecards-ui
+    - scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa backend/tradecards/target/*.jar student@csci5308vm13.research.cs.dal.ca:/tradecards
+    - ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa student@csci5308vm13.research.cs.dal.ca "cd /tradecards && java -jar /tradecards/tradecards.jar"
 
 cache:
   paths:
