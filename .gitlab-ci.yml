@@ -50,6 +50,7 @@ deploy:
     - echo "testing deploy script"
     - apt-get update  # Update package list (for Debian/Ubuntu based runners)
     - apt-get install -y openssh-client
+    - ssh -o StrictHostKeyChecking=no student@csci5308vm13.research.cs.dal.ca "mkdir -p /var/www/html/tradecards-ui && mkdir -p /opt/tradecards"
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - ssh student@csci5308vm13.research.cs.dal.ca "mkdir -p /var/www/html/tradecards-ui && mkdir -p /opt/tradecards"
