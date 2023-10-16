@@ -46,17 +46,17 @@ frontend_test:
 
 deploy:
   stage: deploy
-  image: debian:stable-slim
+  image: ubuntu:latest
   script:
     - echo "testing deploy script"
     - chmod 400 "${SSH_PRIVATE_KEY}"
-    - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "mkdir -p ./tradecards-ui && mkdir -p ./tradecards"
     - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - ssh-add - <<< "$SSH_PRIVATE_KEY"
+    - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "mkdir -p ./tradecards-ui && mkdir -p ./tradecards"
     - scp -r frontend/tradecards_ui/build/* student@csci5308vm13.research.cs.dal.ca:/tradecards-ui
     - scp backend/tradecards/target/*.jar student@csci5308vm13.research.cs.dal.ca:/tradecards
-    - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "cd /tradecards && java -jar /tradecards/tradecards.jar &"
-
+    - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "cd /tradecards && java -jar /tradecards/tradecards.jar"
+    
 cache:
   paths:
     - backend/tradecards/.m2/repository/ # Cache Maven dependencies
