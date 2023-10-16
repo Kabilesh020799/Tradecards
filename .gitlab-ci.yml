@@ -46,7 +46,7 @@ frontend_test:
 
 deploy:
   stage: deploy
-  image: kroniak/ssh-client
+  image: debian:stable-slim
   script:
     - echo "testing deploy script"
     - chmod 400 "${SSH_PRIVATE_KEY}"
