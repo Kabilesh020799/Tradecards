@@ -47,7 +47,7 @@ frontend_test:
 deploy:
   stage: deploy
   script:
-    - echo "testing deploy"
+    - echo "testing deploy script"
     - apt-get update  # Update package list (for Debian/Ubuntu based runners)
     - apt-get install -y openssh-client
     - eval $(ssh-agent -s)
