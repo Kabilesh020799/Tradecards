@@ -50,8 +50,8 @@ deploy:
   script:
     - echo "testing deploy script"
     - chmod 400 "${SSH_PRIVATE_KEY}"
-    - scp -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" -r frontend/tradecards_ui/build/* student@csci5308vm13.research.cs.dal.ca:tradecards-ui
-    - scp -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" backend/tradecards/target/*.jar student@csci5308vm13.research.cs.dal.ca:tradecards.jar
+    - scp -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" backend/tradecards/target/tradecards-*.jar student@csci5308vm13.research.cs.dal.ca:~/tradecards.jar
+    - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "cd ~/ && java -jar tradecards.jar"
     - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "java -jar tradecards.jar"
 
 cache:
