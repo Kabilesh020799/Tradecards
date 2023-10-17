@@ -2,14 +2,16 @@ package dal.asdc.tradecards.Service;
 
 import java.util.List;
 
-import dal.asdc.tradecards.Model.User;
+import dal.asdc.tradecards.Model.UserDao;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface UserService {
-	public User create(User user);
+public interface UserService extends UserDetailsService {
 
-    public List<User> getAllUsers();
+    UserDao create(UserDao user);
 
-    public User getUserById(String id);
+    public List<UserDao> getAllUsers();
+
+    public UserDao getUserById(String id, String password);
 }
