@@ -38,7 +38,6 @@ const NavBar = (props) => {
             <div
               key={navBarSubContent.value}
               className='nav-bar-sub-contents-label'
-              onClick={() => onLocationChange(navBarSubContent.value)}
             >
               {navBarSubContent.label}
             </div>

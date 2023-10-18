@@ -1,14 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { cities } from './constants';
 
-const LocationSelector = () => {
+const LocationSelector = (props) => {
+  const {
+    onDetectLocation,
+    onLocationChange,
+    error,
+  } = props;
+
   return (
     <div className='location-selector'>
-      <div className='location-selector-detector'>
-        <i
-          className="fas fa-map-marker-alt"
-        />
-        <div>Detect my location</div>
+      <div
+        className='location-selector-detector'
+        onClick={onDetectLocation}
+      >
+        <div className='location-selector-detector-prompt'>
+          <i
+            className="fas fa-map-marker-alt"
+          />
+          <div>Detect my location</div>
+        </div>
+        <div>{error}</div>
       </div>
       <div className='location-selector-suggestion'>
         <div className='location-selector-suggestion-title'>
@@ -17,7 +30,11 @@ const LocationSelector = () => {
         <div className='location-selector-suggestion-container'>
           {
             cities.map((city) => (
-              <div key={city}>
+              <div
+                key={city}
+                onClick={() => onLocationChange(city)}
+                className='location-selector-suggestion-container-city'
+              >
                 {city}
               </div>
             ))
@@ -27,5 +44,13 @@ const LocationSelector = () => {
     </div>
   );
 };
+
+LocationSelector.propTypes = {
+  onDetectLocation: PropTypes.func.isRequired,
+  onLocationChange: PropTypes.func.isRequired,
+  error: PropTypes.string,
+};
+
+LocationSelector.defaultProps = { error: '', };
 
 export default LocationSelector;

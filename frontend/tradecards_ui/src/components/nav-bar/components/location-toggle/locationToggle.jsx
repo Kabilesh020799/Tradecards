@@ -11,6 +11,7 @@ const LocationToggle = (props) => {
   } = props;
 
   const [isModalOpen, setIsModalOpen,] = useState(false);
+  const [error, setError,] = useState('');
 
   const options = {
     enableHighAccuracy: true,
@@ -18,6 +19,7 @@ const LocationToggle = (props) => {
     maximumAge: 0,
   };
 
+  // Gets the current location fromt the gps signal
   const getLocationInfo = (latitude, longitude) => {
     const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude},${longitude}&key=${APIKEY}`;
     fetch(url)
@@ -31,6 +33,7 @@ const LocationToggle = (props) => {
       })
       .catch((error) => console.error(error));
   };
+
   const success = (pos) => {
     const crd = pos.coords;
     getLocationInfo(crd.latitude, crd.longitude);
@@ -39,20 +42,29 @@ const LocationToggle = (props) => {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   };
 
+  // Function called when the location detector is triggered
   const onDetectLocation = () => {
     if (navigator.geolocation) {
       navigator.permissions
         .query({ name: 'geolocation', })
         .then((result) => {
+          console.log(result);
           if (result.state === 'granted') {
             navigator.geolocation.getCurrentPosition(success, errors, options);
           } else if (result.state === 'prompt') {
             navigator.geolocation.getCurrentPosition(success, errors, options);
+          } else {
+            setError('user denied geolocation');
           }
         });
     } else {
       console.log('Geolocation is not supported by this browser.');
     }
+  };
+
+  const onClickLocation = (city) => {
+    onLocationChange(city);
+    setIsModalOpen(false);
   };
 
   return (
@@ -72,6 +84,8 @@ const LocationToggle = (props) => {
         <div className='nav-bar-modal-contents'>
           <LocationSelector
             onDetectLocation={onDetectLocation}
+            onLocationChange={onClickLocation}
+            error={error}
           />
           <div className='nav-bar-modal-contents-footer'>
             <Button
