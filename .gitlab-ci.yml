@@ -53,6 +53,8 @@ deploy:
     - scp -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" backend/tradecards/target/tradecards-*.jar student@csci5308vm13.research.cs.dal.ca:~/tradecards.jar
     - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "cd ~/ && java -jar tradecards.jar"
     - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "java -jar tradecards.jar"
+    - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "nohup java -jar tradecards.jar > app.log 2>&1 &"
+    - echo "Spring Boot application started in the background."
 
 cache:
   paths:
