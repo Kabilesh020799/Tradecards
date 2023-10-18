@@ -1,3 +1,133 @@
 .nav-bar {
-  
+  background: #7a2727;
+  height: fit-content;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  justify-content: space-between;
+  flex-direction: column;
+
+  &-components {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &-sub-contents {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+
+    &-label {
+      margin-left: 12px;
+      font-weight: 400;
+    }
+  }
+
+  &-label {
+    font-size: 20px;
+    font-weight: 800;
+    margin-right: 8px;
+  }
+
+  &-modal {
+    right: calc(50% - 200px) !important;
+    top: calc(50% - 100px) !important;
+    bottom: auto !important;
+    left: auto !important;
+    height: 250px;
+    width: 500px;
+    background-color: #fff;
+    outline: none;
+    border: none;
+
+    // restricting the back drop
+    .css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop {
+      background: transparent;
+    }
+    
+    &-contents {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      outline: none;
+      border: none;
+
+      .location-selector {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-around;
+
+        &-detector {
+          color: red;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          margin-top: 12px;
+        }
+
+        &-suggestion {
+          color: #7a2727;
+          display: flex;
+          flex-direction: column;
+          margin: auto 12px;
+
+          &-title {
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+          }
+
+          &-container {
+            display: flex;
+            justify-content: space-around;
+          }
+        }
+
+        .fas.fa-map-marker-alt {
+          font-size: 16px;
+          margin-right: 8px;
+        }
+      }
+
+      &-footer {
+        display: flex;
+        border-top: 1px solid rgb(27, 27, 67);
+        padding: 8px 8px;
+        justify-content: flex-end;
+
+        &-btn {
+          margin-right: 12px !important;
+          background-color: #7a2727 !important;
+
+          &.cancel {
+            color: #7a2727;
+            background-color: #fff !important;
+            border: 1px solid #7a2727;
+          }
+        }
+      }
+    }
+  }
+
+  &-location {
+    font-size: 20px;
+    font-weight: 400;
+    &-contents {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      &-label {
+        margin-right: 8px;
+      }
+    }
+  }
 }
