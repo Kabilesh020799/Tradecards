@@ -10,11 +10,11 @@ import lombok.Setter;
 @Table(name="user")
 public class UserDao {
     @Id
-    @Column(name="user_id")
+    @Column(name="userid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    private int userid;
 
-    @Column(name = "email_id")
+    @Column(name = "emailId")
     private String emailID;
 
     @Column(name = "password")
