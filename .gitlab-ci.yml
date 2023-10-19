@@ -50,9 +50,16 @@ deploy:
   script:
     - echo "testing deploy script"
     - chmod 400 "${SSH_PRIVATE_KEY}"
+    # Copy backend JAR file to VM
     - scp -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" backend/tradecards/target/tradecards-*.jar student@csci5308vm13.research.cs.dal.ca:~/tradecards.jar
-    - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "cd ~/ && java -jar tradecards.jar"
-    - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "java -jar tradecards.jar"
+    # Copy frontend React build files to VM (Assuming your frontend build path is 'frontend/tradecards_ui/build')
+    - scp -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" -r frontend/tradecards_ui/build/* student@csci5308vm13.research.cs.dal.ca:~/frontend
+    # Start your web server to serve the React app
+    - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "cd ~/frontend && serve -s . > webserver.log 2>&1 &"
+    # Start the spring boot application in background
+    - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "nohup java -jar tradecards.jar > app.log 2>&1 &"
+    - echo "React app started in background"
+    - echo "Spring Boot application started in the background."
 
 cache:
   paths:
