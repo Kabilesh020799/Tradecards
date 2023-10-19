@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
         return org.springframework.security.core.userdetails.User.builder()
-                .username((String.valueOf(user.getUserId())))
+                .username((String.valueOf(user.getUserid())))
                 .password(user.getPassword())
                 .build();
     }
