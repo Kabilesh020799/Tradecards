@@ -61,7 +61,8 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(c -> c.disable())
                 .authorizeHttpRequests(auth->auth.requestMatchers("/api/users/**").authenticated()
-                        .requestMatchers("/api/signup", "/api/login").permitAll().anyRequest()
+                        .requestMatchers("/api/signup", "/api/login", "/api/categories", "/api/create-category")
+                        .permitAll().anyRequest()
                         .authenticated())
                 .exceptionHandling(ex->ex.authenticationEntryPoint(point))
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
