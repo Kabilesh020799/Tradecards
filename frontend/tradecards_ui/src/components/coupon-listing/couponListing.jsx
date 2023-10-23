@@ -38,7 +38,7 @@ const CouponListing = (props) => {
           columns={{ xs: 4, sm: 8, md: 12, }}
         >
           {
-            couponLists?.map((coupon) => (
+            couponLists?.slice(0, 5)?.map((coupon) => (
               <Grid
                 item
                 key={coupon?.couponId}
@@ -49,17 +49,19 @@ const CouponListing = (props) => {
                     image={coupon?.couponImage}
                     title={coupon?.couponName}
                   />
-                  <CardContent>
+                  <CardContent className='coupon-listing-card-content'>
                     <Typography
                       gutterBottom
                       variant='h5'
                       component="div"
+                      className='coupon-listing-card-content-heading'
                     >
                       {coupon?.couponName}
                     </Typography>
                     <Typography
                       variant='body2'
                       color="text.secondary"
+                      className='coupon-listing-card-content-desc'
                     >
                       {coupon?.couponDesc}
                     </Typography>

@@ -1,11 +1,3 @@
-const navBarContents = [
-  {
-    value: 'home',
-    route: 'home',
-    label: 'Home',
-  },
-];
-
 const navBarSubContents = [
   {
     value: 'restaurants',
@@ -36,7 +28,6 @@ const navBarSubContents = [
 const APIKEY = '4b14ca25bcb248afb716e6ffde240977';
 
 export {
-  navBarContents,
   APIKEY,
   navBarSubContents,
 };
