@@ -41,9 +41,9 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("*"); // Replace with the origins you want to allow
-        configuration.addAllowedMethod("*"); // You can restrict HTTP methods (e.g., GET, POST, PUT, DELETE)
-        configuration.addAllowedHeader("*"); // You can specify which headers are allowed
+        configuration.addAllowedOrigin("*");
+        configuration.addAllowedMethod("*");
+        configuration.addAllowedHeader("*");
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
