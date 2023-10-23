@@ -2,9 +2,7 @@ package dal.asdc.tradecards.Controller;
 
 import java.util.List;
 
-import dal.asdc.tradecards.Model.UserDao;
-import dal.asdc.tradecards.Model.UserLoginDTO;
-import dal.asdc.tradecards.Model.UserLoginResponse;
+import dal.asdc.tradecards.Model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -51,6 +49,16 @@ public class UserController {
         final UserDetails userDetails = userService.loadUserByUsername(authenticationRequest.getUsername());
         String jwtToken = jwtUtil.generateToken(userDetails.getUsername());
         return ResponseEntity.ok(new UserLoginResponse(userDetails.getUsername(), jwtToken));
+    }
+
+    @GetMapping("/categories")
+    public List<CategoryDao> getAllCategories(){
+        return userService.getAllCategories();
+    }
+
+    @PostMapping("/create-category")
+    public CategoryDao categoryDao(@RequestBody CategoryDTO categoryDTO){
+        return userService.createCategory(categoryDTO);
     }
 
     private void authenticate(String username, String password) throws Exception {

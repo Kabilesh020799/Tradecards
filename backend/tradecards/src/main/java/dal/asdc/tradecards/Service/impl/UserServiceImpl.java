@@ -2,6 +2,9 @@ package dal.asdc.tradecards.Service.impl;
 
 import java.util.List;
 
+import dal.asdc.tradecards.Model.CategoryDTO;
+import dal.asdc.tradecards.Model.CategoryDao;
+import dal.asdc.tradecards.Repository.CategoryRepository;
 import dal.asdc.tradecards.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -20,6 +23,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
+    CategoryRepository categoryRepository;
 
     @Override
     public UserDao create(UserDao user){
@@ -56,5 +60,16 @@ public class UserServiceImpl implements UserService {
                 .username((String.valueOf(user.getUserid())))
                 .password(user.getPassword())
                 .build();
+    }
+
+    @Override
+    public List<CategoryDao> getAllCategories(){
+        return (List<CategoryDao>)categoryRepository.findAll();
+    }
+
+    public CategoryDao createCategory(CategoryDTO categoryDTO){
+        CategoryDao category = new CategoryDao();
+        category.setCategoryName(categoryDTO.getCategoryName());
+        return categoryRepository.save(category);
     }
 }
