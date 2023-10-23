@@ -9,6 +9,17 @@
   justify-content: space-between;
   flex-direction: column;
 
+  &-img {
+    height: 100px;
+    cursor: pointer;
+  }
+  &-labels {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin-top: 8px;
+  }
+
   &-components {
     display: flex;
     justify-content: space-between;
@@ -131,6 +142,9 @@
   &-location {
     font-size: 20px;
     font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     &-contents {
       display: flex;
       justify-content: center;

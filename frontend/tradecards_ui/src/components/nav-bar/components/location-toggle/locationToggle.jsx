@@ -48,7 +48,6 @@ const LocationToggle = (props) => {
       navigator.permissions
         .query({ name: 'geolocation', })
         .then((result) => {
-          console.log(result);
           if (result.state === 'granted') {
             navigator.geolocation.getCurrentPosition(success, errors, options);
           } else if (result.state === 'prompt') {
