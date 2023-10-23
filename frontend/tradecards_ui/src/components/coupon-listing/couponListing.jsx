@@ -41,7 +41,7 @@ const CouponListing = (props) => {
             couponLists?.slice(0, 5)?.map((coupon) => (
               <Grid
                 item
-                key={coupon?.couponId}
+                key={coupon?.couponId || coupon?.couponName}
               >
                 <Card sx={{ maxWidth: 300, }}>
                   <CardMedia

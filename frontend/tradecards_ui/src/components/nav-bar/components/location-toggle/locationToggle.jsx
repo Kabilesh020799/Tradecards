@@ -81,11 +81,17 @@ const LocationToggle = (props) => {
         className='nav-bar-modal'
       >
         <div className='nav-bar-modal-contents'>
-          <LocationSelector
-            onDetectLocation={onDetectLocation}
-            onLocationChange={onClickLocation}
-            error={error}
-          />
+          {
+            isModalOpen
+              ? (
+                  <LocationSelector
+                    onDetectLocation={onDetectLocation}
+                    onLocationChange={onClickLocation}
+                    error={error}
+                  />
+                )
+              : null
+          }
           <div className='nav-bar-modal-contents-footer'>
             <Button
               onClick={() => setIsModalOpen(false)}
