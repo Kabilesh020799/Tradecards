@@ -11,9 +11,9 @@ import lombok.Setter;
 @Table(name = "category")
 public class CategoryDao {
     @Id
-    @Column(name = "categoryId")    //need to recheck
+    @Column(name = "CategoryID")
     private int categoryId;
 
-    @Column(name = "categoryName")  //need to recheck
+    @Column(name = "CategoryName")  //need to recheck
     private String categoryName;
 }
