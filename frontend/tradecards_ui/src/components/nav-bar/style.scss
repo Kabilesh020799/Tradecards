@@ -1,23 +1,23 @@
 .nav-bar {
-  background: #7a2727;
+  background: hsla(318, 22%, 27%, 1);
   height: fit-content;
   min-height: 50px;
   display: flex;
   align-items: center;
-  padding-left: 20px;
-  padding-right: 20px;
   justify-content: space-between;
   flex-direction: column;
 
   &-img {
     height: 100px;
     cursor: pointer;
+    margin-right: 40px;
   }
   &-labels {
     display: flex;
     align-items: center;
     height: 50px;
     margin-top: 8px;
+    margin-left: 20px;
   }
 
   &-components {
@@ -30,6 +30,8 @@
     display: flex;
     width: 100%;
     margin-top: 20px;
+    background: hsl(318deg 22.11% 14.7%);
+    padding: 8px;
 
     &-label {
       margin-left: 12px;
@@ -145,6 +147,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 20px;
+
     &-contents {
       display: flex;
       justify-content: center;
