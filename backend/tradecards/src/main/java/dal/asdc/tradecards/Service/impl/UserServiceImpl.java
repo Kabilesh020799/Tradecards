@@ -23,6 +23,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
     CategoryRepository categoryRepository;
 
     @Override
