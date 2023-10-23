@@ -61,7 +61,7 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(c -> c.disable())
                 .authorizeHttpRequests(auth->auth.requestMatchers("/api/users/**").authenticated()
-                        .requestMatchers("/api/signup", "/api/login", "/api/categories", "/api/create-category")
+                        .requestMatchers("/api/*")
                         .permitAll().anyRequest()
                         .authenticated())
                 .exceptionHandling(ex->ex.authenticationEntryPoint(point))
