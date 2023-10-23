@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Button } from '@mui/material';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { onLogin, onSignup } from './apiUtils';
+import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { onLogin, onSignup } from './apiUtils';
 import InputHolder from './components/input';
 
 function Login (props) {
@@ -22,6 +22,7 @@ function Login (props) {
     } else {
       onSignup(userName, password);
     }
+    navigate('/home');
   };
 
   const onNavigate = () => {

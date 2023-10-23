@@ -1,5 +1,6 @@
 import React from 'react';
 import Login from './containers/login';
+import Home from './containers/home';
 
 const routes = [
   {
@@ -20,7 +21,7 @@ const routes = [
   {
     id: 'home',
     route: 'home',
-    component: <div></div>,
+    component: <Home />,
   },
 ];
 
