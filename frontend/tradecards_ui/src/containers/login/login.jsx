@@ -20,7 +20,7 @@ function Login (props) {
     if (isLogin) {
       onLogin(userName, password);
     } else {
-      onSignup(userName, password);
+      onSignup(userName, password, firstName, lastName);
     }
   };
 
