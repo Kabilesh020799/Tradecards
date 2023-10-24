@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { onForgotPassword } from './apiUtils';
 import { useNavigate } from 'react-router-dom';
-import InputHolder from './components/input';
+import InputHolder from '../login/components/input';
 
 function ForgetPassword (props) {
   const { isForgetPassword, } = props;
