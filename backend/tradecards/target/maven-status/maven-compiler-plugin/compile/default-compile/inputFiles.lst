@@ -1,13 +1,28 @@
-C:\Users\Parth Modi\OneDrive\Desktop\tradecards\src\main\java\dal\asdc\tradecards\Model\UserLoginResponse.java
-C:\Users\Parth Modi\OneDrive\Desktop\tradecards\src\main\java\dal\asdc\tradecards\Service\UserService.java
-C:\Users\Parth Modi\OneDrive\Desktop\tradecards\src\main\java\dal\asdc\tradecards\Security\JWTAuthenticationFilter.java
-C:\Users\Parth Modi\OneDrive\Desktop\tradecards\src\main\java\dal\asdc\tradecards\Model\UserDao.java
-C:\Users\Parth Modi\OneDrive\Desktop\tradecards\src\main\java\dal\asdc\tradecards\Service\impl\UserServiceImpl.java
-C:\Users\Parth Modi\OneDrive\Desktop\tradecards\src\main\java\dal\asdc\tradecards\Controller\UserController.java
-C:\Users\Parth Modi\OneDrive\Desktop\tradecards\src\main\java\dal\asdc\tradecards\TradecardsApplication.java
-C:\Users\Parth Modi\OneDrive\Desktop\tradecards\src\main\java\dal\asdc\tradecards\Utility\JWTTokenUtil.java
-C:\Users\Parth Modi\OneDrive\Desktop\tradecards\src\main\java\dal\asdc\tradecards\Exception\ResourceNotFoundException.java
-C:\Users\Parth Modi\OneDrive\Desktop\tradecards\src\main\java\dal\asdc\tradecards\Repository\UserRepository.java
-C:\Users\Parth Modi\OneDrive\Desktop\tradecards\src\main\java\dal\asdc\tradecards\Config\SecurityConfig.java
-C:\Users\Parth Modi\OneDrive\Desktop\tradecards\src\main\java\dal\asdc\tradecards\Security\JWTAthenticationEntryPoint.java
-C:\Users\Parth Modi\OneDrive\Desktop\tradecards\src\main\java\dal\asdc\tradecards\Model\UserLoginDTO.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\TradecardsApplication.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Model\DTO\UserSignUpDTO.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Service\impl\CategoryServiceImpl.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Security\JWTAuthenticationFilter.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Controller\AuthenticationController.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Exception\InvalidAccountCredentialsException.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Repository\UserRepository.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Exception\ResourceNotFoundException.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Service\EmailService.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Controller\CategoryController.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Exception\DuplicateEntryException.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Model\DTO\ForgetPasswordDTO.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Model\DTO\UserLoginDTO.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Utility\JWTTokenUtil.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Controller\UserController.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Service\CategoryService.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Repository\CategoryRepository.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Model\DTO\VerifyAccountDTO.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Model\DAO\UserDao.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Utility\UtilityFunctions.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Security\JWTAuthenticationEntryPoint.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Exception\OTPVerificationFailedException.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Model\DAO\CategoryDao.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Config\SecurityConfig.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Exception\OTPVerificationFailed.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Model\DTO\CategoryDTO.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Service\impl\UserServiceImpl.java
+D:\dal assignments\csci 5308\code_tradecards\Group13\backend\tradecards\src\main\java\dal\asdc\tradecards\Service\UserService.java
