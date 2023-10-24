@@ -1,5 +1,8 @@
 package dal.asdc.tradecards.Config;
 
+import dal.asdc.tradecards.Security.JWTAuthenticationEntryPoint;
+import dal.asdc.tradecards.Security.JWTAuthenticationFilter;
+import dal.asdc.tradecards.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,9 +18,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import dal.asdc.tradecards.Security.JWTAuthenticationEntryPoint;
-import dal.asdc.tradecards.Security.JWTAuthenticationFilter;
-import dal.asdc.tradecards.Service.UserService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.cors.CorsConfiguration;
@@ -53,7 +53,7 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/api/signup", "/api/login");
+        return (web) -> web.ignoring().requestMatchers("/api/*");
     }
 
     @Bean
@@ -61,8 +61,7 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(c -> c.disable())
                 .authorizeHttpRequests(auth->auth.requestMatchers("/api/users/**").authenticated()
-                        .requestMatchers("/api/*")
-                        .permitAll().anyRequest()
+                        .requestMatchers("/api/signup", "/api/login", "/api/forget-password-request").permitAll().anyRequest()
                         .authenticated())
                 .exceptionHandling(ex->ex.authenticationEntryPoint(point))
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
@@ -89,3 +88,4 @@ public class SecurityConfig {
         return config.getAuthenticationManager();
     }
 }
+
