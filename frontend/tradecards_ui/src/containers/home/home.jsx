@@ -13,12 +13,14 @@ const Home = (props) => {
       image: 'https://discoverhalifaxns.com/wp-content/uploads/2023/08/88123_Event_Image_fe0e4e08-76a3-46a0-9063-5a3a84e0aee6.jpg',
       caption: 'Slide 2',
     },
-    // Add more slides as needed
   ];
   return (
     <div>
       <NavBar />
-      <Slideshow slides={slides}/>
+      <Slideshow
+        slides={slides}
+        interval={3000}
+      />
       <div className='coupon-listing'>
         <CouponListing />
       </div>

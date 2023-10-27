@@ -24,6 +24,20 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+
+    &-right {
+      display: flex;
+      align-items: center;
+      &-add-coupon {
+        background: #fff !important;
+        color: hsla(318, 22%, 27%, 1) !important;
+        margin-right: 12px !important;
+      }
+      &-sign-out{
+        color: #fff !important;
+        margin-left: 12px;
+      }
+    }
   }
 
   &-sub-contents {

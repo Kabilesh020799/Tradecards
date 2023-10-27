@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import LocationToggle from './components/location-toggle';
 import SearchBar from '../search-bar';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 const NavBar = (props) => {
   const { className, } = props;
@@ -15,6 +16,10 @@ const NavBar = (props) => {
     setLocation(loc);
   };
 
+  const onLogout = () => {
+    navigate('/login');
+  };
+
   return (
     <div className={`${className} nav-bar`}>
       <div className='nav-bar-components'>
@@ -22,14 +27,26 @@ const NavBar = (props) => {
         <img
           className='nav-bar-img'
           src='/img/logo.png'
-          onClick={navigate('/home')}
+          onClick={() => navigate('/home')}
         />
           <SearchBar onSearch={null}/>
         </div>
-        <LocationToggle
-          location={location}
-          onLocationChange={onLocationChange}
-        />
+        <div className='nav-bar-components-right'>
+          <Button
+            variant='contained'
+            className='nav-bar-components-right-add-coupon'
+          >
+            Add a Coupon
+          </Button>
+          <LocationToggle
+            location={location}
+            onLocationChange={onLocationChange}
+          />
+          <Button className='nav-bar-components-right-sign-out'
+            onClick={onLogout}>
+            Sign out
+          </Button>
+        </div>
       </div>
       <div className='nav-bar-sub-contents'>
         {
