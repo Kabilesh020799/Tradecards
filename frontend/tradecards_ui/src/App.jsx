@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import MainRoute from './routes';
 import './containers/index.scss';
+import './components/index.scss';
 
 function App () {
   return (
