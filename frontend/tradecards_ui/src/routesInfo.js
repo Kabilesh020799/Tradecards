@@ -1,5 +1,6 @@
 import React from 'react';
 import Login from './containers/login';
+import ForgetPassword from './containers/forgetPassword';
 import Home from './containers/home';
 import CouponGrid from './containers/coupon-grid/';
 
@@ -17,7 +18,7 @@ const routes = [
   {
     id: 'forget-password',
     route: 'forget-password',
-    component: <div></div>,
+    component: <ForgetPassword />,
   },
   {
     id: 'home',
