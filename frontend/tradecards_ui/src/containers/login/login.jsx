@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Button } from '@mui/material';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { onLogin, onSignup } from './apiUtils';
+import { Alert, Button, Snackbar } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { onLogin, onSignup } from './apiUtils';
 import InputHolder from './components/input';
 
 function Login (props) {
@@ -13,6 +13,7 @@ function Login (props) {
   const [password, setPassword,] = useState('');
   const [firstName, setFirstName,] = useState('');
   const [lastName, setLastName,] = useState('');
+  const [isSignupSuccess, setIsSignupSuccess,] = useState('');
 
   const navigate = useNavigate();
 
@@ -26,7 +27,11 @@ function Login (props) {
     } else {
       onSignup(userName, password, firstName, lastName).then((res) => {
         if (res.token) {
-          navigate('/home');
+          navigate('/login');
+          setIsSignupSuccess(true);
+          setTimeout(() => {
+            setIsSignupSuccess(false);
+          }, 4000);
         }
       });
     }
@@ -98,6 +103,17 @@ function Login (props) {
         >
           {`${isLogin ? 'Do you want to Signup?' : 'Have an account? Login'}`}
         </div>
+        <Snackbar
+          open={isSignupSuccess}
+          autoHideDuration={4000}
+        >
+        <Alert
+          severity="success"
+          sx={{ width: '100%', }}
+        >
+          This is a success message!
+        </Alert>
+      </Snackbar>
      </div>
     </div>
   );
