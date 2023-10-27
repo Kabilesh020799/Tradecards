@@ -1,11 +1,8 @@
 import React from 'react';
 import Login from './containers/login';
-<<<<<<< HEAD
 import ForgetPassword from './containers/forgetPassword';
-=======
 import Home from './containers/home';
 import CouponGrid from './containers/coupon-grid/';
->>>>>>> dev
 
 const routes = [
   {
