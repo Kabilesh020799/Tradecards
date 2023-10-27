@@ -1,6 +1,7 @@
 import React from 'react';
 import Login from './containers/login';
 import Home from './containers/home';
+import CouponGrid from './containers/coupon-grid/';
 
 const routes = [
   {
@@ -22,6 +23,11 @@ const routes = [
     id: 'home',
     route: 'home',
     component: <Home />,
+  },
+  {
+    id: 'coupon-listing',
+    route: 'coupon-listing',
+    component: <CouponGrid />,
   },
 ];
 

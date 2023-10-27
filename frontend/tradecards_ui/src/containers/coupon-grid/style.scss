@@ -1,0 +1,9 @@
+.coupon-grid {
+  display: flex;
+  flex-direction: column;
+
+  &-list {
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+}
