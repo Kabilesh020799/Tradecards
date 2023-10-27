@@ -11,13 +11,24 @@ function Login (props) {
 
   const [userName, setUserName,] = useState('');
   const [password, setPassword,] = useState('');
+  const [firstName, setFirstName,] = useState('');
+  const [lastName, setLastName,] = useState('');
+
   const navigate = useNavigate();
 
   const onSubmit = () => {
     if (isLogin) {
-      onLogin(userName, password);
+      onLogin(userName, password).then((res) => {
+        if (res.token) {
+          navigate('/home');
+        }
+      });
     } else {
-      onSignup(userName, password);
+      onSignup(userName, password, firstName, lastName).then((res) => {
+        if (res.token) {
+          navigate('/home');
+        }
+      });
     }
   };
 
@@ -34,12 +45,14 @@ function Login (props) {
   };
 
   return (
-    <div className='login-wrapper'>
-      <img
-        className='login-image'
-        src='/img/logo.png'
-      />
+    <div className='login-wrapper '>
+
      <div className='login'>
+      <div className='login-image'>
+          <img
+            src='/img/logo.png'
+          />
+        </div>
       {isLogin
         ? (
               <div className='login-heading'>Log In</div>
@@ -50,7 +63,7 @@ function Login (props) {
         <InputHolder
           value={userName}
           onChange={setUserName}
-          placeholder="User Name"
+          placeholder="Email Id"
         />
         <InputHolder
           value={password}
@@ -58,6 +71,24 @@ function Login (props) {
           type='password'
           placeholder="Password"
         />
+        {
+          isLogin === false && (
+            <>
+              <InputHolder
+                value={firstName}
+                onChange={setFirstName}
+                type='text'
+                placeholder="First Name"
+              />
+              <InputHolder
+                value={lastName}
+                onChange={setLastName}
+                type='text'
+                placeholder="Last Name"
+              />
+            </>
+          )
+        }
         <Button
           variant="contained"
           onClick={onSubmit}
