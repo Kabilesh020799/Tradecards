@@ -18,9 +18,17 @@ function Login (props) {
 
   const onSubmit = () => {
     if (isLogin) {
-      onLogin(userName, password);
+      onLogin(userName, password).then((res) => {
+        if (res.token) {
+          navigate('/home');
+        }
+      });
     } else {
-      onSignup(userName, password, firstName, lastName);
+      onSignup(userName, password, firstName, lastName).then((res) => {
+        if (res.token) {
+          navigate('/home');
+        }
+      });
     }
   };
 

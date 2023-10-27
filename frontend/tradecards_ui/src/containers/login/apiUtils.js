@@ -5,13 +5,13 @@ const onLogin = (userName, password) => {
     emailId: userName,
     password,
   };
-  fetch(baseUrl + 'api/login', {
+  return fetch(baseUrl + 'api/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', },
     body: JSON.stringify(data),
   })
     .then((res) => res.json())
-    .then((res) => console.log(res))
+    .then((res) => res)
   ;
 };
 
