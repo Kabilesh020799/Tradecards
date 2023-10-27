@@ -1,0 +1,457 @@
+2023-10-24T19:34:14.057-03:00  INFO 1312 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Starting TradecardsApplication using Java 21 with PID 1312 (/Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards/target/classes started by kabileshravichandran in /Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards)
+2023-10-24T19:34:14.058-03:00  INFO 1312 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-10-24T19:34:14.076-03:00  INFO 1312 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-24T19:34:14.077-03:00  INFO 1312 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-24T19:34:14.363-03:00  INFO 1312 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-24T19:34:14.388-03:00  INFO 1312 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 2 JPA repository interfaces.
+2023-10-24T19:34:14.648-03:00  INFO 1312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-24T19:34:14.652-03:00  INFO 1312 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-24T19:34:14.653-03:00  INFO 1312 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-24T19:34:14.682-03:00  INFO 1312 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-24T19:34:14.682-03:00  INFO 1312 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 605 ms
+2023-10-24T19:34:14.751-03:00  INFO 1312 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-24T19:34:14.776-03:00  INFO 1312 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
+2023-10-24T19:34:14.778-03:00  INFO 1312 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-10-24T19:34:14.832-03:00  INFO 1312 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:34:14.895-03:00  INFO 1312 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-24T19:34:14.906-03:00  INFO 1312 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-10-24T19:34:15.445-03:00  INFO 1312 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6513dbac
+2023-10-24T19:34:15.447-03:00  INFO 1312 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-10-24T19:34:15.546-03:00  WARN 1312 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
+2023-10-24T19:34:15.618-03:00  INFO 1312 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:34:15.875-03:00  INFO 1312 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-24T19:34:16.406-03:00  INFO 1312 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-24T19:34:16.498-03:00  INFO 1312 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-10-24T19:34:16.598-03:00  WARN 1312 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-24T19:34:16.710-03:00  INFO 1312 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3480a3ee, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@69ae5b43, org.springframework.security.web.context.SecurityContextHolderFilter@55f5f540, org.springframework.security.web.header.HeaderWriterFilter@10e9d875, org.springframework.security.web.authentication.logout.LogoutFilter@29203a1f, dal.asdc.tradecards.Security.JWTAuthenticationFilter@499e9b2e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1b429e10, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@414129e5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2c16971c, org.springframework.security.web.session.SessionManagementFilter@3fa9a614, org.springframework.security.web.access.ExceptionTranslationFilter@74e7bbce, org.springframework.security.web.access.intercept.AuthorizationFilter@299e9da0]
+2023-10-24T19:34:16.712-03:00  WARN 1312 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Mvc [pattern='/api/*']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-10-24T19:34:16.712-03:00  INFO 1312 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Mvc [pattern='/api/*']
+2023-10-24T19:34:16.817-03:00  INFO 1312 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-24T19:34:16.833-03:00  INFO 1312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-24T19:34:16.838-03:00  INFO 1312 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Started TradecardsApplication in 2.961 seconds (process running for 3.373)
+2023-10-24T19:34:23.283-03:00  INFO 1312 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 29 class path changes (0 additions, 28 deletions, 1 modification)
+2023-10-24T19:34:23.301-03:00  INFO 1312 --- [Thread-5] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-10-24T19:34:23.304-03:00  WARN 1312 --- [Thread-5] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:269)
+ java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1758)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1070)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+ java.base/java.lang.Thread.run(Thread.java:1583)
+2023-10-24T19:34:23.305-03:00  WARN 1312 --- [Thread-5] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-1 connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:269)
+ java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1758)
+ java.base/java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:460)
+ java.base/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1069)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+ java.base/java.lang.Thread.run(Thread.java:1583)
+2023-10-24T19:34:23.311-03:00  INFO 1312 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-24T19:34:23.314-03:00  INFO 1312 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-10-24T19:34:23.325-03:00  INFO 1312 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-10-24T19:34:23.388-03:00  INFO 1312 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Starting TradecardsApplication using Java 21 with PID 1312 (/Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards/target/classes started by kabileshravichandran in /Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards)
+2023-10-24T19:34:23.388-03:00  INFO 1312 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-10-24T19:34:23.465-03:00  INFO 1312 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-24T19:34:23.470-03:00  INFO 1312 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 2 JPA repository interfaces.
+2023-10-24T19:34:23.561-03:00  INFO 1312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-24T19:34:23.561-03:00  INFO 1312 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-24T19:34:23.561-03:00  INFO 1312 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-24T19:34:23.569-03:00  INFO 1312 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-24T19:34:23.569-03:00  INFO 1312 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 179 ms
+2023-10-24T19:34:23.686-03:00  INFO 1312 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-24T19:34:23.691-03:00  INFO 1312 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:34:23.691-03:00  INFO 1312 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-24T19:34:23.692-03:00  INFO 1312 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2023-10-24T19:34:24.395-03:00  INFO 1312 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b598469
+2023-10-24T19:34:24.396-03:00  INFO 1312 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2023-10-24T19:34:24.443-03:00  WARN 1312 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
+2023-10-24T19:34:24.462-03:00  INFO 1312 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:34:24.510-03:00  INFO 1312 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-24T19:34:25.058-03:00  INFO 1312 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-24T19:34:25.161-03:00  WARN 1312 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-24T19:34:25.256-03:00  INFO 1312 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7bbc931c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@115b369f, org.springframework.security.web.context.SecurityContextHolderFilter@b41177e, org.springframework.security.web.header.HeaderWriterFilter@2552e6ff, org.springframework.security.web.authentication.logout.LogoutFilter@53f73f53, dal.asdc.tradecards.Security.JWTAuthenticationFilter@5d72c3b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@23cffba4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1118843c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@51c0138a, org.springframework.security.web.session.SessionManagementFilter@15da81bd, org.springframework.security.web.access.ExceptionTranslationFilter@64b983f9, org.springframework.security.web.access.intercept.AuthorizationFilter@5ad5a0fd]
+2023-10-24T19:34:25.257-03:00  WARN 1312 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Mvc [pattern='/api/*']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-10-24T19:34:25.257-03:00  INFO 1312 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Mvc [pattern='/api/*']
+2023-10-24T19:34:25.284-03:00  INFO 1312 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-24T19:34:25.290-03:00  INFO 1312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-24T19:34:25.292-03:00  INFO 1312 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Started TradecardsApplication in 1.916 seconds (process running for 11.828)
+2023-10-24T19:34:25.293-03:00  INFO 1312 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2023-10-24T19:34:26.703-03:00  INFO 1312 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 28 class path changes (28 additions, 0 deletions, 0 modifications)
+2023-10-24T19:34:26.706-03:00  INFO 1312 --- [Thread-7] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-10-24T19:34:26.707-03:00  WARN 1312 --- [Thread-7] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-2 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:269)
+ java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1758)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1070)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+ java.base/java.lang.Thread.run(Thread.java:1583)
+2023-10-24T19:34:26.707-03:00  WARN 1312 --- [Thread-7] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-2 connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/sun.nio.ch.Net.poll(Native Method)
+ java.base/sun.nio.ch.NioSocketImpl.park(NioSocketImpl.java:191)
+ java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:548)
+ java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+ java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+ java.base/java.net.Socket.connect(Socket.java:751)
+ com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153)
+ com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63)
+ com.mysql.cj.NativeSession.connect(NativeSession.java:121)
+ com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:945)
+ com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:815)
+ com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446)
+ com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239)
+ com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188)
+ com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+ com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+ com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+ com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+ com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:733)
+ com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
+ java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+ java.base/java.lang.Thread.run(Thread.java:1583)
+2023-10-24T19:34:26.710-03:00  INFO 1312 --- [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-24T19:34:26.711-03:00  INFO 1312 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2023-10-24T19:34:27.061-03:00  INFO 1312 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2023-10-24T19:34:27.104-03:00  INFO 1312 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Starting TradecardsApplication using Java 21 with PID 1312 (/Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards/target/classes started by kabileshravichandran in /Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards)
+2023-10-24T19:34:27.105-03:00  INFO 1312 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-10-24T19:34:27.169-03:00  INFO 1312 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-24T19:34:27.176-03:00  INFO 1312 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 2 JPA repository interfaces.
+2023-10-24T19:34:27.224-03:00  INFO 1312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-24T19:34:27.224-03:00  INFO 1312 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-24T19:34:27.224-03:00  INFO 1312 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-24T19:34:27.228-03:00  INFO 1312 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-24T19:34:27.229-03:00  INFO 1312 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 122 ms
+2023-10-24T19:34:27.248-03:00  INFO 1312 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-24T19:34:27.254-03:00  INFO 1312 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:34:27.254-03:00  INFO 1312 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-24T19:34:27.254-03:00  INFO 1312 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2023-10-24T19:34:27.903-03:00  INFO 1312 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2279302f
+2023-10-24T19:34:27.904-03:00  INFO 1312 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2023-10-24T19:34:27.951-03:00  WARN 1312 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
+2023-10-24T19:34:27.963-03:00  INFO 1312 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:34:27.986-03:00  INFO 1312 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-24T19:34:29.355-03:00  INFO 1312 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-24T19:34:29.441-03:00  WARN 1312 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-24T19:34:29.473-03:00  INFO 1312 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1b60429, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@491992ec, org.springframework.security.web.context.SecurityContextHolderFilter@aff9007, org.springframework.security.web.header.HeaderWriterFilter@b5662ad, org.springframework.security.web.authentication.logout.LogoutFilter@13eb6182, dal.asdc.tradecards.Security.JWTAuthenticationFilter@4d0ed22, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4fef97b5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7794d7ef, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3990c41c, org.springframework.security.web.session.SessionManagementFilter@50184f8b, org.springframework.security.web.access.ExceptionTranslationFilter@48a3be, org.springframework.security.web.access.intercept.AuthorizationFilter@71708e24]
+2023-10-24T19:34:29.474-03:00  WARN 1312 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Mvc [pattern='/api/*']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-10-24T19:34:29.474-03:00  INFO 1312 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Mvc [pattern='/api/*']
+2023-10-24T19:34:29.494-03:00  INFO 1312 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-24T19:34:29.499-03:00  INFO 1312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-24T19:34:29.501-03:00  INFO 1312 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Started TradecardsApplication in 2.407 seconds (process running for 16.036)
+2023-10-24T19:34:29.501-03:00  INFO 1312 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2023-10-24T19:34:38.996-03:00  INFO 1312 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2023-10-24T19:34:39.001-03:00  INFO 1312 --- [Thread-11] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-10-24T19:34:39.005-03:00  WARN 1312 --- [Thread-11] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-3 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:269)
+ java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1758)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1070)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+ java.base/java.lang.Thread.run(Thread.java:1583)
+2023-10-24T19:34:39.009-03:00  INFO 1312 --- [Thread-11] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-24T19:34:39.010-03:00  INFO 1312 --- [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2023-10-24T19:34:39.014-03:00  INFO 1312 --- [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2023-10-24T19:34:43.986-03:00  INFO 1312 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Starting TradecardsApplication using Java 21 with PID 1312 (/Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards/target/classes started by kabileshravichandran in /Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards)
+2023-10-24T19:34:43.986-03:00  INFO 1312 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-10-24T19:34:44.064-03:00  INFO 1312 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-24T19:34:44.067-03:00  INFO 1312 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 2 JPA repository interfaces.
+2023-10-24T19:34:44.103-03:00  INFO 1312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-24T19:34:44.104-03:00  INFO 1312 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-24T19:34:44.104-03:00  INFO 1312 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-24T19:34:44.107-03:00  INFO 1312 --- [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2023-10-24T19:34:44.107-03:00  INFO 1312 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 119 ms
+2023-10-24T19:34:44.122-03:00  INFO 1312 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-24T19:34:44.124-03:00  INFO 1312 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:34:44.124-03:00  INFO 1312 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-24T19:34:44.125-03:00  INFO 1312 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2023-10-24T19:34:44.797-03:00  INFO 1312 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Added connection com.mysql.cj.jdbc.ConnectionImpl@33916513
+2023-10-24T19:34:44.798-03:00  INFO 1312 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2023-10-24T19:34:44.848-03:00  WARN 1312 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
+2023-10-24T19:34:44.866-03:00  INFO 1312 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:34:44.897-03:00  INFO 1312 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-24T19:34:45.477-03:00  INFO 1312 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-24T19:34:45.561-03:00  WARN 1312 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-24T19:34:45.594-03:00  INFO 1312 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2428aacb, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@79d3a206, org.springframework.security.web.context.SecurityContextHolderFilter@6fec005f, org.springframework.security.web.header.HeaderWriterFilter@1ec40902, org.springframework.security.web.authentication.logout.LogoutFilter@54f12af2, dal.asdc.tradecards.Security.JWTAuthenticationFilter@3b76cf74, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1ae4e851, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@24d67e16, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@47b57b7f, org.springframework.security.web.session.SessionManagementFilter@23db8c4f, org.springframework.security.web.access.ExceptionTranslationFilter@37ec06b, org.springframework.security.web.access.intercept.AuthorizationFilter@7e5b03a8]
+2023-10-24T19:34:45.595-03:00  WARN 1312 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Mvc [pattern='/api/*']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-10-24T19:34:45.595-03:00  INFO 1312 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Mvc [pattern='/api/*']
+2023-10-24T19:34:45.616-03:00  INFO 1312 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-24T19:34:45.621-03:00  INFO 1312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-24T19:34:45.622-03:00  INFO 1312 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Started TradecardsApplication in 1.663 seconds (process running for 32.159)
+2023-10-24T19:34:45.623-03:00  INFO 1312 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2023-10-24T19:34:51.475-03:00  INFO 1312 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 26 class path changes (0 additions, 0 deletions, 26 modifications)
+2023-10-24T19:34:51.479-03:00  INFO 1312 --- [Thread-15] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-10-24T19:34:51.482-03:00  WARN 1312 --- [Thread-15] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-5 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:269)
+ java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1758)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1070)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+ java.base/java.lang.Thread.run(Thread.java:1583)
+2023-10-24T19:34:51.482-03:00  WARN 1312 --- [Thread-15] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-5 connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:269)
+ java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1758)
+ java.base/java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:460)
+ java.base/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1069)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+ java.base/java.lang.Thread.run(Thread.java:1583)
+2023-10-24T19:34:51.484-03:00  INFO 1312 --- [Thread-15] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-24T19:34:51.486-03:00  INFO 1312 --- [Thread-15] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2023-10-24T19:34:51.487-03:00  INFO 1312 --- [Thread-15] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+2023-10-24T19:34:51.541-03:00  INFO 1312 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Starting TradecardsApplication using Java 21 with PID 1312 (/Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards/target/classes started by kabileshravichandran in /Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards)
+2023-10-24T19:34:51.541-03:00  INFO 1312 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-10-24T19:34:51.603-03:00  INFO 1312 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-24T19:34:51.612-03:00  INFO 1312 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8 ms. Found 2 JPA repository interfaces.
+2023-10-24T19:34:51.655-03:00  INFO 1312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-24T19:34:51.656-03:00  INFO 1312 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-24T19:34:51.656-03:00  INFO 1312 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-24T19:34:51.661-03:00  INFO 1312 --- [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2023-10-24T19:34:51.661-03:00  INFO 1312 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 119 ms
+2023-10-24T19:34:51.685-03:00  INFO 1312 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-24T19:34:51.688-03:00  INFO 1312 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:34:51.688-03:00  INFO 1312 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-24T19:34:51.688-03:00  INFO 1312 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2023-10-24T19:34:52.173-03:00  INFO 1312 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-6 - Added connection com.mysql.cj.jdbc.ConnectionImpl@260b5cc4
+2023-10-24T19:34:52.174-03:00  INFO 1312 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2023-10-24T19:34:52.223-03:00  WARN 1312 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
+2023-10-24T19:34:52.228-03:00  INFO 1312 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:34:52.244-03:00  INFO 1312 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-24T19:34:52.789-03:00  INFO 1312 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-24T19:34:52.869-03:00  WARN 1312 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-24T19:34:52.906-03:00  INFO 1312 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7204b88e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@221d8a72, org.springframework.security.web.context.SecurityContextHolderFilter@61ffaa19, org.springframework.security.web.header.HeaderWriterFilter@761c1e32, org.springframework.security.web.authentication.logout.LogoutFilter@6d27add9, dal.asdc.tradecards.Security.JWTAuthenticationFilter@53e98285, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3a58c061, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2ca3b496, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@32939376, org.springframework.security.web.session.SessionManagementFilter@61878db7, org.springframework.security.web.access.ExceptionTranslationFilter@2ceef25d, org.springframework.security.web.access.intercept.AuthorizationFilter@20b63266]
+2023-10-24T19:34:52.907-03:00  WARN 1312 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Mvc [pattern='/api/*']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-10-24T19:34:52.907-03:00  INFO 1312 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Mvc [pattern='/api/*']
+2023-10-24T19:34:52.929-03:00  INFO 1312 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-24T19:34:52.935-03:00  INFO 1312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-24T19:34:52.936-03:00  INFO 1312 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Started TradecardsApplication in 1.405 seconds (process running for 39.473)
+2023-10-24T19:34:52.937-03:00  INFO 1312 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2023-10-24T19:34:52.939-03:00  INFO 1312 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-24T19:34:52.939-03:00  INFO 1312 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2023-10-24T19:34:53.161-03:00  INFO 1312 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+2023-10-24T19:34:55.100-03:00  INFO 1431 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Starting TradecardsApplication using Java 21 with PID 1431 (/Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards/target/classes started by kabileshravichandran in /Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards)
+2023-10-24T19:34:55.102-03:00  INFO 1431 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-10-24T19:34:55.126-03:00  INFO 1431 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-24T19:34:55.127-03:00  INFO 1431 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-24T19:34:55.519-03:00  INFO 1431 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-24T19:34:55.551-03:00  INFO 1431 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28 ms. Found 2 JPA repository interfaces.
+2023-10-24T19:34:55.883-03:00  INFO 1431 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-24T19:34:55.889-03:00  INFO 1431 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-24T19:34:55.889-03:00  INFO 1431 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-24T19:34:55.915-03:00  INFO 1431 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-24T19:34:55.915-03:00  INFO 1431 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 788 ms
+2023-10-24T19:34:55.976-03:00  INFO 1431 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-24T19:34:56.001-03:00  INFO 1431 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
+2023-10-24T19:34:56.002-03:00  INFO 1431 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-10-24T19:34:56.061-03:00  INFO 1431 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:34:56.120-03:00  INFO 1431 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-24T19:34:56.131-03:00  INFO 1431 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-10-24T19:34:56.605-03:00  INFO 1431 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2fd9550
+2023-10-24T19:34:56.610-03:00  INFO 1431 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-10-24T19:34:56.736-03:00  WARN 1431 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
+2023-10-24T19:34:56.826-03:00  INFO 1431 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:34:57.077-03:00  INFO 1431 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-24T19:34:57.593-03:00  INFO 1431 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-24T19:34:57.717-03:00  INFO 1431 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-10-24T19:34:57.818-03:00  WARN 1431 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-24T19:34:57.926-03:00  INFO 1431 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6852ffa3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4ba11c7f, org.springframework.security.web.context.SecurityContextHolderFilter@4edcf4d, org.springframework.security.web.header.HeaderWriterFilter@39e5ad69, org.springframework.security.web.authentication.logout.LogoutFilter@6ece9eaf, dal.asdc.tradecards.Security.JWTAuthenticationFilter@4310db0f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@f86447c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@42a6b186, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@278538cc, org.springframework.security.web.session.SessionManagementFilter@65c543fb, org.springframework.security.web.access.ExceptionTranslationFilter@2b3deac4, org.springframework.security.web.access.intercept.AuthorizationFilter@18277ee8]
+2023-10-24T19:34:57.927-03:00  WARN 1431 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Mvc [pattern='/api/*']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-10-24T19:34:57.927-03:00  INFO 1431 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Mvc [pattern='/api/*']
+2023-10-24T19:34:58.007-03:00  INFO 1431 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-24T19:34:58.021-03:00  INFO 1431 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-24T19:34:58.026-03:00  INFO 1431 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Started TradecardsApplication in 3.225 seconds (process running for 3.58)
+2023-10-24T19:36:14.889-03:00  INFO 1431 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-24T19:36:14.890-03:00  INFO 1431 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-24T19:36:14.892-03:00  INFO 1431 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-10-24T19:39:18.068-03:00  INFO 1431 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-24T19:39:18.075-03:00  INFO 1431 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-10-24T19:39:18.091-03:00  INFO 1431 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-10-24T19:39:20.231-03:00  INFO 1730 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Starting TradecardsApplication using Java 21 with PID 1730 (/Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards/target/classes started by kabileshravichandran in /Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards)
+2023-10-24T19:39:20.232-03:00  INFO 1730 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-10-24T19:39:20.253-03:00  INFO 1730 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-24T19:39:20.253-03:00  INFO 1730 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-24T19:39:20.547-03:00  INFO 1730 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-24T19:39:20.572-03:00  INFO 1730 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 2 JPA repository interfaces.
+2023-10-24T19:39:20.848-03:00  INFO 1730 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-24T19:39:20.853-03:00  INFO 1730 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-24T19:39:20.853-03:00  INFO 1730 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-24T19:39:20.882-03:00  INFO 1730 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-24T19:39:20.882-03:00  INFO 1730 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 628 ms
+2023-10-24T19:39:20.941-03:00  INFO 1730 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-24T19:39:20.966-03:00  INFO 1730 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
+2023-10-24T19:39:20.967-03:00  INFO 1730 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-10-24T19:39:21.021-03:00  INFO 1730 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:39:21.077-03:00  INFO 1730 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-24T19:39:21.088-03:00  INFO 1730 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-10-24T19:39:21.656-03:00  INFO 1730 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@60a925e9
+2023-10-24T19:39:21.660-03:00  INFO 1730 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-10-24T19:39:21.833-03:00  WARN 1730 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
+2023-10-24T19:39:21.933-03:00  INFO 1730 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:39:22.176-03:00  INFO 1730 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-24T19:39:22.723-03:00  INFO 1730 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-24T19:39:22.843-03:00  INFO 1730 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-10-24T19:39:22.941-03:00  WARN 1730 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-24T19:39:23.048-03:00  INFO 1730 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@67b7ad3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7aee175f, org.springframework.security.web.context.SecurityContextHolderFilter@3d243661, org.springframework.security.web.header.HeaderWriterFilter@33b6db92, org.springframework.security.web.authentication.logout.LogoutFilter@182cbc56, dal.asdc.tradecards.Security.JWTAuthenticationFilter@253ae29f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@73339669, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@65914a40, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7b1f8cfc, org.springframework.security.web.session.SessionManagementFilter@1e9807d9, org.springframework.security.web.access.ExceptionTranslationFilter@416d7bcd, org.springframework.security.web.access.intercept.AuthorizationFilter@258b3c47]
+2023-10-24T19:39:23.050-03:00  WARN 1730 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Mvc [pattern='/api/*']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-10-24T19:39:23.050-03:00  INFO 1730 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Mvc [pattern='/api/*']
+2023-10-24T19:39:23.127-03:00  INFO 1730 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-24T19:39:23.141-03:00  INFO 1730 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-24T19:39:23.147-03:00  INFO 1730 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Started TradecardsApplication in 3.098 seconds (process running for 3.43)
+2023-10-24T19:45:43.687-03:00  INFO 1730 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-24T19:45:43.688-03:00  INFO 1730 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-24T19:45:43.693-03:00  INFO 1730 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2023-10-24T19:50:13.016-03:00  INFO 1730 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2023-10-24T19:50:13.039-03:00  INFO 1730 --- [Thread-5] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-10-24T19:50:13.043-03:00  INFO 1730 --- [Thread-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-10-24T19:50:13.050-03:00  WARN 1730 --- [Thread-5] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:269)
+ java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1758)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1070)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+ java.base/java.lang.Thread.run(Thread.java:1583)
+2023-10-24T19:50:13.064-03:00  INFO 1730 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-24T19:50:13.084-03:00  INFO 1730 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-10-24T19:50:13.096-03:00  INFO 1730 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-10-24T19:50:13.263-03:00  INFO 1730 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Starting TradecardsApplication using Java 21 with PID 1730 (/Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards/target/classes started by kabileshravichandran in /Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards)
+2023-10-24T19:50:13.264-03:00  INFO 1730 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-10-24T19:50:13.417-03:00  INFO 1730 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-24T19:50:13.423-03:00  INFO 1730 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 2 JPA repository interfaces.
+2023-10-24T19:50:13.522-03:00  INFO 1730 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-24T19:50:13.523-03:00  INFO 1730 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-24T19:50:13.523-03:00  INFO 1730 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-24T19:50:13.530-03:00  INFO 1730 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-24T19:50:13.530-03:00  INFO 1730 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 261 ms
+2023-10-24T19:50:13.567-03:00  INFO 1730 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-24T19:50:13.570-03:00  INFO 1730 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:50:13.570-03:00  INFO 1730 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-24T19:50:13.571-03:00  INFO 1730 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2023-10-24T19:50:13.977-03:00  INFO 1730 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@38a3f0ab
+2023-10-24T19:50:13.978-03:00  INFO 1730 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2023-10-24T19:50:14.018-03:00  WARN 1730 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
+2023-10-24T19:50:14.027-03:00  INFO 1730 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:50:14.050-03:00  INFO 1730 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-24T19:50:14.445-03:00  INFO 1730 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-24T19:50:14.534-03:00  WARN 1730 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-24T19:50:14.572-03:00  INFO 1730 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@283f73e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@58b4105c, org.springframework.security.web.context.SecurityContextHolderFilter@670424f3, org.springframework.security.web.header.HeaderWriterFilter@72c40889, org.springframework.security.web.authentication.logout.LogoutFilter@692e5256, dal.asdc.tradecards.Security.JWTAuthenticationFilter@523bccab, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@18761cd2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4a24cf15, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@509443b9, org.springframework.security.web.session.SessionManagementFilter@4e707d5f, org.springframework.security.web.access.ExceptionTranslationFilter@4c467978, org.springframework.security.web.access.intercept.AuthorizationFilter@744babda]
+2023-10-24T19:50:14.573-03:00  WARN 1730 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Mvc [pattern='/api/*']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-10-24T19:50:14.573-03:00  INFO 1730 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Mvc [pattern='/api/*']
+2023-10-24T19:50:14.600-03:00  INFO 1730 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-24T19:50:14.606-03:00  INFO 1730 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-24T19:50:14.608-03:00  INFO 1730 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Started TradecardsApplication in 1.374 seconds (process running for 654.878)
+2023-10-24T19:50:14.609-03:00  INFO 1730 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2023-10-24T19:50:28.290-03:00  INFO 1730 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-24T19:50:28.293-03:00  INFO 1730 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2023-10-24T19:50:28.295-03:00  INFO 1730 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2023-10-24T19:50:30.410-03:00  INFO 2058 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Starting TradecardsApplication using Java 21 with PID 2058 (/Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards/target/classes started by kabileshravichandran in /Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards)
+2023-10-24T19:50:30.411-03:00  INFO 2058 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-10-24T19:50:30.429-03:00  INFO 2058 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-24T19:50:30.429-03:00  INFO 2058 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-24T19:50:30.719-03:00  INFO 2058 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-24T19:50:30.744-03:00  INFO 2058 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 2 JPA repository interfaces.
+2023-10-24T19:50:31.005-03:00  INFO 2058 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-24T19:50:31.010-03:00  INFO 2058 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-24T19:50:31.010-03:00  INFO 2058 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-24T19:50:31.035-03:00  INFO 2058 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-24T19:50:31.035-03:00  INFO 2058 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 606 ms
+2023-10-24T19:50:31.100-03:00  INFO 2058 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-24T19:50:31.125-03:00  INFO 2058 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
+2023-10-24T19:50:31.126-03:00  INFO 2058 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-10-24T19:50:31.177-03:00  INFO 2058 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:50:31.235-03:00  INFO 2058 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-24T19:50:31.246-03:00  INFO 2058 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-10-24T19:50:31.667-03:00  INFO 2058 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4f78aa3a
+2023-10-24T19:50:31.670-03:00  INFO 2058 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-10-24T19:50:31.755-03:00  WARN 2058 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
+2023-10-24T19:50:31.845-03:00  INFO 2058 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-24T19:50:32.096-03:00  INFO 2058 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-24T19:50:32.552-03:00  INFO 2058 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-24T19:50:32.667-03:00  INFO 2058 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-10-24T19:50:32.767-03:00  WARN 2058 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-24T19:50:32.876-03:00  INFO 2058 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4a289571, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@416825a3, org.springframework.security.web.context.SecurityContextHolderFilter@4bea5046, org.springframework.security.web.header.HeaderWriterFilter@709724bb, org.springframework.security.web.authentication.logout.LogoutFilter@30fab1c7, dal.asdc.tradecards.Security.JWTAuthenticationFilter@72c4086c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@51e6e645, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@68e955aa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1ddc715, org.springframework.security.web.session.SessionManagementFilter@725b0b00, org.springframework.security.web.access.ExceptionTranslationFilter@6a97bc59, org.springframework.security.web.access.intercept.AuthorizationFilter@691c5ae5]
+2023-10-24T19:50:32.878-03:00  WARN 2058 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Mvc [pattern='/api/*']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-10-24T19:50:32.878-03:00  INFO 2058 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Mvc [pattern='/api/*']
+2023-10-24T19:50:32.956-03:00  INFO 2058 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-24T19:50:32.971-03:00  INFO 2058 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-24T19:50:32.977-03:00  INFO 2058 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Started TradecardsApplication in 2.743 seconds (process running for 3.083)
+2023-10-24T19:50:50.837-03:00  INFO 2058 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-24T19:50:50.838-03:00  INFO 2058 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-24T19:50:50.840-03:00  INFO 2058 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-10-27T18:18:37.767-03:00  INFO 1805 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Starting TradecardsApplication using Java 21 with PID 1805 (/Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards/target/classes started by kabileshravichandran in /Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards)
+2023-10-27T18:18:37.768-03:00  INFO 1805 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-10-27T18:18:37.786-03:00  INFO 1805 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-27T18:18:37.786-03:00  INFO 1805 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-27T18:18:38.073-03:00  INFO 1805 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-27T18:18:38.096-03:00  INFO 1805 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 2 JPA repository interfaces.
+2023-10-27T18:18:38.359-03:00  INFO 1805 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-27T18:18:38.365-03:00  INFO 1805 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-27T18:18:38.365-03:00  INFO 1805 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-27T18:18:38.391-03:00  INFO 1805 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-27T18:18:38.391-03:00  INFO 1805 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 605 ms
+2023-10-27T18:18:38.451-03:00  INFO 1805 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-27T18:18:38.485-03:00  INFO 1805 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
+2023-10-27T18:18:38.486-03:00  INFO 1805 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-10-27T18:18:38.549-03:00  INFO 1805 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-27T18:18:38.614-03:00  INFO 1805 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-27T18:18:38.623-03:00  INFO 1805 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-10-27T18:18:38.855-03:00  INFO 1805 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@695942af
+2023-10-27T18:18:38.856-03:00  INFO 1805 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-10-27T18:18:38.899-03:00  WARN 1805 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
+2023-10-27T18:18:38.972-03:00  INFO 1805 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-27T18:18:39.229-03:00  INFO 1805 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-27T18:18:39.293-03:00  INFO 1805 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-27T18:18:39.395-03:00  INFO 1805 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-10-27T18:18:39.531-03:00  WARN 1805 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-27T18:18:39.636-03:00  INFO 1805 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3f5a0f7b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@54aad5a, org.springframework.security.web.context.SecurityContextHolderFilter@502283c1, org.springframework.security.web.header.HeaderWriterFilter@6567e596, org.springframework.security.web.authentication.logout.LogoutFilter@41207028, dal.asdc.tradecards.Security.JWTAuthenticationFilter@6262a5b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@16943417, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@69cd3fbf, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@66e8bc54, org.springframework.security.web.session.SessionManagementFilter@489c27cf, org.springframework.security.web.access.ExceptionTranslationFilter@53ed97ec, org.springframework.security.web.access.intercept.AuthorizationFilter@3f10a745]
+2023-10-27T18:18:39.637-03:00  WARN 1805 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Mvc [pattern='/api/*']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-10-27T18:18:39.637-03:00  INFO 1805 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Mvc [pattern='/api/*']
+2023-10-27T18:18:39.717-03:00  INFO 1805 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-27T18:18:39.732-03:00  INFO 1805 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-27T18:18:39.737-03:00  INFO 1805 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Started TradecardsApplication in 2.156 seconds (process running for 2.624)
+2023-10-27T18:19:03.700-03:00  INFO 1805 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-27T18:19:03.701-03:00  INFO 1805 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-27T18:19:03.703-03:00  INFO 1805 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-10-27T18:56:13.046-03:00  INFO 1805 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Starting TradecardsApplication using Java 21 with PID 1805 (/Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards/target/classes started by kabileshravichandran in /Users/kabileshravichandran/MACS/Group13/tradecards_ui/backend/tradecards)
+2023-10-27T18:56:13.046-03:00  INFO 1805 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-10-27T18:56:13.114-03:00  INFO 1805 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-27T18:56:13.118-03:00  INFO 1805 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 2 JPA repository interfaces.
+2023-10-27T18:56:13.159-03:00  INFO 1805 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-27T18:56:13.159-03:00  INFO 1805 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-27T18:56:13.159-03:00  INFO 1805 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-27T18:56:13.173-03:00  INFO 1805 --- [restartedMain] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2023-10-27T18:56:13.173-03:00  INFO 1805 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 126 ms
+2023-10-27T18:56:13.192-03:00  INFO 1805 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-27T18:56:13.194-03:00  INFO 1805 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-27T18:56:13.194-03:00  INFO 1805 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-27T18:56:13.194-03:00  INFO 1805 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2023-10-27T18:56:13.237-03:00  INFO 1805 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5448444f
+2023-10-27T18:56:13.237-03:00  INFO 1805 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2023-10-27T18:56:13.244-03:00  WARN 1805 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
+2023-10-27T18:56:13.249-03:00  INFO 1805 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-27T18:56:13.265-03:00  INFO 1805 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-27T18:56:13.337-03:00  INFO 1805 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-27T18:56:13.389-03:00  WARN 1805 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-27T18:56:13.419-03:00  INFO 1805 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4142c9a5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7939f0c0, org.springframework.security.web.context.SecurityContextHolderFilter@1e3df0b8, org.springframework.security.web.header.HeaderWriterFilter@74c0ccb4, org.springframework.security.web.authentication.logout.LogoutFilter@8960abf, dal.asdc.tradecards.Security.JWTAuthenticationFilter@2b57946f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@33b21692, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@41e5c93c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4e60421d, org.springframework.security.web.session.SessionManagementFilter@1af44ed2, org.springframework.security.web.access.ExceptionTranslationFilter@719b972a, org.springframework.security.web.access.intercept.AuthorizationFilter@44700bda]
+2023-10-27T18:56:13.420-03:00  WARN 1805 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Mvc [pattern='/api/*']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-10-27T18:56:13.420-03:00  INFO 1805 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Mvc [pattern='/api/*']
+2023-10-27T18:56:13.441-03:00  INFO 1805 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-27T18:56:13.446-03:00  INFO 1805 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-27T18:56:13.448-03:00  INFO 1805 --- [restartedMain] d.asdc.tradecards.TradecardsApplication  : Started TradecardsApplication in 0.454 seconds (process running for 2256.419)
+2023-10-27T18:56:13.448-03:00  INFO 1805 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
