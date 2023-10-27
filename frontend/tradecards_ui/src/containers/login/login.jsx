@@ -41,7 +41,7 @@ function Login (props) {
   };
 
   return (
-    <div className='login-wrapper'>
+    <div className='login-wrapper '>
 
      <div className='login'>
       <div className='login-image'>
