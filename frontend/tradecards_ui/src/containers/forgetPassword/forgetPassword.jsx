@@ -28,11 +28,12 @@ function ForgetPassword (props) {
 
   return (
     <div className='login-wrapper'>
-      <img
-        className='login-image'
-        src='/img/logo.png'
-      />
      <div className='login'>
+        <div className='login-image'>
+          <img
+            src='/img/logo.png'
+          />
+        </div>
         <div className='login-heading'>Enter your email below:</div>
         <InputHolder
           value={email}
