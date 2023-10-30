@@ -1,3 +1,4 @@
 import Login from './login';
+import ForgetPassword from './forgetPassword';
 
-export { Login, };
+export { Login, ForgetPassword, };

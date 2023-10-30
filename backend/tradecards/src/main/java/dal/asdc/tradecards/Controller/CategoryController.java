@@ -1,7 +1,6 @@
 package dal.asdc.tradecards.Controller;
 
 import dal.asdc.tradecards.Model.DAO.CategoryDao;
-import dal.asdc.tradecards.Model.DTO.CategoryDTO;
 import dal.asdc.tradecards.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +18,4 @@ public class CategoryController {
         return categoryService.getAllCategories();
     }
 
-    @PostMapping("/create-category")
-    public CategoryDao categoryDao(@RequestBody CategoryDTO categoryDTO){
-        return categoryService.createCategory(categoryDTO);
-    }
 }
