@@ -35,7 +35,7 @@ function CouponCreate (props) {
   };
 
   const onNavigate = () => {
-    navigate('/coupon-create');
+    navigate('/home');
   };
 
   return (
