@@ -3,24 +3,24 @@ package dal.asdc.tradecards.Model.DTO;
 import java.util.Date;
 
 public class CouponsDTO {
-    private Integer CouponID;
+    private int couponID;
     private String CouponName;
     private String CouponDesc;
     private String CouponBrand;
     private Date ExpiryDate;
-    private Integer CouponValue;
-    private Integer CouponSellingPrice;
-    private Boolean isSold;
-    private Boolean isOnline;
+    private int CouponValue;
+    private int CouponSellingPrice;
+    private boolean isSold;
+    private boolean isOnline;
     private String CouponCategory;
     private Date CouponListingDate;
-    private Float CouponLocation;
-    private Integer userid ;
-    private Integer CategoryID;
+    private float CouponLocation;
+    private int userid ;
+    private int CategoryID;
 
 
-    public Integer getCouponID() {
-        return CouponID;
+    public int getCouponID() {
+        return couponID;
     }
 
     public String getCouponName() {
@@ -39,19 +39,19 @@ public class CouponsDTO {
         return ExpiryDate;
     }
 
-    public Integer getCouponValue() {
+    public int getCouponValue() {
         return CouponValue;
     }
 
-    public Integer getCouponSellingPrice() {
+    public int getCouponSellingPrice() {
         return CouponSellingPrice;
     }
 
-    public Boolean getSold() {
+    public boolean getSold() {
         return isSold;
     }
 
-    public Boolean getOnline() {
+    public boolean getOnline() {
         return isOnline;
     }
 
@@ -63,71 +63,71 @@ public class CouponsDTO {
         return CouponListingDate;
     }
 
-    public Float getCouponLocation() {
+    public float getCouponLocation() {
         return CouponLocation;
     }
 
-    public Integer getUserid() {
+    public int getUserid() {
         return userid;
     }
 
-    public Integer getCategoryID() {
+    public int getCategoryID() {
         return CategoryID;
     }
 
-    public void setCouponID(Integer couponID) {
-        CouponID = couponID;
+    public void setCouponID(int couponID) {
+        this.couponID = couponID;
     }
 
     public void setCouponName(String couponName) {
-        CouponName = couponName;
+        this.CouponName = couponName;
     }
 
     public void setCouponDesc(String couponDesc) {
-        CouponDesc = couponDesc;
+        this.CouponDesc = couponDesc;
     }
 
     public void setCouponBrand(String couponBrand) {
-        CouponBrand = couponBrand;
+        this.CouponBrand = couponBrand;
     }
 
     public void setExpiryDate(Date expiryDate) {
-        ExpiryDate = expiryDate;
+        this.ExpiryDate = expiryDate;
     }
 
-    public void setCouponValue(Integer couponValue) {
-        CouponValue = couponValue;
+    public void setCouponValue(int couponValue) {
+        this.CouponValue = couponValue;
     }
 
-    public void setCouponSellingPrice(Integer couponSellingPrice) {
-        CouponSellingPrice = couponSellingPrice;
+    public void setCouponSellingPrice(int couponSellingPrice) {
+        this.CouponSellingPrice = couponSellingPrice;
     }
 
-    public void setSold(Boolean sold) {
-        isSold = sold;
+    public void setSold(boolean sold) {
+        this.isSold = sold;
     }
 
-    public void setOnline(Boolean online) {
-        isOnline = online;
+    public void setOnline(boolean online) {
+        this.isOnline = online;
     }
 
     public void setCouponCategory(String couponCategory) {
-        CouponCategory = couponCategory;
+        this.CouponCategory = couponCategory;
     }
 
     public void setCouponListingDate(Date couponListingDate) {
-        CouponListingDate = couponListingDate;
+        this.CouponListingDate = couponListingDate;
     }
 
-    public void setCouponLocation(Float couponLocation) {
-        CouponLocation = couponLocation;
+    public void setCouponLocation(float couponLocation) {
+        this.CouponLocation = couponLocation;
     }
 
-    public void setUserid(Integer userid) {
+    public void setUserid(int userid) {
         this.userid = userid;
     }
 
-    public void setCategoryID(Integer categoryID) {
-        CategoryID = categoryID;
+    public void setCategoryID(int categoryID) {
+        this.CategoryID = categoryID;
     }
 }

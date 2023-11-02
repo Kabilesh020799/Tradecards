@@ -14,7 +14,7 @@ public class CouponsDao {
     @Id
     @Column(name = "CouponID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer CouponID;
+    private int CouponID;
 
     @Column(name = "CouponName")
     private String CouponName;
@@ -30,16 +30,16 @@ public class CouponsDao {
     private Date ExpiryDate;
 
     @Column(name = "CouponValue")
-    private Integer CouponValue;
+    private int CouponValue;
 
     @Column(name = "CouponSellingPrice")
-    private Integer CouponSellingPrice;
+    private int CouponSellingPrice;
 
     @Column(name = "isSold")
-    private Boolean isSold;
+    private boolean isSold;
 
     @Column(name = "isOnline")
-    private Boolean isOnline;
+    private boolean isOnline;
 
     @Column(name = "CouponCategory")
     private String CouponCategory;
@@ -49,20 +49,21 @@ public class CouponsDao {
     private Date CouponListingDate;
 
     @Column(name = "CouponLocation")
-    private Float CouponLocation;
+    private float CouponLocation;
 
     @Column(name = "userid")
-    private Integer userid;
+    private int userid;
 
     @Column(name = "CategoryID")
-    private Integer CategoryID;
+    private int CategoryID;
 
     public CouponsDao() {
     }
 
-    public CouponsDao(String CouponName, String CouponDesc, String CouponBrand, Date ExpiryDate, Integer CouponValue,
-                     Integer CouponSellingPrice, Boolean isSold, Boolean isOnline, String CouponCategory,
-                     Date CouponListingDate, Float CouponLocation, Integer userid, Integer CategoryID) {
+    public CouponsDao(int CouponID, String CouponName, String CouponDesc, String CouponBrand, Date ExpiryDate, int CouponValue,
+                     int CouponSellingPrice, boolean isSold, boolean isOnline, String CouponCategory,
+                     Date CouponListingDate, float CouponLocation, int userid, int CategoryID) {
+        this.CouponID = CouponID;
         this.CouponName = CouponName;
         this.CouponDesc = CouponDesc;
         this.CouponBrand = CouponBrand;

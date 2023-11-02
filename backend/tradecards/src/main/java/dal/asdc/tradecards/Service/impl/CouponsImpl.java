@@ -27,8 +27,8 @@ public class CouponsImpl implements CouponsService {
         couponsDao.setExpiryDate(couponsDTO.getExpiryDate());
         couponsDao.setCouponValue(couponsDTO.getCouponValue());
         couponsDao.setCouponSellingPrice(couponsDTO.getCouponSellingPrice());
-        couponsDao.setIsSold(couponsDTO.getSold());
-        couponsDao.setIsOnline(couponsDTO.getOnline());
+        couponsDao.setSold(couponsDTO.getSold());
+        couponsDao.setOnline(couponsDTO.getOnline());
         couponsDao.setCouponCategory(couponsDTO.getCouponCategory());
         couponsDao.setCouponListingDate(couponsDTO.getCouponListingDate());
         couponsDao.setCouponLocation(couponsDTO.getCouponLocation());
