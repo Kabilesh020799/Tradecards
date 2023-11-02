@@ -20,6 +20,7 @@ public class CouponsImpl implements CouponsService {
     public CouponsDao createCoupons(CouponsDTO couponsDTO) {
         CouponsDao couponsDao = new CouponsDao();
 
+        couponsDao.setCouponID(couponsDTO.getCouponID());
         couponsDao.setCouponName(couponsDTO.getCouponName());
         couponsDao.setCouponDesc(couponsDTO.getCouponDesc());
         couponsDao.setCouponBrand(couponsDTO.getCouponBrand());
