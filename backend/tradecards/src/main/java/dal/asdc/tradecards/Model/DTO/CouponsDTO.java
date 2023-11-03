@@ -3,68 +3,60 @@ package dal.asdc.tradecards.Model.DTO;
 import java.util.Date;
 
 public class CouponsDTO {
-    private int couponID;
-    private String CouponName;
-    private String CouponDesc;
-    private String CouponBrand;
-    private Date ExpiryDate;
-    private int CouponValue;
-    private int CouponSellingPrice;
-    private boolean isSold;
-    private boolean isOnline;
-    private String CouponCategory;
-    private Date CouponListingDate;
-    private float CouponLocation;
+    private String couponName;
+    private String couponDesc;
+    private String couponBrand;
+    private Date expiryDate;
+    private int couponValue;
+    private int couponSellingPrice;
+    private boolean sold;
+    private boolean online;
+    private String couponCategory;
+    private Date couponListingDate;
+    private float couponLocation;
     private int userid ;
-    private int CategoryID;
-
-
-    public int getCouponID() {
-        return couponID;
-    }
+    private int categoryID;
 
     public String getCouponName() {
-        return CouponName;
+        return couponName;
     }
 
     public String getCouponDesc() {
-        return CouponDesc;
+        return couponDesc;
     }
 
     public String getCouponBrand() {
-        return CouponBrand;
+        return couponBrand;
     }
 
-    public Date getExpiryDate() {
-        return ExpiryDate;
-    }
+    public Date getExpiryDate() {return expiryDate;}
 
     public int getCouponValue() {
-        return CouponValue;
+        return couponValue;
     }
 
     public int getCouponSellingPrice() {
-        return CouponSellingPrice;
+        return couponSellingPrice;
     }
 
     public boolean getSold() {
-        return isSold;
+        return sold;
     }
 
     public boolean getOnline() {
-        return isOnline;
+        return online;
     }
 
     public String getCouponCategory() {
-        return CouponCategory;
+        return couponCategory;
     }
 
     public Date getCouponListingDate() {
-        return CouponListingDate;
+        return couponListingDate;
     }
 
     public float getCouponLocation() {
-        return CouponLocation;
+        return couponLocation;
     }
 
     public int getUserid() {
@@ -72,62 +64,6 @@ public class CouponsDTO {
     }
 
     public int getCategoryID() {
-        return CategoryID;
-    }
-
-    public void setCouponID(int couponID) {
-        this.couponID = couponID;
-    }
-
-    public void setCouponName(String couponName) {
-        this.CouponName = couponName;
-    }
-
-    public void setCouponDesc(String couponDesc) {
-        this.CouponDesc = couponDesc;
-    }
-
-    public void setCouponBrand(String couponBrand) {
-        this.CouponBrand = couponBrand;
-    }
-
-    public void setExpiryDate(Date expiryDate) {
-        this.ExpiryDate = expiryDate;
-    }
-
-    public void setCouponValue(int couponValue) {
-        this.CouponValue = couponValue;
-    }
-
-    public void setCouponSellingPrice(int couponSellingPrice) {
-        this.CouponSellingPrice = couponSellingPrice;
-    }
-
-    public void setSold(boolean sold) {
-        this.isSold = sold;
-    }
-
-    public void setOnline(boolean online) {
-        this.isOnline = online;
-    }
-
-    public void setCouponCategory(String couponCategory) {
-        this.CouponCategory = couponCategory;
-    }
-
-    public void setCouponListingDate(Date couponListingDate) {
-        this.CouponListingDate = couponListingDate;
-    }
-
-    public void setCouponLocation(float couponLocation) {
-        this.CouponLocation = couponLocation;
-    }
-
-    public void setUserid(int userid) {
-        this.userid = userid;
-    }
-
-    public void setCategoryID(int categoryID) {
-        this.CategoryID = categoryID;
+        return categoryID;
     }
 }

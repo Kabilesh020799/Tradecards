@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 @Service
 public class CouponsImpl implements CouponsService {
 
@@ -20,7 +22,6 @@ public class CouponsImpl implements CouponsService {
     public CouponsDao createCoupons(CouponsDTO couponsDTO) {
         CouponsDao couponsDao = new CouponsDao();
 
-        couponsDao.setCouponID(couponsDTO.getCouponID());
         couponsDao.setCouponName(couponsDTO.getCouponName());
         couponsDao.setCouponDesc(couponsDTO.getCouponDesc());
         couponsDao.setCouponBrand(couponsDTO.getCouponBrand());
@@ -36,7 +37,6 @@ public class CouponsImpl implements CouponsService {
         couponsDao.setCategoryID(couponsDTO.getCategoryID());
 
         couponsDao = couponsRepository.save(couponsDao);
-
         return couponsDao;
     }
 }

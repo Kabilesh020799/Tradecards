@@ -59,23 +59,4 @@ public class CouponsDao {
 
     public CouponsDao() {
     }
-
-    public CouponsDao(int CouponID, String CouponName, String CouponDesc, String CouponBrand, Date ExpiryDate, int CouponValue,
-                     int CouponSellingPrice, boolean isSold, boolean isOnline, String CouponCategory,
-                     Date CouponListingDate, float CouponLocation, int userid, int CategoryID) {
-        this.CouponID = CouponID;
-        this.CouponName = CouponName;
-        this.CouponDesc = CouponDesc;
-        this.CouponBrand = CouponBrand;
-        this.ExpiryDate = ExpiryDate;
-        this.CouponValue = CouponValue;
-        this.CouponSellingPrice = CouponSellingPrice;
-        this.isSold = isSold;
-        this.isOnline = isOnline;
-        this.CouponCategory = CouponCategory;
-        this.CouponListingDate = CouponListingDate;
-        this.CouponLocation = CouponLocation;
-        this.userid = userid;
-        this.CategoryID = CategoryID;
-    }
 }

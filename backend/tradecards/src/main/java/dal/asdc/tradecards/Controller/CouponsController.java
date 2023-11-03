@@ -21,7 +21,7 @@ public class CouponsController {
         try {
             CouponsDao createdCoupon = couponsService.createCoupons(couponsDTO);
             if (createdCoupon != null) {
-                return new ResponseEntity<>("Coupon created successfully", HttpStatus.CREATED);
+                return new ResponseEntity<>("Coupon created successfully", HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Failed to create the coupon", HttpStatus.INTERNAL_SERVER_ERROR);
             }
