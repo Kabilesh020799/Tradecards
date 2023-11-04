@@ -3,10 +3,7 @@ package dal.asdc.tradecards.Service;
 import java.util.HashMap;
 import java.util.List;
 import dal.asdc.tradecards.Model.DAO.UserDao;
-import dal.asdc.tradecards.Model.DTO.ForgetPasswordDTO;
-import dal.asdc.tradecards.Model.DTO.UserLoginDTO;
-import dal.asdc.tradecards.Model.DTO.UserSignUpDTO;
-import dal.asdc.tradecards.Model.DTO.VerifyAccountDTO;
+import dal.asdc.tradecards.Model.DTO.*;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,8 +14,7 @@ public interface UserService extends UserDetailsService {
 
     public HashMap<String, Object> create(UserSignUpDTO userSignUpDTO) throws Exception;
 
-    public Object getUserByUsername(String username);
-
+    public UserDao loadUserByEmailID(String emailID);
     public Object login(UserLoginDTO userLoginDTO) throws Exception;
 
 
@@ -31,4 +27,8 @@ public interface UserService extends UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 
     public List<UserDao> getAllUsers();
+
+    public Object getUserByUsername(String emailID);
+
+    public UserDao updateUser(EditUserRequestDTO updateUser);
 }
