@@ -61,7 +61,7 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(c -> c.disable())
                 .authorizeHttpRequests(auth->auth.requestMatchers("/api/users/**").authenticated()
-                        .requestMatchers("/api/*").permitAll().anyRequest()
+                        .requestMatchers("/api/delete-coupon/*").permitAll().anyRequest()
                         .authenticated())
                 .exceptionHandling(ex->ex.authenticationEntryPoint(point))
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
