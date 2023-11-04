@@ -46,6 +46,8 @@ frontend_test:
 
 deploy:
   stage: deploy
+  only: 
+    - dev
   image: kroniak/ssh-client
   script:
     - echo "testing deploy script"
