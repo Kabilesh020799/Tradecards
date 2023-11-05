@@ -57,6 +57,10 @@ public class CouponsDao {
     @Column(name = "CategoryID")
     private int CategoryID;
 
+    @Column(name = "CouponImage")
+    @Lob
+    private byte[] CouponImage;
+
     public CouponsDao() {
     }
 }

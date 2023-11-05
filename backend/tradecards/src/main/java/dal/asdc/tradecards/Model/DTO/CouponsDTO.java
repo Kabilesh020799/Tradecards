@@ -16,6 +16,7 @@ public class CouponsDTO {
     private float couponLocation;
     private int userid ;
     private int categoryID;
+    private String couponImage;
 
     public String getCouponName() {
         return couponName;
@@ -65,5 +66,65 @@ public class CouponsDTO {
 
     public int getCategoryID() {
         return categoryID;
+    }
+
+    public String getCouponImage() {
+        return couponImage;
+    }
+
+    public void setCouponName(String couponName) {
+        this.couponName = couponName;
+    }
+
+    public void setCouponDesc(String couponDesc) {
+        this.couponDesc = couponDesc;
+    }
+
+    public void setCouponBrand(String couponBrand) {
+        this.couponBrand = couponBrand;
+    }
+
+    public void setExpiryDate(Date expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public void setCouponValue(int couponValue) {
+        this.couponValue = couponValue;
+    }
+
+    public void setCouponSellingPrice(int couponSellingPrice) {
+        this.couponSellingPrice = couponSellingPrice;
+    }
+
+    public void setSold(boolean sold) {
+        this.sold = sold;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
+
+    public void setCouponCategory(String couponCategory) {
+        this.couponCategory = couponCategory;
+    }
+
+    public void setCouponListingDate(Date couponListingDate) {
+        this.couponListingDate = couponListingDate;
+    }
+
+    public void setCouponLocation(float couponLocation) {
+        this.couponLocation = couponLocation;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
+    }
+
+    public void setCouponImage(String couponImage) {
+        this.couponImage = couponImage;
     }
 }
