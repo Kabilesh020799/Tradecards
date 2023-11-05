@@ -6,10 +6,7 @@ import java.util.List;
 import dal.asdc.tradecards.Exception.DuplicateEntryException;
 import dal.asdc.tradecards.Exception.OTPVerificationFailed;
 import dal.asdc.tradecards.Exception.OTPVerificationFailedException;
-import dal.asdc.tradecards.Model.DTO.ForgetPasswordDTO;
-import dal.asdc.tradecards.Model.DTO.UserLoginDTO;
-import dal.asdc.tradecards.Model.DTO.UserSignUpDTO;
-import dal.asdc.tradecards.Model.DTO.VerifyAccountDTO;
+import dal.asdc.tradecards.Model.DTO.*;
 import dal.asdc.tradecards.Service.UserService;
 import dal.asdc.tradecards.Utility.JWTTokenUtil;
 import dal.asdc.tradecards.Utility.UtilityFunctions;
@@ -36,6 +33,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UtilityFunctions utilityFunctions;
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public UserServiceImpl () {}
 
     @Override
     public HashMap<String, Object> create(UserSignUpDTO userSignUpDTO) throws Exception {
@@ -132,6 +135,38 @@ public class UserServiceImpl implements UserService {
                 .username(userDao.getEmailID())
                 .password(userDao.getPassword())
                 .build();
+    }
+
+        @Override
+        public UserDao loadUserByEmailID(String emailID) throws UsernameNotFoundException {
+            UserDao userDao = userRepository.findByEmailID(emailID);
+            if (userDao == null) {
+                throw new UsernameNotFoundException("User not found with emailID: " + emailID);
+            }
+            return new UserDao(
+                    userDao.getEmailID(),
+                    userDao.getLastName(),
+                    userDao.getFirstName()
+            );
+        }
+
+    public UserDao updateUser(EditUserRequestDTO updatedUser){
+        String emailID = updatedUser.getEmailID();
+        UserDao existingUser = userRepository.findByEmailID(emailID);
+        if (existingUser == null) {
+            throw new UsernameNotFoundException("User not found with emailID: " + emailID);
+        }
+        existingUser.setFirstName(updatedUser.getFirstName());
+        existingUser.setLastName(updatedUser.getLastName());
+
+        // Hash the updated password and set it in user db
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(updatedUser.getPassword());
+        existingUser.setPassword(hashedPassword);
+
+        UserDao updatedUserFromDB = userRepository.save(existingUser);
+
+        return updatedUserFromDB;
     }
 
 
