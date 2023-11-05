@@ -1,14 +1,13 @@
 package dal.asdc.tradecards.Service.impl;
-
 import dal.asdc.tradecards.Model.DAO.CouponsDao;
 import dal.asdc.tradecards.Model.DTO.CouponsDTO;
-
 import dal.asdc.tradecards.Repository.CouponsRepository;
 import dal.asdc.tradecards.Service.CouponsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Base64;
 import java.util.Date;
 import java.util.Optional;
 
@@ -36,6 +35,19 @@ public class CouponsImpl implements CouponsService {
         couponsDao.setCouponLocation(couponsDTO.getCouponLocation());
         couponsDao.setUserid(couponsDTO.getUserid());
         couponsDao.setCategoryID(couponsDTO.getCategoryID());
+
+
+        // Decoding and storing the image
+        byte[] imageBytes = null;
+        if (couponsDTO.getCouponImage() != null && !couponsDTO.getCouponImage().isEmpty()) {
+            try {
+                imageBytes = Base64.getDecoder().decode(couponsDTO.getCouponImage());
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+        couponsDao.setCouponImage(imageBytes);
+
 
         couponsDao = couponsRepository.save(couponsDao);
         return couponsDao;
