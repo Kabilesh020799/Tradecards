@@ -34,6 +34,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UtilityFunctions utilityFunctions;
 
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public UserServiceImpl () {}
+
     @Override
     public HashMap<String, Object> create(UserSignUpDTO userSignUpDTO) throws Exception {
         try {
@@ -131,18 +137,18 @@ public class UserServiceImpl implements UserService {
                 .build();
     }
 
-    @Override
-    public UserDao loadUserByEmailID(String emailID) throws UsernameNotFoundException {
-        UserDao userDao = userRepository.findByEmailID(emailID);
-        if (userDao == null) {
-            throw new UsernameNotFoundException("User not found with emailID: " + emailID);
+        @Override
+        public UserDao loadUserByEmailID(String emailID) throws UsernameNotFoundException {
+            UserDao userDao = userRepository.findByEmailID(emailID);
+            if (userDao == null) {
+                throw new UsernameNotFoundException("User not found with emailID: " + emailID);
+            }
+            return new UserDao(
+                    userDao.getEmailID(),
+                    userDao.getLastName(),
+                    userDao.getFirstName()
+            );
         }
-        return new UserDao(
-                userDao.getEmailID(),
-                userDao.getLastName(),
-                userDao.getFirstName()
-        );
-    }
 
     public UserDao updateUser(EditUserRequestDTO updatedUser){
         String emailID = updatedUser.getEmailID();
