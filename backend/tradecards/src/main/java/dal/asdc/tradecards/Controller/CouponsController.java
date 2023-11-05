@@ -14,12 +14,18 @@ import org.springframework.web.bind.annotation.*;
 public class CouponsController {
 
     @Autowired
-    CouponsService couponsService;
+    private CouponsService couponsService;
+
+    public CouponsController(CouponsService couponsService) {
+        this.couponsService = couponsService;
+    }
+
+    public CouponsController(){}
 
     @PostMapping("/create-coupons")
     public ResponseEntity<String> createCoupon(@RequestBody CouponsDTO couponsDTO) {
         try {
-            CouponsDao createdCoupon = couponsService.createCoupons(couponsDTO);
+            CouponsDao createdCoupon = couponsService.createCoupon(couponsDTO);
             if (createdCoupon != null) {
                 return new ResponseEntity<>("Coupon created successfully", HttpStatus.OK);
             } else {
@@ -27,6 +33,21 @@ public class CouponsController {
             }
         } catch (Exception e) {
             return new ResponseEntity<>("Failed to create the coupon", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/delete-coupon/{id}")
+    public ResponseEntity<String> deleteCoupon(@PathVariable int id){
+        try{
+            boolean deleted = couponsService.deleteCouponById(id);
+            if (deleted) {
+                return new ResponseEntity<>("Coupon with ID " + id + " deleted successfully.", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Coupon with ID " + id + " not found.", HttpStatus.NOT_FOUND);
+            }
+        }
+        catch (Exception e){
+            return new ResponseEntity<>("Coupon with ID " + id + " not found.", HttpStatus.NOT_FOUND);
         }
     }
 }

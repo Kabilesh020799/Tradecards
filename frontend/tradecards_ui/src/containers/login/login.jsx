@@ -45,6 +45,10 @@ function Login (props) {
     }
   };
 
+  const onForgotPasswordNavigate = () => {
+    navigate('/forget-password');
+  };
+
   return (
     <div className='login-wrapper '>
 
@@ -56,7 +60,7 @@ function Login (props) {
         </div>
       {isLogin
         ? (
-              <div className='login-heading'>Login In</div>
+              <div className='login-heading'>Log In</div>
           )
         : (
               <div className='login-heading'>Sign up</div>
@@ -102,6 +106,12 @@ function Login (props) {
           className='login-switch'
         >
           {`${isLogin ? 'Do you want to Signup?' : 'Have an account? Login'}`}
+        </div>
+        <div
+          onClick={onForgotPasswordNavigate}
+          className='login-switch'
+        >
+          {'Forgot password?'}
         </div>
         <Snackbar
           open={isSignupSuccess}

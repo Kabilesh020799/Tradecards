@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Base64;
+import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class CouponsImpl implements CouponsService {
@@ -17,7 +19,7 @@ public class CouponsImpl implements CouponsService {
 
     @Override
     @Transactional
-    public CouponsDao createCoupons(CouponsDTO couponsDTO) {
+    public CouponsDao createCoupon(CouponsDTO couponsDTO) {
         CouponsDao couponsDao = new CouponsDao();
 
         couponsDao.setCouponName(couponsDTO.getCouponName());
@@ -49,5 +51,16 @@ public class CouponsImpl implements CouponsService {
 
         couponsDao = couponsRepository.save(couponsDao);
         return couponsDao;
+    }
+
+    @Transactional
+    public boolean deleteCouponById(int id){
+        Optional<CouponsDao> coupon = couponsRepository.findById(id);
+        if (coupon.isPresent()) {
+            couponsRepository.delete(coupon.get());
+            return true;
+        } else {
+            return false; // Coupon not found, deletion failed.
+        }
     }
 }
