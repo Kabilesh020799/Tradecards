@@ -10,6 +10,7 @@ function CouponCreate (props) {
   const [couponDescription, setCouponDescription,] = useState(null);
   const [couponVendor, setCouponVendor,] = useState(null);
   const [couponCategory, setCouponCategory,] = useState(0);
+  const [couponValue, setCouponValue,] = useState(null);
   const [couponPrice, setCouponPrice,] = useState(null);
   const [couponValidity, setCouponValidity,] = useState(null);
   const [couponLocation, setCouponLocation,] = useState(null);
@@ -23,9 +24,21 @@ function CouponCreate (props) {
     setCouponListingDate(formattedDate);
   }, []);
 
+  // const handleImageChange = (e) => {
+  //   const file = e.target.files[0];
+  //   setCouponImage(file);
+  // };
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    setCouponImage(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const base64Image = event.target.result;
+        setCouponImage(base64Image);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const navigate = useNavigate();
@@ -100,9 +113,18 @@ function CouponCreate (props) {
         <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0', }}>
         <label style={{ marginRight: '10px', }}>Coupon Price:</label>
         <InputHolder
+          value={couponValue}
+          onChange={setCouponValue}
+          placeholder="Original Value"
+        />
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0', }}>
+        <label style={{ marginRight: '10px', }}>Coupon Price:</label>
+        <InputHolder
           value={couponPrice}
           onChange={setCouponPrice}
-          placeholder="Price"
+          placeholder="Selling price"
         />
         </div>
 
