@@ -53,7 +53,7 @@ public class CouponsController {
             return new ResponseEntity<>("Coupon with ID " + id + " not found.", HttpStatus.NOT_FOUND);
         }
     }
-    @GetMapping("/get-coupons")
+    @GetMapping("/coupons")
     public List<CouponsDao> getAllCategories(){
         return couponsService.getAllCoupons();
     }

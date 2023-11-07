@@ -1,4 +1,5 @@
 package dal.asdc.tradecards.Service.impl;
+import dal.asdc.tradecards.Model.DAO.CategoryDao;
 import dal.asdc.tradecards.Model.DAO.CouponsDao;
 import dal.asdc.tradecards.Model.DTO.CouponsDTO;
 import dal.asdc.tradecards.Repository.CouponsRepository;
@@ -61,7 +62,9 @@ public class CouponsImpl implements CouponsService {
             return false; // Coupon not found, deletion failed.
         }
     }
+
+    @Transactional
     public List<CouponsDao> getAllCoupons(){
-        return null;
+        return (List<CouponsDao>) couponsRepository.findAll();
     }
 }
