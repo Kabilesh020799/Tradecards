@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Base64;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class CouponsImpl implements CouponsService {
@@ -62,5 +60,8 @@ public class CouponsImpl implements CouponsService {
         } else {
             return false; // Coupon not found, deletion failed.
         }
+    }
+    public List<CouponsDao> getAllCoupons(){
+        return null;
     }
 }

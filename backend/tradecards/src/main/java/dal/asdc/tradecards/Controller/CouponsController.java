@@ -1,5 +1,6 @@
 package dal.asdc.tradecards.Controller;
 
+import dal.asdc.tradecards.Model.DAO.CategoryDao;
 import dal.asdc.tradecards.Model.DAO.CouponsDao;
 import dal.asdc.tradecards.Model.DTO.CouponsDTO;
 
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -50,4 +53,9 @@ public class CouponsController {
             return new ResponseEntity<>("Coupon with ID " + id + " not found.", HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping("/get-coupons")
+    public List<CouponsDao> getAllCategories(){
+        return couponsService.getAllCoupons();
+    }
+
 }
