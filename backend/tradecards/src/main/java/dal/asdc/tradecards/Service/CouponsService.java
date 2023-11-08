@@ -10,6 +10,4 @@ public interface CouponsService {
     public  boolean deleteCouponById(int id);
 
     public CouponsDao getCouponById(int couponId);
-
-    public CouponsDao updateCoupon(int couponId, CouponsDao updatedCoupon);
 }

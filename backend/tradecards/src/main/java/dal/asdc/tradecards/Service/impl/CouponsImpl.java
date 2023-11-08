@@ -71,28 +71,4 @@ public class CouponsImpl implements CouponsService {
     public CouponsDao getCouponById(int couponId) {
         return couponsRepository.findById(couponId).orElse(null);
     }
-
-    public CouponsDao updateCoupon(int couponId, CouponsDao updatedCoupon){
-        CouponsDao existingCoupon = getCouponById(couponId);
-        if (existingCoupon != null) {
-            existingCoupon.setCouponName(updatedCoupon.getCouponName());
-            existingCoupon.setCouponDesc(updatedCoupon.getCouponDesc());
-            existingCoupon.setCouponBrand(updatedCoupon.getCouponBrand());
-            existingCoupon.setExpiryDate(updatedCoupon.getExpiryDate());
-            existingCoupon.setCouponValue(updatedCoupon.getCouponValue());
-            existingCoupon.setCouponSellingPrice(updatedCoupon.getCouponSellingPrice());
-            existingCoupon.setIsSold(updatedCoupon.isSold());
-            existingCoupon.setIsOnline(updatedCoupon.isOnline());
-            existingCoupon.setCouponCategory(updatedCoupon.getCouponCategory());
-            existingCoupon.setCouponListingDate(updatedCoupon.getCouponListingDate());
-            existingCoupon.setCouponLocation(updatedCoupon.getCouponLocation());
-            existingCoupon.setUserid(updatedCoupon.getUserid());
-            existingCoupon.setCategoryID(updatedCoupon.getCategoryID());
-            existingCoupon.setCouponImage(updatedCoupon.getCouponImage());
-
-            return couponsRepository.save(existingCoupon);
-        } else {
-            return null; // Return null if the coupon with the specified ID is not found
-        }
-    }
 }
