@@ -17,6 +17,10 @@ public class CouponsImpl implements CouponsService {
     @Autowired
     CouponsRepository couponsRepository;
 
+    public CouponsImpl(CouponsRepository couponsRepository) {
+        this.couponsRepository = couponsRepository;
+    }
+
     @Override
     @Transactional
     public CouponsDao createCoupon(CouponsDTO couponsDTO) {
@@ -28,8 +32,8 @@ public class CouponsImpl implements CouponsService {
         couponsDao.setExpiryDate(couponsDTO.getExpiryDate());
         couponsDao.setCouponValue(couponsDTO.getCouponValue());
         couponsDao.setCouponSellingPrice(couponsDTO.getCouponSellingPrice());
-        couponsDao.setSold(couponsDTO.getSold());
-        couponsDao.setOnline(couponsDTO.getOnline());
+        couponsDao.setIsSold(couponsDTO.getSold());
+        couponsDao.setIsOnline(couponsDTO.getOnline());
         couponsDao.setCouponCategory(couponsDTO.getCouponCategory());
         couponsDao.setCouponListingDate(couponsDTO.getCouponListingDate());
         couponsDao.setCouponLocation(couponsDTO.getCouponLocation());
@@ -61,6 +65,34 @@ public class CouponsImpl implements CouponsService {
             return true;
         } else {
             return false; // Coupon not found, deletion failed.
+        }
+    }
+
+    public CouponsDao getCouponById(int couponId) {
+        return couponsRepository.findById(couponId).orElse(null);
+    }
+
+    public CouponsDao updateCoupon(int couponId, CouponsDao updatedCoupon){
+        CouponsDao existingCoupon = getCouponById(couponId);
+        if (existingCoupon != null) {
+            existingCoupon.setCouponName(updatedCoupon.getCouponName());
+            existingCoupon.setCouponDesc(updatedCoupon.getCouponDesc());
+            existingCoupon.setCouponBrand(updatedCoupon.getCouponBrand());
+            existingCoupon.setExpiryDate(updatedCoupon.getExpiryDate());
+            existingCoupon.setCouponValue(updatedCoupon.getCouponValue());
+            existingCoupon.setCouponSellingPrice(updatedCoupon.getCouponSellingPrice());
+            existingCoupon.setIsSold(updatedCoupon.isSold());
+            existingCoupon.setIsOnline(updatedCoupon.isOnline());
+            existingCoupon.setCouponCategory(updatedCoupon.getCouponCategory());
+            existingCoupon.setCouponListingDate(updatedCoupon.getCouponListingDate());
+            existingCoupon.setCouponLocation(updatedCoupon.getCouponLocation());
+            existingCoupon.setUserid(updatedCoupon.getUserid());
+            existingCoupon.setCategoryID(updatedCoupon.getCategoryID());
+            existingCoupon.setCouponImage(updatedCoupon.getCouponImage());
+
+            return couponsRepository.save(existingCoupon);
+        } else {
+            return null; // Return null if the coupon with the specified ID is not found
         }
     }
 }

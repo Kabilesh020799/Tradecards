@@ -63,4 +63,12 @@ public class CouponsDao {
 
     public CouponsDao() {
     }
+
+    public void setIsSold(boolean sold) {
+        this.isSold = sold;
+    }
+
+    public void setIsOnline(boolean online) {
+        this.isOnline = online;
+    }
 }

@@ -22,7 +22,7 @@ public class CouponsController {
 
     public CouponsController(){}
 
-    @PostMapping("/create-coupons")
+    @PostMapping("/coupon/create-coupons")
     public ResponseEntity<String> createCoupon(@RequestBody CouponsDTO couponsDTO) {
         try {
             CouponsDao createdCoupon = couponsService.createCoupon(couponsDTO);
@@ -36,7 +36,7 @@ public class CouponsController {
         }
     }
 
-    @DeleteMapping("/delete-coupon/{id}")
+    @DeleteMapping("/coupon/delete-coupon/{id}")
     public ResponseEntity<String> deleteCoupon(@PathVariable int id){
         try{
             boolean deleted = couponsService.deleteCouponById(id);
@@ -49,5 +49,15 @@ public class CouponsController {
         catch (Exception e){
             return new ResponseEntity<>("Coupon with ID " + id + " not found.", HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/coupon/get-coupon/{couponId}")
+    public CouponsDao getCouponById(@PathVariable int couponId) {
+        return couponsService.getCouponById(couponId);
+    }
+
+    @PutMapping("/coupon/update-coupon/{couponId}")
+    public CouponsDao updateCouponById(@PathVariable int couponId, @RequestBody CouponsDao updatedCoupon) {
+        return couponsService.updateCoupon(couponId, updatedCoupon);
     }
 }
