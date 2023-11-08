@@ -17,6 +17,10 @@ public class CouponsImpl implements CouponsService {
     @Autowired
     CouponsRepository couponsRepository;
 
+    public CouponsImpl(CouponsRepository couponsRepository) {
+        this.couponsRepository = couponsRepository;
+    }
+
     @Override
     @Transactional
     public CouponsDao createCoupon(CouponsDTO couponsDTO) {
@@ -28,8 +32,8 @@ public class CouponsImpl implements CouponsService {
         couponsDao.setExpiryDate(couponsDTO.getExpiryDate());
         couponsDao.setCouponValue(couponsDTO.getCouponValue());
         couponsDao.setCouponSellingPrice(couponsDTO.getCouponSellingPrice());
-        couponsDao.setSold(couponsDTO.getSold());
-        couponsDao.setOnline(couponsDTO.getOnline());
+        couponsDao.setIsSold(couponsDTO.getSold());
+        couponsDao.setIsOnline(couponsDTO.getOnline());
         couponsDao.setCouponCategory(couponsDTO.getCouponCategory());
         couponsDao.setCouponListingDate(couponsDTO.getCouponListingDate());
         couponsDao.setCouponLocation(couponsDTO.getCouponLocation());
@@ -62,5 +66,9 @@ public class CouponsImpl implements CouponsService {
         } else {
             return false; // Coupon not found, deletion failed.
         }
+    }
+
+    public CouponsDao getCouponById(int couponId) {
+        return couponsRepository.findById(couponId).orElse(null);
     }
 }

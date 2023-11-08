@@ -6,5 +6,8 @@ import org.springframework.stereotype.Service;
 @Service
 public interface CouponsService {
     public CouponsDao createCoupon(CouponsDTO couponsDTO) ;
+
     public  boolean deleteCouponById(int id);
+
+    public CouponsDao getCouponById(int couponId);
 }
