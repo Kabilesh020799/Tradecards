@@ -55,4 +55,9 @@ public class CouponsController {
     public CouponsDao getCouponById(@PathVariable int couponId) {
         return couponsService.getCouponById(couponId);
     }
+
+    @PutMapping("/coupon/update-coupon/{couponId}")
+    public CouponsDao updateCouponById(@PathVariable int couponId, @RequestBody CouponsDao updatedCoupon) {
+        return couponsService.updateCoupon(couponId, updatedCoupon);
+    }
 }
