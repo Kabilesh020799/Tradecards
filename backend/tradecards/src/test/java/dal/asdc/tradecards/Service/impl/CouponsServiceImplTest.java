@@ -117,4 +117,52 @@ public class CouponsServiceImplTest {
 
         assertNull(result);
     }
+
+    @Test
+    @DisplayName("testing update coupon")
+    public void testUpdateCoupon() {
+        CouponsRepository couponsRepository = Mockito.mock(CouponsRepository.class);
+
+        CouponsDao sampleCoupon = new CouponsDao();
+        sampleCoupon.setCouponID(1); // Coupon with ID 1
+
+        CouponsDao updatedCoupon = new CouponsDao();
+        updatedCoupon.setCouponID(1);
+        updatedCoupon.setCouponName("Updated Coupon");
+        updatedCoupon.setCouponDesc("Updated Description");
+
+        Mockito.when(couponsRepository.findById(1)).thenReturn(java.util.Optional.of(sampleCoupon));
+
+        Mockito.when(couponsRepository.save(Mockito.any(CouponsDao.class))).thenReturn(updatedCoupon);
+
+        CouponsImpl couponsService = new CouponsImpl(couponsRepository);
+
+        CouponsDao result = couponsService.updateCoupon(1, updatedCoupon);
+
+        assertNotNull(result);
+        assertEquals(1, result.getCouponID());
+
+        assertEquals("Updated Coupon", result.getCouponName());
+        assertEquals("Updated Description", result.getCouponDesc());
+
+        Mockito.verify(couponsRepository, Mockito.times(1)).save(Mockito.any(CouponsDao.class));
+    }
+
+    @Test
+    @DisplayName("testing update coupon by providing non existent ID")
+    public void testUpdateCoupon_NonExistentId() {
+        CouponsRepository couponsRepository = Mockito.mock(CouponsRepository.class);
+
+        Mockito.when(couponsRepository.findById(1)).thenReturn(java.util.Optional.empty());
+
+        CouponsImpl couponsService = new CouponsImpl(couponsRepository);
+
+        CouponsDao updatedCoupon = new CouponsDao();
+        updatedCoupon.setCouponName("Updated Coupon");
+        updatedCoupon.setCouponDesc("Updated Description");
+
+        CouponsDao result = couponsService.updateCoupon(1, updatedCoupon);
+
+        assertNull(result);
+    }
 }
