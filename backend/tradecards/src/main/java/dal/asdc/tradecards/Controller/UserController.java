@@ -59,4 +59,15 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/users/details/{userid}")
+    public ResponseEntity<UserDao> getUserByUserId(@PathVariable int userid) {
+        UserDao user = userService.getUserByUserId(userid);
+
+        if (user != null) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

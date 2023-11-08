@@ -11,6 +11,8 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import dal.asdc.tradecards.Model.DTO.EditUserRequestDTO;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
@@ -90,5 +92,38 @@ public class UserServiceImplTest {
         assertThrows(UsernameNotFoundException.class, () -> {
             userService.loadUserByEmailID(emailID);
         });
+    }
+
+    @Test
+    @DisplayName("Testing get user by userid method for valid user")
+    public void testGetUserByUserIdUserFound() {
+        int userid = 1;
+        UserDao mockUser = new UserDao();
+        mockUser.setUserid(userid);
+        mockUser.setEmailID("harsh@harsh.com");
+        mockUser.setFirstName("harshpreet");
+        mockUser.setLastName("singh");
+
+        when(userRepository.findById(String.valueOf(userid))).thenReturn(Optional.of(mockUser));
+
+        UserDao loadedUser = userService.getUserByUserId(userid);
+
+        assertNotNull(loadedUser);
+        assertEquals(userid, loadedUser.getUserid());
+        assertEquals("harsh@harsh.com", loadedUser.getEmailID());
+        assertEquals("harshpreet", loadedUser.getFirstName());
+    }
+
+
+    @Test
+    @DisplayName("Testing get user by userid method for non-existent user")
+    public void testGetUserByUserIdUserNotFound() {
+        int userid = 888;
+
+        when(userRepository.findById(String.valueOf(userid))).thenReturn(Optional.empty());
+
+        UserDao loadedUser = userService.getUserByUserId(userid);
+
+        assertNull(loadedUser);
     }
 }

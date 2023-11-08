@@ -2,6 +2,7 @@ package dal.asdc.tradecards.Service.impl;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import dal.asdc.tradecards.Exception.DuplicateEntryException;
 import dal.asdc.tradecards.Exception.OTPVerificationFailed;
@@ -173,5 +174,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDao> getAllUsers() {
         return (List<UserDao>)userRepository.findAll();
+    }
+
+    @Override
+    public UserDao getUserByUserId(int userid) {
+        Optional<UserDao> userOptional = userRepository.findById(String.valueOf(userid));
+
+        if (userOptional.isPresent()) {
+            return userOptional.get();
+        } else {
+            return null;
+        }
     }
 }
