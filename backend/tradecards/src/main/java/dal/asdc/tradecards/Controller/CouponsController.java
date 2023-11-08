@@ -1,6 +1,5 @@
 package dal.asdc.tradecards.Controller;
 
-import dal.asdc.tradecards.Model.DAO.CategoryDao;
 import dal.asdc.tradecards.Model.DAO.CouponsDao;
 import dal.asdc.tradecards.Model.DTO.CouponsDTO;
 
@@ -54,7 +53,7 @@ public class CouponsController {
         }
     }
     @GetMapping("/coupons")
-    public List<CouponsDao> getAllCategories(){
+    public List<CouponsDao> getAllCoupons(){
         return couponsService.getAllCoupons();
     }
 
