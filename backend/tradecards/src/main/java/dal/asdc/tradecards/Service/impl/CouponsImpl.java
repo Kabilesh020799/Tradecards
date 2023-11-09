@@ -1,4 +1,5 @@
 package dal.asdc.tradecards.Service.impl;
+import dal.asdc.tradecards.Model.DAO.CategoryDao;
 import dal.asdc.tradecards.Model.DAO.CouponsDao;
 import dal.asdc.tradecards.Model.DTO.CouponsDTO;
 import dal.asdc.tradecards.Repository.CouponsRepository;
@@ -7,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Base64;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class CouponsImpl implements CouponsService {
@@ -68,6 +67,10 @@ public class CouponsImpl implements CouponsService {
         }
     }
 
+    @Transactional
+    public List<CouponsDao> getAllCoupons(){
+        return (List<CouponsDao>) couponsRepository.findAll();
+    }
     public CouponsDao getCouponById(int couponId) {
         return couponsRepository.findById(couponId).orElse(null);
     }

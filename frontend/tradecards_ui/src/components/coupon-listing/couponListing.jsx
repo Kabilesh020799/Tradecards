@@ -4,6 +4,7 @@ import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } fr
 import PropTypes from 'prop-types';
 import { coupons } from './constants';
 import { NavLink } from 'react-router-dom';
+import { convertBase64toImage } from '../../common-utils';
 
 const CouponListing = (props) => {
   const {
@@ -46,7 +47,7 @@ const CouponListing = (props) => {
                 <Card sx={{ maxWidth: 300, }}>
                   <CardMedia
                     sx={{ height: 140, }}
-                    image={coupon?.couponImage}
+                    image={convertBase64toImage(coupon?.couponImage)}
                     title={coupon?.couponName}
                   />
                   <CardContent className='coupon-listing-card-content'>

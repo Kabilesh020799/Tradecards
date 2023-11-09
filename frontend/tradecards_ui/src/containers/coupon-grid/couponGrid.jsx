@@ -1,11 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
-import { coupons } from '../../components/coupon-listing/constants';
 import NavBar from '../../components/nav-bar';
+import { convertBase64toImage } from '../../common-utils';
+import { getAllCoupons } from '../home/apiUtils';
 
 const CouponGrid = (props) => {
-  const { couponLists, } = props;
+  const [couponsData, setCouponsData,] = useState([]);
+
+  useEffect(() => {
+    getAllCoupons()
+      .then((res) => setCouponsData(res));
+  }, []);
 
   return (
     <div className='coupon-grid'>
@@ -18,7 +23,7 @@ const CouponGrid = (props) => {
             columns={{ xs: 4, sm: 8, md: 12, }}
           >
             {
-              couponLists?.map((coupon) => (
+              couponsData?.map((coupon) => (
                 <Grid
                   item
                   key={coupon?.couponId || coupon?.couponName}
@@ -26,7 +31,7 @@ const CouponGrid = (props) => {
                   <Card sx={{ maxWidth: 300, }}>
                     <CardMedia
                       sx={{ height: 140, }}
-                      image={coupon?.couponImage}
+                      image={convertBase64toImage(coupon?.couponImage)}
                       title={coupon?.couponName}
                     />
                     <CardContent className='coupon-listing-card-content'>
@@ -60,9 +65,5 @@ const CouponGrid = (props) => {
     </div>
   );
 };
-
-CouponGrid.propTypes = { couponLists: PropTypes.arrayOf(PropTypes.shape({})), };
-
-CouponGrid.defaultProps = { couponLists: coupons, };
 
 export default CouponGrid;

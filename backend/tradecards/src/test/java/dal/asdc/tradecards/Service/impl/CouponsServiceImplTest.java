@@ -1,6 +1,9 @@
 package dal.asdc.tradecards.Service.impl;
 
 import dal.asdc.tradecards.Controller.CouponsController;
+import dal.asdc.tradecards.Model.DAO.CategoryDao;
+import dal.asdc.tradecards.Model.DAO.CouponsDao;
+import dal.asdc.tradecards.Service.CouponsService; // Import the correct CouponsService interface or class
 import dal.asdc.tradecards.Model.DAO.CouponsDao;
 import dal.asdc.tradecards.Model.DTO.CouponsDTO;
 import dal.asdc.tradecards.Repository.CouponsRepository;
@@ -14,6 +17,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 
@@ -56,6 +63,23 @@ public class CouponsServiceImplTest {
     }
 
     @Test
+    public void testGetAllCoupons() {
+        List<CouponsDao> couponsList = new ArrayList<>();
+        CouponsDao couponDao1 = new CouponsDao();
+        couponDao1.setCategoryID(1);
+        couponDao1.setCouponName("Event");
+        CouponsDao couponDao2 = new CouponsDao();
+        couponDao2.setCategoryID(2);
+        couponDao2.setCouponName("Event1");
+        couponsList.add(couponDao1);
+        couponsList.add(couponDao2);
+
+        Mockito.when(couponsService.getAllCoupons()).thenReturn(couponsList);
+
+        List<CouponsDao> result = couponsService.getAllCoupons();
+
+        assertEquals(2, result.size());
+    }
     @DisplayName("testing coupon create")
     public void testCreateCoupon() {
         CouponsDTO sampleCouponDTO = new CouponsDTO();

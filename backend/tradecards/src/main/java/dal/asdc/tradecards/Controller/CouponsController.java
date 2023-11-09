@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class CouponsController {
@@ -50,6 +52,11 @@ public class CouponsController {
             return new ResponseEntity<>("Coupon with ID " + id + " not found.", HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping("/coupons")
+    public List<CouponsDao> getAllCoupons(){
+        return couponsService.getAllCoupons();
+    }
+
 
     @GetMapping("/coupon/get-coupon/{couponId}")
     public CouponsDao getCouponById(@PathVariable int couponId) {
