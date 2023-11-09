@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import dal.asdc.tradecards.Service.UserService;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:3000/", "http://csci5308vm13.research.cs.dal.ca:3000/", "http://csci5308vm13.research.cs.dal.ca:8080/"})
 @RequestMapping("/api")
 public class UserController {
     @Autowired
