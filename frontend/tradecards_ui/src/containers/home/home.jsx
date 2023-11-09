@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBar from '../../components/nav-bar';
 import Slideshow from '../../components/banner/banner';
 import CouponListing from '../../components/coupon-listing';
+import { getAllCoupons } from './apiUtils';
 
 const Home = (props) => {
+  const [couponsData, setCouponsData,] = useState([]);
+
   const slides = [
     {
       image: 'https://seasidefm.com/wp-content/uploads/2023/10/fall-Dance-4.png',
@@ -14,6 +17,12 @@ const Home = (props) => {
       caption: 'Slide 2',
     },
   ];
+
+  useEffect(() => {
+    getAllCoupons()
+      .then((res) => setCouponsData(res));
+  }, []);
+  console.log(couponsData);
   return (
     <div>
       <NavBar />
@@ -22,7 +31,10 @@ const Home = (props) => {
         interval={3000}
       />
       <div className='coupon-listing'>
-        <CouponListing />
+        <CouponListing
+          couponLists={couponsData}
+          isMoreCouponsAvailable={true}
+        />
       </div>
     </div>
   );
