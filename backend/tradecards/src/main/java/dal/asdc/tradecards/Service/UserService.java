@@ -31,4 +31,7 @@ public interface UserService extends UserDetailsService {
     public Object getUserByUsername(String emailID);
 
     public UserDao updateUser(EditUserRequestDTO updateUser);
+
+    public UserDao getUserByUserId(int userid);
+
 }
