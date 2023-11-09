@@ -13,4 +13,16 @@ const convertBase64toImage = (base64String) => {
   }
 };
 
-export { convertBase64toImage, };
+const setStorage = (key, value) => {
+  localStorage.setItem(key, value);
+};
+
+const getStorage = (key) => {
+  return localStorage.getItem(key);
+};
+
+export {
+  convertBase64toImage,
+  setStorage,
+  getStorage,
+};
