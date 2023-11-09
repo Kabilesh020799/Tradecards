@@ -18,9 +18,9 @@ public interface UserService extends UserDetailsService {
     public Object login(UserLoginDTO userLoginDTO) throws Exception;
 
 
-    public HashMap<String, Object> forgetPasswordRequest(ForgetPasswordDTO forgetPasswordDTO) throws Exception;;
+    //public HashMap<String, Object> forgetPasswordRequest(ForgetPasswordDTO forgetPasswordDTO) throws Exception;;
 
-    public HashMap<String, Object> forgetPasswordVerification(String bearerToken, ForgetPasswordDTO forgetPasswordDTO) throws Exception;
+    //public HashMap<String, Object> forgetPasswordVerification(String bearerToken, ForgetPasswordDTO forgetPasswordDTO) throws Exception;
 
     public Object verifyAccount(String bearerToken, VerifyAccountDTO verifyAccountDTO) throws Exception;
 

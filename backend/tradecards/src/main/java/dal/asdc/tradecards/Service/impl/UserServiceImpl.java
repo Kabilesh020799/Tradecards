@@ -81,33 +81,33 @@ public class UserServiceImpl implements UserService {
         return claims;
     }
 
-    @Override
-    public HashMap<String, Object> forgetPasswordRequest(ForgetPasswordDTO forgetPasswordDTO) throws Exception {
-        UserDao userDao = userRepository.findByEmailID(forgetPasswordDTO.getEmailID());
-        HashMap<String, Object> claims = new HashMap<>();
-        claims.put("emailID", userDao.getEmailID());
-        claims.put("otp", utilityFunctions.generateOTP());
-        claims.put("first name", userDao.getFirstName());
-        String jwtToken = jwtTokenUtil.generateFifteenMinuteExpiryToken(claims);
-        claims.put("token", jwtToken);
-        return claims;
-    }
+//    @Override
+//    public HashMap<String, Object> forgetPasswordRequest(ForgetPasswordDTO forgetPasswordDTO) throws Exception {
+//        UserDao userDao = userRepository.findByEmailID(forgetPasswordDTO.getEmailID());
+//        HashMap<String, Object> claims = new HashMap<>();
+//        claims.put("emailID", userDao.getEmailID());
+//        claims.put("otp", utilityFunctions.generateOTP());
+//        claims.put("first name", userDao.getFirstName());
+//        String jwtToken = jwtTokenUtil.generateFifteenMinuteExpiryToken(claims);
+//        claims.put("token", jwtToken);
+//        return claims;
+//    }
 
-    @Override
-    public HashMap<String, Object> forgetPasswordVerification(String token, ForgetPasswordDTO forgetPasswordDTO) throws Exception {
-        Claims tokenClaims = jwtTokenUtil.getAllClaimsFromToken(token.substring(7));
-        String otp = tokenClaims.get("otp").toString();
-        if(otp.equalsIgnoreCase(forgetPasswordDTO.getOtp())) {
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            userRepository.setPassword((String) tokenClaims.get("emailID"), passwordEncoder.encode(forgetPasswordDTO.getPassword()));
-            HashMap<String, Object> claims = new HashMap<>();
-            claims.put("message", "Password changed successfully");
-            return claims;
-        }
-        else {
-            throw new OTPVerificationFailedException("OTP does not match", new Exception("OTP does not match", null));
-        }
-    }
+//    @Override
+//    public HashMap<String, Object> forgetPasswordVerification(String token, ForgetPasswordDTO forgetPasswordDTO) throws Exception {
+//        Claims tokenClaims = jwtTokenUtil.getAllClaimsFromToken(token.substring(7));
+//        String otp = tokenClaims.get("otp").toString();
+//        if(otp.equalsIgnoreCase(forgetPasswordDTO.getOtp())) {
+//            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//            userRepository.setPassword((String) tokenClaims.get("emailID"), passwordEncoder.encode(forgetPasswordDTO.getPassword()));
+//            HashMap<String, Object> claims = new HashMap<>();
+//            claims.put("message", "Password changed successfully");
+//            return claims;
+//        }
+//        else {
+//            throw new OTPVerificationFailedException("OTP does not match", new Exception("OTP does not match", null));
+//        }
+//    }
 
     @Override
     public Object verifyAccount(String token, VerifyAccountDTO verifyAccountDTO) throws Exception {
