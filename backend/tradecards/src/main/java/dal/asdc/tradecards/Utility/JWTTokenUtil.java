@@ -27,7 +27,7 @@ public class JWTTokenUtil implements Serializable {
 
     public String getUsernameFromToken(String token) {
         Claims claims = getAllClaimsFromToken(token);
-        return (String)claims.get("username");
+        return (String)claims.get("email");
     }
 
     public Date getExpirationDateFromToken(String token) {

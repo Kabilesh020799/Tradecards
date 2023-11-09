@@ -53,16 +53,17 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/api/**");
+        return (web) -> web.ignoring().requestMatchers("/api/login/", "/api/signup/");
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
+                .cors(request -> new CorsConfiguration().addAllowedOrigin("*"))
                 .csrf(c -> c.disable())
-                .authorizeHttpRequests(auth->auth.requestMatchers("/api/users/**").authenticated()
-                        .requestMatchers("/api/*").permitAll().anyRequest()
-                        .authenticated())
+                .authorizeHttpRequests(
+                        auth->auth.requestMatchers("/api/login", "/api/signup").permitAll()
+                        .anyRequest().authenticated())
                 .exceptionHandling(ex->ex.authenticationEntryPoint(point))
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         httpSecurity.addFilterBefore(filter,UsernamePasswordAuthenticationFilter.class);
