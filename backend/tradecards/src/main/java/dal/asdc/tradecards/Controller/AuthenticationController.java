@@ -21,7 +21,7 @@ import dal.asdc.tradecards.Model.DTO.UserSignUpDTO;
 import dal.asdc.tradecards.Service.EmailService;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000/", "http://csci5308vm13.research.cs.dal.ca/"})
+@CrossOrigin(origins = {"http://localhost:3000/", "http://csci5308vm13.research.cs.dal.ca:3000/", "http://csci5308vm13.research.cs.dal.ca:8080/"})
 @RequestMapping("/api")
 public class AuthenticationController {
 
