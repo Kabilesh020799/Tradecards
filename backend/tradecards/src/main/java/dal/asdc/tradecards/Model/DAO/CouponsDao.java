@@ -49,7 +49,7 @@ public class CouponsDao {
     private Date CouponListingDate;
 
     @Column(name = "CouponLocation")
-    private float CouponLocation;
+    private String CouponLocation;
 
     @Column(name = "userid")
     private int userid;

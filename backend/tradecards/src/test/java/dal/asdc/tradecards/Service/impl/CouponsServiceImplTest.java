@@ -80,6 +80,7 @@ public class CouponsServiceImplTest {
 
         assertEquals(2, result.size());
     }
+    @Test
     @DisplayName("testing coupon create")
     public void testCreateCoupon() {
         CouponsDTO sampleCouponDTO = new CouponsDTO();
@@ -95,7 +96,7 @@ public class CouponsServiceImplTest {
         sampleCouponDTO.setOnline(true);
         sampleCouponDTO.setCouponCategory("Test Category");
         sampleCouponDTO.setCouponListingDate(new Date());
-        sampleCouponDTO.setCouponLocation(123.456F);
+        sampleCouponDTO.setCouponLocation("Halifax");
         sampleCouponDTO.setUserid(123);
         sampleCouponDTO.setCategoryID(456);
         sampleCouponDTO.setCouponImage(sampleImageBase64);

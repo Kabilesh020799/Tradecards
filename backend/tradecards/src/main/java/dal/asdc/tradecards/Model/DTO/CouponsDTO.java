@@ -13,7 +13,7 @@ public class CouponsDTO {
     private boolean online;
     private String couponCategory;
     private Date couponListingDate;
-    private float couponLocation;
+    private String couponLocation;
     private int userid ;
     private int categoryID;
     private String couponImage;
@@ -56,7 +56,7 @@ public class CouponsDTO {
         return couponListingDate;
     }
 
-    public float getCouponLocation() {
+    public String getCouponLocation() {
         return couponLocation;
     }
 
@@ -112,7 +112,7 @@ public class CouponsDTO {
         this.couponListingDate = couponListingDate;
     }
 
-    public void setCouponLocation(float couponLocation) {
+    public void setCouponLocation(String couponLocation) {
         this.couponLocation = couponLocation;
     }
 
