@@ -77,6 +77,7 @@ public class UserServiceImpl implements UserService {
         claims.put("firstName", userDao.getFirstName());
         String jwtToken = jwtTokenUtil.generateToken(claims);
         claims.put("token", jwtToken);
+        claims.put("userId", userDao.getUserid());
         return claims;
     }
 
