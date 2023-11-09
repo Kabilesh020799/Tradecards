@@ -65,5 +65,4 @@ deploy:
 
 cache:
   paths:
-    - backend/tradecards/.m2/repository/ # Cache Maven dependencies
-    - frontend/tradecards_ui/node_modules/
+    - backend/tradecards/.m2/repository/ 
