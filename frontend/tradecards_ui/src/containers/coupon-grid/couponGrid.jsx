@@ -26,43 +26,40 @@ const CouponGrid = (props) => {
           >
             {
               couponsData?.map((coupon) => (
-                <div
+                <Grid
+                  item
                   key={coupon?.couponId || coupon?.couponName}
                   onClick={() => navigate(`/coupon-detail/${coupon?.couponId}`)}
                 >
-                  <Grid
-                    item
-                  >
-                    <Card sx={{ maxWidth: 300, }}>
-                      <CardMedia
-                        sx={{ height: 140, }}
-                        image={convertBase64toImage(coupon?.couponImage)}
-                        title={coupon?.couponName}
-                      />
-                      <CardContent className='coupon-listing-card-content'>
-                        <Typography
-                          gutterBottom
-                          variant='h5'
-                          component="div"
-                          className='coupon-listing-card-content-heading'
-                        >
-                          {coupon?.couponName}
-                        </Typography>
-                        <Typography
-                          variant='body2'
-                          color="text.secondary"
-                          className='coupon-listing-card-content-desc'
-                        >
-                          {coupon?.couponDesc}
-                        </Typography>
-                      </CardContent>
-                      <CardActions>
-                        <Button size="small">{coupon.userName}</Button>
-                        <Button size="small">Buy Now</Button>
-                      </CardActions>
-                    </Card>
-                  </Grid>
-                </div>
+                  <Card sx={{ maxWidth: 300, }}>
+                    <CardMedia
+                      sx={{ height: 140, }}
+                      image={convertBase64toImage(coupon?.couponImage)}
+                      title={coupon?.couponName}
+                    />
+                    <CardContent className='coupon-listing-card-content'>
+                      <Typography
+                        gutterBottom
+                        variant='h5'
+                        component="div"
+                        className='coupon-listing-card-content-heading'
+                      >
+                        {coupon?.couponName}
+                      </Typography>
+                      <Typography
+                        variant='body2'
+                        color="text.secondary"
+                        className='coupon-listing-card-content-desc'
+                      >
+                        {coupon?.couponDesc}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button size="small">{coupon.userName}</Button>
+                      <Button size="small">Buy Now</Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
               ))
             }
           </Grid>
