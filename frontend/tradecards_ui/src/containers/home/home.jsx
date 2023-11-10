@@ -22,7 +22,7 @@ const Home = (props) => {
     getAllCoupons()
       .then((res) => setCouponsData(res));
   }, []);
-  console.log(couponsData);
+
   return (
     <div>
       <NavBar />
