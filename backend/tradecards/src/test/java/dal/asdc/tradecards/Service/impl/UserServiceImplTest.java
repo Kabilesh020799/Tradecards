@@ -18,13 +18,9 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import dal.asdc.tradecards.Model.DTO.EditUserRequestDTO;
-
 import java.util.Optional;
-
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -44,10 +40,7 @@ public class UserServiceImplTest {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
-
-        // Mock jwtTokenUtil
         jwtTokenUtil = mock(JWTTokenUtil.class);
-
         userService = new UserServiceImpl(userRepository, jwtTokenUtil, utilityFunctions);
     }
 
@@ -86,7 +79,7 @@ public class UserServiceImplTest {
 
         Object result = userService.getUserByUsername(emailID);
 
-        // Assertions
+        // Assertion
         assertNotNull(result);
         assertTrue(result instanceof Optional);
 
@@ -115,7 +108,7 @@ public class UserServiceImplTest {
 
         Object result = userService.login(userLoginDTO);
 
-        // Assertions
+        // Assertion
         assertNotNull(result);
         assertTrue(result instanceof HashMap);
 
@@ -139,13 +132,11 @@ public class UserServiceImplTest {
         when(tokenClaims.get("otp")).thenReturn("123456");
         when(tokenClaims.get("username")).thenReturn("harsh@gmail.com");
         when(jwtTokenUtil.generateToken(tokenClaims)).thenReturn("mocked_new_token");
-
-        // Mocked behavior for userRepository
         when(userRepository.setIsVerified("harsh@gmail.com")).thenReturn(1);
 
         Object result = userService.verifyAccount(token, verifyAccountDTO);
 
-        // Assertions
+        // Assertion
         assertNotNull(result);
         assertTrue(result instanceof HashMap);
 
@@ -164,7 +155,6 @@ public class UserServiceImplTest {
         VerifyAccountDTO verifyAccountDTO = new VerifyAccountDTO();
         verifyAccountDTO.setOtp("654321");
 
-        // Mocked behavior for jwtTokenUtil
         Claims tokenClaims = mock(Claims.class);
         when(jwtTokenUtil.getAllClaimsFromToken(token.substring(7))).thenReturn(tokenClaims);
         when(tokenClaims.get("otp")).thenReturn("123456");
