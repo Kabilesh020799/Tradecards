@@ -3,6 +3,7 @@ import Login from './containers/login';
 import ForgetPassword from './containers/forgetPassword';
 import Home from './containers/home';
 import CouponGrid from './containers/coupon-grid/';
+import CouponDetail from './containers/coupon-detail';
 
 const routes = [
   {
@@ -29,6 +30,11 @@ const routes = [
     id: 'coupon-listing',
     route: 'coupon-listing',
     component: <CouponGrid />,
+  },
+  {
+    id: 'coupon-details',
+    route: 'coupon-detail/:couponId',
+    component: <CouponDetail />,
   },
 ];
 
