@@ -39,7 +39,13 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-    public UserServiceImpl () {}
+    //public UserServiceImpl () {}
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository, JWTTokenUtil jwtTokenUtil, UtilityFunctions utilityFunctions) {
+        this.userRepository = userRepository;
+        this.jwtTokenUtil = jwtTokenUtil;
+        this.utilityFunctions = utilityFunctions;
+    }
 
     @Override
     public HashMap<String, Object> create(UserSignUpDTO userSignUpDTO) throws Exception {

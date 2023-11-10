@@ -1,20 +1,33 @@
 package dal.asdc.tradecards.Service.impl;
 
+import dal.asdc.tradecards.Exception.OTPVerificationFailed;
 import dal.asdc.tradecards.Model.DAO.UserDao;
+import dal.asdc.tradecards.Model.DTO.UserLoginDTO;
+import dal.asdc.tradecards.Model.DTO.UserSignUpDTO;
+import dal.asdc.tradecards.Model.DTO.VerifyAccountDTO;
 import dal.asdc.tradecards.Repository.UserRepository;
 import dal.asdc.tradecards.Service.UserService;
+import dal.asdc.tradecards.Utility.JWTTokenUtil;
+import dal.asdc.tradecards.Utility.UtilityFunctions;
+import io.jsonwebtoken.Claims;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import dal.asdc.tradecards.Model.DTO.EditUserRequestDTO;
 
 import java.util.Optional;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 public class UserServiceImplTest {
     @Mock
@@ -22,10 +35,192 @@ public class UserServiceImplTest {
 
     private UserService userService;
 
+    @Mock
+    private JWTTokenUtil jwtTokenUtil;
+
+    @Mock
+    private UtilityFunctions utilityFunctions;
+
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
-        userService = new UserServiceImpl(userRepository);
+
+        // Mock jwtTokenUtil
+        jwtTokenUtil = mock(JWTTokenUtil.class);
+
+        userService = new UserServiceImpl(userRepository, jwtTokenUtil, utilityFunctions);
+    }
+
+
+    @Test
+    @DisplayName("Testing create user method")
+    public void testCreateUser() throws Exception {
+
+        UserSignUpDTO userSignUpDTO = new UserSignUpDTO();
+        userSignUpDTO.setFirstName("Harhpreet");
+        userSignUpDTO.setLastName("Singh");
+        userSignUpDTO.setEmailID("abc@gmail.com");
+        userSignUpDTO.setPassword("password123");
+
+        when(userRepository.save(any(UserDao.class))).thenReturn(new UserDao());
+        when(userRepository.findByEmailID("abc@gmail.com")).thenReturn(null);
+
+        when(jwtTokenUtil.generateToken(any())).thenReturn("mocked_token");
+        when(utilityFunctions.generateOTP()).thenReturn(123456);
+
+        assertDoesNotThrow(() -> userService.create(userSignUpDTO));
+    }
+
+    @Test
+    @DisplayName("Testing get user by username method")
+    public void testGetUserByUsername() {
+        String emailID = "test@abcd.com";
+
+        UserDao mockUser = new UserDao();
+        mockUser.setEmailID(emailID);
+        mockUser.setFirstName("Harsh");
+        mockUser.setLastName("Singh");
+
+        when(userRepository.findByEmailID(emailID)).thenReturn(mockUser);
+        when(userRepository.findById(emailID)).thenReturn(Optional.of(mockUser));
+
+        Object result = userService.getUserByUsername(emailID);
+
+        // Assertions
+        assertNotNull(result);
+        assertTrue(result instanceof Optional);
+
+        Optional<UserDao> optionalUser = (Optional<UserDao>) result;
+        assertTrue(optionalUser.isPresent());
+
+        UserDao retrievedUser = optionalUser.get();
+        assertEquals(emailID, retrievedUser.getEmailID());
+        assertEquals("Harsh", retrievedUser.getFirstName());
+        assertEquals("Singh", retrievedUser.getLastName());
+    }
+
+    @Test
+    @DisplayName("Testing login method")
+    public void testLogin() throws Exception {
+        UserLoginDTO userLoginDTO = new UserLoginDTO();
+        userLoginDTO.setEmailId("harsh@gmail.com");
+
+        UserDao mockUser = new UserDao();
+        mockUser.setEmailID("harsh@gmail.com");
+        mockUser.setFirstName("Harsh");
+        mockUser.setUserid(123);
+
+        when(userRepository.findByEmailID(userLoginDTO.getEmailId())).thenReturn(mockUser);
+        when(jwtTokenUtil.generateToken(any())).thenReturn("mocked_token");
+
+        Object result = userService.login(userLoginDTO);
+
+        // Assertions
+        assertNotNull(result);
+        assertTrue(result instanceof HashMap);
+
+        HashMap<String, Object> loginResult = (HashMap<String, Object>) result;
+
+        assertEquals("harsh@gmail.com", loginResult.get("email"));
+        assertEquals("Harsh", loginResult.get("firstName"));
+        assertNotNull(loginResult.get("token"));
+        assertEquals(123, loginResult.get("userId"));
+    }
+
+    @Test
+    @DisplayName("Testing verify account method - successful verification")
+    public void testVerifyAccountSuccess() throws Exception {
+        String token = "mocked_token";
+        VerifyAccountDTO verifyAccountDTO = new VerifyAccountDTO();
+        verifyAccountDTO.setOtp("123456");
+
+        Claims tokenClaims = mock(Claims.class);
+        doReturn(tokenClaims).when(jwtTokenUtil).getAllClaimsFromToken(token.substring(7));
+        when(tokenClaims.get("otp")).thenReturn("123456");
+        when(tokenClaims.get("username")).thenReturn("harsh@gmail.com");
+        when(jwtTokenUtil.generateToken(tokenClaims)).thenReturn("mocked_new_token");
+
+        // Mocked behavior for userRepository
+        when(userRepository.setIsVerified("harsh@gmail.com")).thenReturn(1);
+
+        Object result = userService.verifyAccount(token, verifyAccountDTO);
+
+        // Assertions
+        assertNotNull(result);
+        assertTrue(result instanceof HashMap);
+
+        HashMap<String, Object> verifyResult = (HashMap<String, Object>) result;
+
+        assertEquals("Account Successfully Verified", verifyResult.get("message"));
+        assertNotNull(verifyResult.get("token"));
+        assertEquals("mocked_new_token", verifyResult.get("token"));
+    }
+
+
+    @Test
+    @DisplayName("Testing verify account method - unsuccessful verification")
+    public void testVerifyAccountFailure() {
+        String token = "mocked_token";
+        VerifyAccountDTO verifyAccountDTO = new VerifyAccountDTO();
+        verifyAccountDTO.setOtp("654321");
+
+        // Mocked behavior for jwtTokenUtil
+        Claims tokenClaims = mock(Claims.class);
+        when(jwtTokenUtil.getAllClaimsFromToken(token.substring(7))).thenReturn(tokenClaims);
+        when(tokenClaims.get("otp")).thenReturn("123456");
+
+        // Act and assert
+        assertThrows(OTPVerificationFailed.class, () -> {
+            userService.verifyAccount(token, verifyAccountDTO);
+        });
+    }
+
+    @Test
+    @DisplayName("Testing load user by username method")
+    public void testLoadUserByUsername() {
+        String username = "harsh@gmail.com";
+
+        UserDao mockUser = new UserDao();
+        mockUser.setEmailID("harsh@gmail.com");
+        mockUser.setPassword("hashed_password");
+        when(userRepository.findByEmailID(username)).thenReturn(mockUser);
+
+        UserDetails userDetails = userService.loadUserByUsername(username);
+
+        assertNotNull(userDetails);
+        assertEquals(username, userDetails.getUsername());
+        assertEquals("hashed_password", userDetails.getPassword());
+    }
+
+    @Test
+    @DisplayName("Testing load user by username method - user not found")
+    public void testLoadUserByUsernameNotFound() {
+        String username = "nonexistent@gmail.com";
+
+        when(userRepository.findByEmailID(username)).thenReturn(null);
+
+        assertThrows(UsernameNotFoundException.class, () -> {
+            userService.loadUserByUsername(username);
+        });
+    }
+
+    @Test
+    @DisplayName("Testing get all users method")
+    public void testGetAllUsers() {
+        UserDao user1 = new UserDao("Harshpreet", "Singh", "harsh@gmail.com", "password");
+        UserDao user2 = new UserDao("Adam", "Smith", "adam@smith.com", "password");
+        when(userRepository.findAll()).thenReturn(List.of(user1, user2));
+
+        List<UserDao> userList = userService.getAllUsers();
+
+        assertNotNull(userList);
+        assertEquals(2, userList.size());
+        assertEquals("Harshpreet", userList.get(0).getFirstName());
+        assertEquals("Singh", userList.get(0).getLastName());
+        assertEquals("harsh@gmail.com", userList.get(0).getEmailID());
+        assertEquals("Adam", userList.get(1).getFirstName());
+        assertEquals("Smith", userList.get(1).getLastName());
+        assertEquals("adam@smith.com", userList.get(1).getEmailID());
     }
 
     @Test
