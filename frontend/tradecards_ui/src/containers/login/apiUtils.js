@@ -1,11 +1,9 @@
-const baseUrl = 'http://localhost:8080/';
-
 const onLogin = (userName, password) => {
   const data = {
     emailId: userName,
     password,
   };
-  return fetch(baseUrl + 'api/login', {
+  return fetch(process.env.REACT_APP_END_POINT + 'api/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', },
     body: JSON.stringify(data),
@@ -22,7 +20,7 @@ const onSignup = (userName, password, firstName, lastName) => {
     firstName,
     lastName,
   };
-  return fetch(baseUrl + 'api/signup', {
+  return fetch(process.env.REACT_APP_END_POINT + 'api/signup', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', },
     body: JSON.stringify(data),
