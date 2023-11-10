@@ -8,7 +8,6 @@ const convertBase64toImage = (base64String) => {
     const byteArray = new Uint8Array(byteNumbers);
     const blob = new Blob([byteArray,], { type: 'image/jpeg', });
     const imageUrl = URL.createObjectURL(blob);
-    console.log(imageUrl);
     return imageUrl;
   }
 };

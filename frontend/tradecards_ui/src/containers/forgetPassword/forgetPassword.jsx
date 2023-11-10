@@ -17,7 +17,7 @@ function ForgetPassword (props) {
     onForgotPassword(email);
     setConfirmation('Password reset link sent!');
   };
-  console.log('hi');
+
   const onNavigate = () => {
     if (isForgetPassword) {
       navigate('/forget-password');
