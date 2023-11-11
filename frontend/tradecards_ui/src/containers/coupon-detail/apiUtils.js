@@ -7,4 +7,9 @@ const getCouponDetail = (id) => {
     .then((res) => res.json());
 };
 
-export { getCouponDetail, };
+const getUserDetail = (id) => {
+  return fetch(process.env.REACT_APP_END_POINT + `/api/users/details/${id}`, { headers: { Authorization: `Bearer ${user.token}`, }, })
+    .then((res) => res.json());
+};
+
+export { getCouponDetail, getUserDetail, };
