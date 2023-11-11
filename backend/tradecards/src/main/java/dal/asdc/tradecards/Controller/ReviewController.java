@@ -50,4 +50,20 @@ public class ReviewController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @DeleteMapping("/delete-review/{reviewId}")
+    public ResponseEntity<String> deleteReview(@PathVariable Long reviewId) {
+        try {
+            boolean isDeleted = reviewService.deleteReviewById(reviewId);
+
+            if (isDeleted) {
+                return new ResponseEntity<>("Review deleted successfully", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Review not found or deletion failed", HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("Failed to delete the review", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
