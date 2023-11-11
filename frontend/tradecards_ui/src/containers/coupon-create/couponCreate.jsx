@@ -6,45 +6,87 @@ import { useNavigate } from 'react-router-dom';
 import InputHolder from '../login/components/input';
 
 function CouponCreate (props) {
-  const [couponTitle, setCouponTitle,] = useState(null);
-  const [couponDescription, setCouponDescription,] = useState(null);
-  const [couponVendor, setCouponVendor,] = useState(null);
-  const [couponCategory, setCouponCategory,] = useState(0);
-  const [couponValue, setCouponValue,] = useState(null);
-  const [couponPrice, setCouponPrice,] = useState(null);
-  const [couponValidity, setCouponValidity,] = useState(null);
-  const [couponLocation, setCouponLocation,] = useState(null);
-  const [couponListingDate, setCouponListingDate,] = useState(null);
-  const [couponImage, setCouponImage,] = useState(null);
+  const [couponTitle, setCouponTitle,] = useState('');
+  const [couponDescription, setCouponDescription,] = useState('');
+  const [couponVendor, setCouponVendor,] = useState('');
+  const [couponCategorySelect, setCouponCategorySelect,] = useState([]);
+  const [couponCategory, setCouponCategory,] = useState('');
+  const [couponCategoryId, setCouponCategoryId,] = useState(null);
+  const [couponValue, setCouponValue,] = useState('');
+  const [couponPrice, setCouponPrice,] = useState('');
+  const [couponValidity, setCouponValidity,] = useState('');
+  const [couponLocation, setCouponLocation,] = useState('');
+  const [couponListingDate, setCouponListingDate,] = useState('');
+  const [couponImage, setCouponImage,] = useState('');
+  const [couponType, setCouponType,] = useState(true);
+
+  const couponValueNumber = Number(couponValue);
+  const couponPriceNumber = Number(couponPrice);
+  const couponCategoryIdNumber = Number(couponCategoryId);
+  const sold = false;
+  const user = JSON.parse(localStorage.getItem('userInfo'));
+  const userId = user.userId;
 
   useEffect(() => {
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString().slice(0, 10);
-
     setCouponListingDate(formattedDate);
-  }, []);
 
-  // const handleImageChange = (e) => {
-  //   const file = e.target.files[0];
-  //   setCouponImage(file);
-  // };
+    const user = JSON.parse(localStorage.getItem('userInfo'));
+    const fetchData = async () => {
+      try {
+        const response = await fetch(process.env.REACT_APP_END_POINT + '/api/categories', {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        setCouponCategorySelect(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        const base64Image = event.target.result;
-        setCouponImage(base64Image);
+        const base64String = event.target.result;
+        setCouponImage(base64String);
       };
       reader.readAsDataURL(file);
+    }
+  };
+
+  const handleCategoryChange = (event) => {
+    const selectedCategory = couponCategorySelect.find(
+      (coupon) => coupon.categoryName === event.target.value
+    );
+
+    if (selectedCategory) {
+      const { categoryID, categoryName, } = selectedCategory;
+      setCouponCategory(categoryName);
+      setCouponCategoryId(categoryID);
+      console.log(categoryID, categoryName);
     }
   };
 
   const navigate = useNavigate();
 
   const onSubmit = () => {
-    onCouponCreate();
+    onCouponCreate(couponTitle, couponDescription, couponVendor, couponValidity,
+      couponValueNumber, couponPriceNumber, sold, couponType, couponCategory,
+      couponListingDate, couponLocation, userId, couponCategoryIdNumber, couponImage);
   };
 
   const onNavigate = () => {
@@ -53,10 +95,6 @@ function CouponCreate (props) {
 
   return (
     <div className='createCoupon-wrapper'>
-      {/* <img
-        className='login-image'
-        src='/img/logo.png'
-      /> */}
      <div className='createCoupon'>
       {
         <div className='createCoupon-heading'>Post a coupon!</div>
@@ -95,18 +133,31 @@ function CouponCreate (props) {
           id='couponCategorySelect'
           labelId='couponCategorySelectLabel'
           value={couponCategory}
-          onChange={e => setCouponCategory(e.target.value)}
+          onChange={handleCategoryChange}
+          label="Category"
+          defaultValue='Grocery'
+        >
+        {couponCategorySelect.map((coupon) => (
+          <MenuItem
+            key={coupon.categoryID}
+            value={coupon.categoryName}>
+              {coupon.categoryName}
+          </MenuItem>
+        ))}
+        </Select>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0', }}>
+        <label style={{ marginRight: '10px', }}>Coupon type</label>
+        <Select
+          id='couponTypeSelect'
+          labelId='couponTypeSelectLabel'
+          value={couponType}
+          onChange={e => setCouponType(e.target.value)}
           label="Category"
         >
-            <MenuItem value={0}>
-              <em>Select category</em>
-            </MenuItem>
-            <MenuItem value={1}>Restaurant coupon</MenuItem>
-            <MenuItem value={2}>Grocery coupon</MenuItem>
-            <MenuItem value={3}>Electronics coupon</MenuItem>
-            <MenuItem value={4}>Clothing coupon</MenuItem>
-            <MenuItem value={5}>Beauty and personal care coupon</MenuItem>
-            <MenuItem value={6}>Other coupons</MenuItem>
+            <MenuItem value={true}>Online</MenuItem>
+            <MenuItem value={false}>Offline</MenuItem>
         </Select>
         </div>
 
@@ -159,22 +210,16 @@ function CouponCreate (props) {
 
         <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0', }}>
         <label style={{ marginRight: '10px', }}>Upload photo!</label>
-        <InputHolder
+        <input
           type="file"
           accept="image/*"
+          // value={couponImage}
           onChange={handleImageChange}
           placeholder="Image"
           style={{ margin: '10px 0', }}
         />
-        {/* Display the selected image if available */}
-        {couponImage && (
-            <img
-              src={URL.createObjectURL(couponImage)}
-              alt="Selected"
-              style={{ maxWidth: '100px', marginTop: '10px', }}
-            />
-        )}
         </div>
+
         <Button
           variant="contained"
           onClick={onSubmit}
