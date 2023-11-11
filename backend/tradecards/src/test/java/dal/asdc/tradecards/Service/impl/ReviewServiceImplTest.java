@@ -8,6 +8,7 @@ import dal.asdc.tradecards.Model.DAO.ReviewDao;
 import dal.asdc.tradecards.Model.DAO.UserDao;
 import dal.asdc.tradecards.Model.DTO.NewReviewDTO;
 import dal.asdc.tradecards.Repository.ReviewRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,6 +21,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 public class ReviewServiceImplTest {
@@ -91,5 +93,41 @@ public class ReviewServiceImplTest {
         assertEquals(review2, result.get(1));
 
         verify(reviewRepository, times(1)).findByReviewedUserUserid(reviewedUserId);
+    }
+
+
+    @Test
+    @DisplayName("Testing delete review by ID - success")
+    public void testDeleteReviewByIdSuccess() {
+        Long reviewId = 1L;
+        ReviewDao mockReview = new ReviewDao();
+        Optional<ReviewDao> optionalMockReview = Optional.of(mockReview);
+
+        when(reviewRepository.findById(String.valueOf(reviewId))).thenReturn(optionalMockReview);
+
+        // Using doNothing for void method
+        doNothing().when(reviewRepository).delete(mockReview);
+
+        boolean result = reviewService.deleteReviewById(reviewId);
+
+        Assertions.assertTrue(result);
+        verify(reviewRepository, times(1)).findById(String.valueOf(reviewId));
+        verify(reviewRepository, times(1)).delete(mockReview);
+    }
+
+
+    @Test
+    @DisplayName("Testing delete review by ID - review not found")
+    public void testDeleteReviewByIdReviewNotFound() {
+        Long reviewId = 1L;
+        Optional<ReviewDao> optionalMockReview = Optional.empty();
+
+        when(reviewRepository.findById(String.valueOf(reviewId))).thenReturn(optionalMockReview);
+
+        boolean result = reviewService.deleteReviewById(reviewId);
+
+        Assertions.assertFalse(result);
+        verify(reviewRepository, times(1)).findById(String.valueOf(reviewId));
+        verify(reviewRepository, never()).delete(any());
     }
 }

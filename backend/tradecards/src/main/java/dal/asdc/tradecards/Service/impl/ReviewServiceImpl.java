@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
@@ -47,5 +48,18 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public List<ReviewDao> getReviewsByReviewedUserId(Long reviewedUserID) {
         return reviewRepository.findByReviewedUserUserid(reviewedUserID);
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteReviewById(Long reviewId) {
+        Optional<ReviewDao> review = reviewRepository.findById(String.valueOf(reviewId));
+
+        if (review.isPresent()) {
+            reviewRepository.delete(review.get());
+            return true;
+        } else {
+            return false;
+        }
     }
 }

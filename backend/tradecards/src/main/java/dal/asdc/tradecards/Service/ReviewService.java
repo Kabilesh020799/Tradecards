@@ -11,4 +11,6 @@ public interface ReviewService {
     public ReviewDao createReview(NewReviewDTO newReviewDTO);
 
     public List<ReviewDao> getReviewsByReviewedUserId(Long reviewedUserId);
+
+    public boolean deleteReviewById(Long reviewId);
 }
