@@ -17,7 +17,7 @@ public class UserDao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userid;
 
-    @Column(name = "email_id")
+    @Column(name = "email_id", unique=true)
     private String emailID;
 
     @Column(name = "password")
@@ -48,6 +48,12 @@ public class UserDao {
         this.LastName = LastName;
         this.emailID = emailID;
         this.password = password;
+    }
+
+    public UserDao(String emailID, String lastName, String firstName) {
+        this.FirstName = lastName;
+        this.LastName = firstName;
+        this.emailID = emailID;
     }
 }
 

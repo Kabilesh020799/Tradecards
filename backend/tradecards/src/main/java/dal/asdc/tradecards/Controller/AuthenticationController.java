@@ -21,7 +21,7 @@ import dal.asdc.tradecards.Model.DTO.UserSignUpDTO;
 import dal.asdc.tradecards.Service.EmailService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = {"http://localhost:3000/", "http://csci5308vm13.research.cs.dal.ca:3000/", "http://csci5308vm13.research.cs.dal.ca:8080/"})
 @RequestMapping("/api")
 public class AuthenticationController {
 
@@ -68,28 +68,28 @@ public class AuthenticationController {
         }
     }
 
-    @PostMapping("/forget-password-request")
-    public ResponseEntity<?> forgetPasswordRequest(@RequestBody ForgetPasswordDTO forgetPasswordDTO) throws Exception {
-        try {
-            HashMap<String, Object> tokenClaims = userService.forgetPasswordRequest(forgetPasswordDTO);
-            emailService.sendEmail((String) tokenClaims.get("emailID"), "TradeCards - Forget Password Request", "Your OTP for forget password is: " + tokenClaims.get("otp"));
-            HashMap<String, Object> responseClaims = new HashMap<String, Object>();
-            responseClaims.put("token", tokenClaims.get("token"));
-            responseClaims.put("email", tokenClaims.get("emailID"));
-            return ResponseEntity.ok(responseClaims);
-        } catch(Exception error) {
-            return ResponseEntity.internalServerError().body(error);
-        }
-    }
+//    @PostMapping("/forget-password-request")
+//    public ResponseEntity<?> forgetPasswordRequest(@RequestBody ForgetPasswordDTO forgetPasswordDTO) throws Exception {
+//        try {
+//            HashMap<String, Object> tokenClaims = userService.forgetPasswordRequest(forgetPasswordDTO);
+//            emailService.sendEmail((String) tokenClaims.get("emailID"), "TradeCards - Forget Password Request", "Your OTP for forget password is: " + tokenClaims.get("otp"));
+//            HashMap<String, Object> responseClaims = new HashMap<String, Object>();
+//            responseClaims.put("token", tokenClaims.get("token"));
+//            responseClaims.put("email", tokenClaims.get("emailID"));
+//            return ResponseEntity.ok(responseClaims);
+//        } catch(Exception error) {
+//            return ResponseEntity.internalServerError().body(error);
+//        }
+//    }
 
-    @PostMapping("/forget-password-verification")
-    public ResponseEntity<?> forgetPasswordVerification(@RequestHeader("Authorization") String bearerToken, @RequestBody ForgetPasswordDTO forgetPasswordDTO) throws Exception {
-        try {
-            return ResponseEntity.ok(userService.forgetPasswordVerification(bearerToken, forgetPasswordDTO));
-        } catch(Exception error) {
-            return ResponseEntity.internalServerError().body(error);
-        }
-    }
+//    @PostMapping("/forget-password-verification")
+//    public ResponseEntity<?> forgetPasswordVerification(@RequestHeader("Authorization") String bearerToken, @RequestBody ForgetPasswordDTO forgetPasswordDTO) throws Exception {
+//        try {
+//            return ResponseEntity.ok(userService.forgetPasswordVerification(bearerToken, forgetPasswordDTO));
+//        } catch(Exception error) {
+//            return ResponseEntity.internalServerError().body(error);
+//        }
+//    }
 
     private void authenticate(String username, String password) throws Exception {
         try {

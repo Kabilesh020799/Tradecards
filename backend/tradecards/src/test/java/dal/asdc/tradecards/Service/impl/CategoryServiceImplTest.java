@@ -1,3 +1,5 @@
+package dal.asdc.tradecards.Service.impl;
+
 import dal.asdc.tradecards.Model.DAO.CategoryDao;
 import dal.asdc.tradecards.Repository.CategoryRepository;
 import dal.asdc.tradecards.Service.CategoryService;
@@ -18,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = CategoryService.class)
-public class CategoryServiceTest {
+public class CategoryServiceImplTest {
 
     @Mock
     private CategoryRepository categoryRepository;

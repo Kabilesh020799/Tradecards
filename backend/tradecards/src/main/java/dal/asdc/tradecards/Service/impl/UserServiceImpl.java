@@ -2,14 +2,12 @@ package dal.asdc.tradecards.Service.impl;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import dal.asdc.tradecards.Exception.DuplicateEntryException;
 import dal.asdc.tradecards.Exception.OTPVerificationFailed;
 import dal.asdc.tradecards.Exception.OTPVerificationFailedException;
-import dal.asdc.tradecards.Model.DTO.ForgetPasswordDTO;
-import dal.asdc.tradecards.Model.DTO.UserLoginDTO;
-import dal.asdc.tradecards.Model.DTO.UserSignUpDTO;
-import dal.asdc.tradecards.Model.DTO.VerifyAccountDTO;
+import dal.asdc.tradecards.Model.DTO.*;
 import dal.asdc.tradecards.Service.UserService;
 import dal.asdc.tradecards.Utility.JWTTokenUtil;
 import dal.asdc.tradecards.Utility.UtilityFunctions;
@@ -36,6 +34,18 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UtilityFunctions utilityFunctions;
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    //public UserServiceImpl () {}
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository, JWTTokenUtil jwtTokenUtil, UtilityFunctions utilityFunctions) {
+        this.userRepository = userRepository;
+        this.jwtTokenUtil = jwtTokenUtil;
+        this.utilityFunctions = utilityFunctions;
+    }
 
     @Override
     public HashMap<String, Object> create(UserSignUpDTO userSignUpDTO) throws Exception {
@@ -74,36 +84,37 @@ public class UserServiceImpl implements UserService {
         claims.put("firstName", userDao.getFirstName());
         String jwtToken = jwtTokenUtil.generateToken(claims);
         claims.put("token", jwtToken);
+        claims.put("userId", userDao.getUserid());
         return claims;
     }
 
-    @Override
-    public HashMap<String, Object> forgetPasswordRequest(ForgetPasswordDTO forgetPasswordDTO) throws Exception {
-        UserDao userDao = userRepository.findByEmailID(forgetPasswordDTO.getEmailID());
-        HashMap<String, Object> claims = new HashMap<>();
-        claims.put("emailID", userDao.getEmailID());
-        claims.put("otp", utilityFunctions.generateOTP());
-        claims.put("first name", userDao.getFirstName());
-        String jwtToken = jwtTokenUtil.generateFifteenMinuteExpiryToken(claims);
-        claims.put("token", jwtToken);
-        return claims;
-    }
+//    @Override
+//    public HashMap<String, Object> forgetPasswordRequest(ForgetPasswordDTO forgetPasswordDTO) throws Exception {
+//        UserDao userDao = userRepository.findByEmailID(forgetPasswordDTO.getEmailID());
+//        HashMap<String, Object> claims = new HashMap<>();
+//        claims.put("emailID", userDao.getEmailID());
+//        claims.put("otp", utilityFunctions.generateOTP());
+//        claims.put("first name", userDao.getFirstName());
+//        String jwtToken = jwtTokenUtil.generateFifteenMinuteExpiryToken(claims);
+//        claims.put("token", jwtToken);
+//        return claims;
+//    }
 
-    @Override
-    public HashMap<String, Object> forgetPasswordVerification(String token, ForgetPasswordDTO forgetPasswordDTO) throws Exception {
-        Claims tokenClaims = jwtTokenUtil.getAllClaimsFromToken(token.substring(7));
-        String otp = tokenClaims.get("otp").toString();
-        if(otp.equalsIgnoreCase(forgetPasswordDTO.getOtp())) {
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            userRepository.setPassword((String) tokenClaims.get("emailID"), passwordEncoder.encode(forgetPasswordDTO.getPassword()));
-            HashMap<String, Object> claims = new HashMap<>();
-            claims.put("message", "Password changed successfully");
-            return claims;
-        }
-        else {
-            throw new OTPVerificationFailedException("OTP does not match", new Exception("OTP does not match", null));
-        }
-    }
+//    @Override
+//    public HashMap<String, Object> forgetPasswordVerification(String token, ForgetPasswordDTO forgetPasswordDTO) throws Exception {
+//        Claims tokenClaims = jwtTokenUtil.getAllClaimsFromToken(token.substring(7));
+//        String otp = tokenClaims.get("otp").toString();
+//        if(otp.equalsIgnoreCase(forgetPasswordDTO.getOtp())) {
+//            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//            userRepository.setPassword((String) tokenClaims.get("emailID"), passwordEncoder.encode(forgetPasswordDTO.getPassword()));
+//            HashMap<String, Object> claims = new HashMap<>();
+//            claims.put("message", "Password changed successfully");
+//            return claims;
+//        }
+//        else {
+//            throw new OTPVerificationFailedException("OTP does not match", new Exception("OTP does not match", null));
+//        }
+//    }
 
     @Override
     public Object verifyAccount(String token, VerifyAccountDTO verifyAccountDTO) throws Exception {
@@ -134,9 +145,52 @@ public class UserServiceImpl implements UserService {
                 .build();
     }
 
+        @Override
+        public UserDao loadUserByEmailID(String emailID) throws UsernameNotFoundException {
+            UserDao userDao = userRepository.findByEmailID(emailID);
+            if (userDao == null) {
+                throw new UsernameNotFoundException("User not found with emailID: " + emailID);
+            }
+            return new UserDao(
+                    userDao.getEmailID(),
+                    userDao.getLastName(),
+                    userDao.getFirstName()
+            );
+        }
+
+    public UserDao updateUser(EditUserRequestDTO updatedUser){
+        String emailID = updatedUser.getEmailID();
+        UserDao existingUser = userRepository.findByEmailID(emailID);
+        if (existingUser == null) {
+            throw new UsernameNotFoundException("User not found with emailID: " + emailID);
+        }
+        existingUser.setFirstName(updatedUser.getFirstName());
+        existingUser.setLastName(updatedUser.getLastName());
+
+        // Hash the updated password and set it in user db
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(updatedUser.getPassword());
+        existingUser.setPassword(hashedPassword);
+
+        UserDao updatedUserFromDB = userRepository.save(existingUser);
+
+        return updatedUserFromDB;
+    }
+
 
     @Override
     public List<UserDao> getAllUsers() {
         return (List<UserDao>)userRepository.findAll();
+    }
+
+    @Override
+    public UserDao getUserByUserId(int userid) {
+        Optional<UserDao> userOptional = userRepository.findById(String.valueOf(userid));
+
+        if (userOptional.isPresent()) {
+            return userOptional.get();
+        } else {
+            return null;
+        }
     }
 }
