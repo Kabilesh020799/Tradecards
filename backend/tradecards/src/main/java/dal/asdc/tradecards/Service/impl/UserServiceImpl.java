@@ -145,18 +145,14 @@ public class UserServiceImpl implements UserService {
                 .build();
     }
 
-        @Override
-        public UserDao loadUserByEmailID(String emailID) throws UsernameNotFoundException {
-            UserDao userDao = userRepository.findByEmailID(emailID);
-            if (userDao == null) {
-                throw new UsernameNotFoundException("User not found with emailID: " + emailID);
-            }
-            return new UserDao(
-                    userDao.getEmailID(),
-                    userDao.getLastName(),
-                    userDao.getFirstName()
-            );
+    @Override
+    public UserDao loadUserByEmailID(String emailID) throws UsernameNotFoundException {
+        Optional<UserDao> userDao = Optional.ofNullable(userRepository.findByEmailID(emailID));
+        if (userDao.isEmpty()) {
+            return null;
         }
+        return userDao.get();
+    }
 
     public UserDao updateUser(EditUserRequestDTO updatedUser){
         String emailID = updatedUser.getEmailID();
@@ -185,10 +181,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDao getUserByUserId(int userid) {
-        Optional<UserDao> userOptional = userRepository.findById(String.valueOf(userid));
+        Optional<UserDao> userDao = userRepository.findById(String.valueOf(userid));
 
-        if (userOptional.isPresent()) {
-            return userOptional.get();
+        if (userDao.isPresent()) {
+            return userDao.get();
         } else {
             return null;
         }

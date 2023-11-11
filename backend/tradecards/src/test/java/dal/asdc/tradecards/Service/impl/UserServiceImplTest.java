@@ -264,7 +264,7 @@ public class UserServiceImplTest {
 
         assertNotNull(loadedUser);
         assertEquals("test@example.com", loadedUser.getEmailID());
-        assertEquals("Doe", loadedUser.getFirstName());
+        assertEquals("John", loadedUser.getFirstName());
     }
 
     @Test
@@ -274,9 +274,7 @@ public class UserServiceImplTest {
 
         when(userRepository.findByEmailID(emailID)).thenReturn(null);
 
-        assertThrows(UsernameNotFoundException.class, () -> {
-            userService.loadUserByEmailID(emailID);
-        });
+        assertNull(userService.loadUserByEmailID(emailID));
     }
 
     @Test
