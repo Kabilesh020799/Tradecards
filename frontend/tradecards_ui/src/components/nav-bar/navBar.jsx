@@ -21,6 +21,10 @@ const NavBar = (props) => {
     navigate('/login');
   };
 
+  const onClickProfile = () => {
+    navigate('/user-profile');
+  };
+
   return (
     <div className={`${className} nav-bar`}>
       <div className='nav-bar-components'>
@@ -46,6 +50,7 @@ const NavBar = (props) => {
           <AvatarItem
             onSignout={onLogout}
             className="nav-bar-components-right-avatar"
+            onClickProfile={onClickProfile}
           />
         </div>
       </div>

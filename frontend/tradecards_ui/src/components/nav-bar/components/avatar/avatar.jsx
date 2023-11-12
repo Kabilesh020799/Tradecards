@@ -7,7 +7,7 @@ import { getStorage } from '../../../../common-utils';
 import PropTypes from 'prop-types';
 
 const AvatarItem = (props) => {
-  const { onSignout, className, } = props;
+  const { onSignout, className, onClickProfile, } = props;
 
   const [anchorEl, setAnchorEl,] = useState(null);
   const open = Boolean(anchorEl);
@@ -22,6 +22,11 @@ const AvatarItem = (props) => {
   const onLogout = () => {
     handleClose();
     onSignout();
+  };
+
+  const onViewProfile = () => {
+    handleClose();
+    onClickProfile();
   };
 
   const getFirstLetter = () => {
@@ -78,7 +83,7 @@ const AvatarItem = (props) => {
       transformOrigin={{ horizontal: 'right', vertical: 'top', }}
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom', }}
     >
-      <MenuItem onClick={handleClose}>
+      <MenuItem onClick={onViewProfile}>
         <Avatar /> My account
       </MenuItem>
       <MenuItem onClick={onLogout}>
@@ -92,7 +97,11 @@ const AvatarItem = (props) => {
   );
 };
 
-AvatarItem.propTypes = { onSignout: PropTypes.func.isRequired, className: PropTypes.string, };
+AvatarItem.propTypes = {
+  onSignout: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  onClickProfile: PropTypes.func.isRequired,
+};
 AvatarItem.defaultProps = { className: '', };
 
 export default AvatarItem;

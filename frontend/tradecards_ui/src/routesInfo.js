@@ -4,6 +4,7 @@ import ForgetPassword from './containers/forgetPassword';
 import Home from './containers/home';
 import CouponGrid from './containers/coupon-grid/';
 import CouponDetail from './containers/coupon-detail';
+import UserProfile from './containers/user-profile';
 
 const routes = [
   {
@@ -35,6 +36,11 @@ const routes = [
     id: 'coupon-details',
     route: 'coupon-detail/:couponId',
     component: <CouponDetail />,
+  },
+  {
+    id: 'user-profile',
+    route: 'user-profile',
+    component: <UserProfile />,
   },
 ];
 
