@@ -77,6 +77,16 @@
       letter-spacing: 0.2px;
       color: rgb(51, 51, 51);
       padding-top: 16px;
+      display: flex;
+      flex-direction: column;
+
+      &-name {
+        display: flex;
+
+        &-star {
+          margin-left: 20px;
+        }
+      }
     }
   }
 }

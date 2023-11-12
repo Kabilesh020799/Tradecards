@@ -5,6 +5,7 @@ import { convertBase64toImage } from '../../common-utils';
 import './style.scss';
 import NavBar from '../../components/nav-bar';
 import { Button } from '@mui/material';
+import ReviewStars from '../../components/review-stars';
 
 const CouponDetail = () => {
   const { couponId, } = useParams();
@@ -20,6 +21,10 @@ const CouponDetail = () => {
       })
       .then((res) => setUser(res));
   }, []);
+
+  const getAverageReview = (reviews) => {
+    return reviews?.reduce((sum, review) => sum + review?.rating, 0) / reviews?.length;
+  };
 
   return (
     <div className='coupon-detail'>
@@ -71,7 +76,13 @@ const CouponDetail = () => {
           {couponInfo?.couponDesc}
         </div>
         <div className='coupon-detail-info-seller'>
-          <span style={{ fontWeight: 'bold', }}>Sold by -</span> {`${user?.firstName} ${user?.lastName}`}
+          <div style={{ fontWeight: 'bold', }}>Seller Information</div>
+          <div className='coupon-detail-info-seller-name'>
+            <span>{`${user?.firstName} ${user?.lastName}`}</span>
+            <span className='coupon-detail-info-seller-name-star'>
+              {user?.receivedReviews ? <ReviewStars review={getAverageReview(user?.receivedReviews)}/> : null}
+            </span>
+          </div>
         </div>
       </div>
     </div>
