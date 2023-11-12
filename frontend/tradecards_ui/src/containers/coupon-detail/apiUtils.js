@@ -13,10 +13,4 @@ const getUserDetail = (id) => {
     .then((res) => res.json());
 };
 
-const getUserReview = (id) => {
-  return fetch(process.env.REACT_APP_END_POINT + `/api/reviews/get-review/${id}`,
-    { headers: { Authorization: `Bearer ${user.token}`, }, })
-    .then((res) => res.json());
-};
-
-export { getCouponDetail, getUserDetail, getUserReview, };
+export { getCouponDetail, getUserDetail, };
