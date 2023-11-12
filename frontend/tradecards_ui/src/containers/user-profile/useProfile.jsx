@@ -2,6 +2,7 @@ import React from 'react';
 import './style.scss';
 import NavBar from '../../components/nav-bar';
 import { getStorage } from '../../common-utils';
+import TabItem from './component/tab';
 
 const UserProfile = () => {
   const user = JSON.parse(getStorage('userInfo'));
@@ -21,6 +22,9 @@ const UserProfile = () => {
           <span className='user-profile-account-subhead-title'>Password</span>
           <span className='user-profile-account-subhead-value'>*******</span>
         </div>
+      </div>
+      <div className='user-profile-coupons'>
+        <TabItem />
       </div>
     </div>
   );
