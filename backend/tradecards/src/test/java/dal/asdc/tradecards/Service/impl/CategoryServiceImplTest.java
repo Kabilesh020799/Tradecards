@@ -3,7 +3,7 @@ package dal.asdc.tradecards.Service.impl;
 import dal.asdc.tradecards.Model.DAO.CategoryDao;
 import dal.asdc.tradecards.Repository.CategoryRepository;
 import dal.asdc.tradecards.Service.CategoryService;
-import dal.asdc.tradecards.Service.impl.CategoryServiceImpl;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = CategoryService.class)
@@ -29,6 +28,7 @@ public class CategoryServiceImplTest {
     private CategoryServiceImpl categoryService;
 
     @Test
+    @DisplayName("testing get all categories")
     public void testGetAllCategories() {
         List<CategoryDao> categoryList = new ArrayList<>();
         CategoryDao categoryDao1 = new CategoryDao();
