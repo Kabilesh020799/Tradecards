@@ -5,6 +5,7 @@ import LocationToggle from './components/location-toggle';
 import SearchBar from '../search-bar';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
+import AvatarItem from './components/avatar/avatar';
 
 const NavBar = (props) => {
   const { className, } = props;
@@ -42,10 +43,10 @@ const NavBar = (props) => {
             location={location}
             onLocationChange={onLocationChange}
           />
-          <Button className='nav-bar-components-right-sign-out'
-            onClick={onLogout}>
-            Sign out
-          </Button>
+          <AvatarItem
+            onSignout={onLogout}
+            className="nav-bar-components-right-avatar"
+          />
         </div>
       </div>
       <div className='nav-bar-sub-contents'>

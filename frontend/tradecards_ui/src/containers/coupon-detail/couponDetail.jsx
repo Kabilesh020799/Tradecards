@@ -45,11 +45,11 @@ const CouponDetail = () => {
           <div>
             <div className='coupon-detail-image-container-price'>
               <span style={{ fontWeight: 'bold', fontSize: '24px', }}>Original Price- </span>
-              {couponInfo?.couponValue} CAD
+              $ {couponInfo?.couponValue}
             </div>
             <div className='coupon-detail-image-container-price'>
               <span style={{ fontWeight: 'bold', fontSize: '24px', }}>Selling Price- </span>
-              {couponInfo?.couponSellingPrice} CAD
+              $ {couponInfo?.couponSellingPrice}
             </div>
           </div>
           <div>
