@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import { coupons } from './constants';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { convertBase64toImage } from '../../common-utils';
 
 const CouponListing = (props) => {
@@ -12,6 +12,8 @@ const CouponListing = (props) => {
     couponLists,
     isMoreCouponsAvailable,
   } = props;
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -43,6 +45,7 @@ const CouponListing = (props) => {
               <Grid
                 item
                 key={coupon?.couponId || coupon?.couponName}
+                onClick={() => navigate(`/coupon-detail/${coupon?.couponID}`)}
               >
                 <Card sx={{ maxWidth: 300, }}>
                   <CardMedia

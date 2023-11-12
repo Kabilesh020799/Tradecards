@@ -3,9 +3,11 @@ import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typograph
 import NavBar from '../../components/nav-bar';
 import { convertBase64toImage } from '../../common-utils';
 import { getAllCoupons } from '../home/apiUtils';
+import { useNavigate } from 'react-router-dom';
 
 const CouponGrid = (props) => {
   const [couponsData, setCouponsData,] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getAllCoupons()
@@ -27,6 +29,7 @@ const CouponGrid = (props) => {
                 <Grid
                   item
                   key={coupon?.couponId || coupon?.couponName}
+                  onClick={() => navigate(`/coupon-detail/${coupon?.couponId}`)}
                 >
                   <Card sx={{ maxWidth: 300, }}>
                     <CardMedia
