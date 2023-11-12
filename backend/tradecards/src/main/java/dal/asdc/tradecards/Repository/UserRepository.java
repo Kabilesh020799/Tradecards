@@ -19,7 +19,7 @@ public interface UserRepository  extends CrudRepository<UserDao, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "update login set password = ?2 where email_id = ?1", nativeQuery = true)
+    @Query(value = "update user set password = ?2 where email_id = ?1", nativeQuery = true)
     int setPassword(String emailID, String password);
 }
 

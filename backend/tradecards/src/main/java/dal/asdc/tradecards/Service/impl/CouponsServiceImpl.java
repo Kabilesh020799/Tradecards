@@ -1,5 +1,4 @@
 package dal.asdc.tradecards.Service.impl;
-import dal.asdc.tradecards.Model.DAO.CategoryDao;
 import dal.asdc.tradecards.Model.DAO.CouponsDao;
 import dal.asdc.tradecards.Model.DTO.CouponsDTO;
 import dal.asdc.tradecards.Repository.CouponsRepository;
@@ -11,12 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 
 @Service
-public class CouponsImpl implements CouponsService {
+public class CouponsServiceImpl implements CouponsService {
 
     @Autowired
     CouponsRepository couponsRepository;
 
-    public CouponsImpl(CouponsRepository couponsRepository) {
+    public CouponsServiceImpl(CouponsRepository couponsRepository) {
         this.couponsRepository = couponsRepository;
     }
 
@@ -95,7 +94,7 @@ public class CouponsImpl implements CouponsService {
 
             return couponsRepository.save(existingCoupon);
         } else {
-            return null; // Return null if the coupon with the specified ID is not found
+            return null;
         }
     }
 }
