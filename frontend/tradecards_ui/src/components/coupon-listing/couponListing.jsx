@@ -78,7 +78,7 @@ const CouponListing = (props) => {
                             className='coupon-listing-card-content-desc'
                           >
                             <i className="fa-solid fa-location-dot"></i>
-                            {coupon?.couponImage}
+                            {coupon?.couponLocation}
                           </Typography>
                           )
                         : null

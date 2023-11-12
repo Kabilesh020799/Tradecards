@@ -53,13 +53,23 @@ const CouponGrid = (props) => {
                       >
                         {coupon?.couponDesc}
                       </Typography>
-                      <Typography
-                        variant='body2'
-                        color="text.secondary"
-                        className='coupon-listing-card-content-desc'
-                      >
-                        {coupon?.couponLocation}
-                      </Typography>
+                      {
+                      coupon?.couponImage
+                        ? (
+                          <Typography
+                            variant='body2'
+                            color="text.secondary"
+                            className='coupon-listing-card-content-desc'
+                          >
+                            <i
+                              className="fa-solid fa-location-dot"
+                              style={{ marginRight: '12px', }}
+                            ></i>
+                            {coupon?.couponLocation}
+                          </Typography>
+                          )
+                        : null
+                    }
                     </CardContent>
                     <CardActions>
                       <Button size="small">{coupon.userName}</Button>
