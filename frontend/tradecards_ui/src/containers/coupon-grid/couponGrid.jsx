@@ -28,8 +28,8 @@ const CouponGrid = (props) => {
               couponsData?.map((coupon) => (
                 <Grid
                   item
-                  key={coupon?.couponId || coupon?.couponName}
-                  onClick={() => navigate(`/coupon-detail/${coupon?.couponId}`)}
+                  key={coupon?.couponID || coupon?.couponName}
+                  onClick={() => navigate(`/coupon-detail/${coupon?.couponID}`)}
                 >
                   <Card sx={{ maxWidth: 300, }}>
                     <CardMedia

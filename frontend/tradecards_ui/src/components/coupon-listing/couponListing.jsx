@@ -44,7 +44,7 @@ const CouponListing = (props) => {
             couponLists?.slice(0, 5)?.map((coupon) => (
               <Grid
                 item
-                key={coupon?.couponId || coupon?.couponName}
+                key={coupon?.couponID || coupon?.couponName}
                 onClick={() => navigate(`/coupon-detail/${coupon?.couponID}`)}
               >
                 <Card sx={{ maxWidth: 300, minHeight: 300, }}>
