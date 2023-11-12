@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getCouponDetail, getUserDetail } from './apiUtils';
+import { getCouponDetail, getUserDetail, getUserReview } from './apiUtils';
 import { convertBase64toImage } from '../../common-utils';
 import './style.scss';
 import NavBar from '../../components/nav-bar';
@@ -18,7 +18,11 @@ const CouponDetail = () => {
         setCouponInfo(res);
         return getUserDetail(res?.userid);
       })
-      .then((res) => setUser(res));
+      .then((res) => {
+        setUser(res);
+        return getUserReview(res?.userid);
+      })
+      .then((res) => setUser({ ...res, review: res, }));
   }, []);
 
   return (

@@ -8,8 +8,15 @@ const getCouponDetail = (id) => {
 };
 
 const getUserDetail = (id) => {
-  return fetch(process.env.REACT_APP_END_POINT + `/api/users/details/${id}`, { headers: { Authorization: `Bearer ${user.token}`, }, })
+  return fetch(process.env.REACT_APP_END_POINT + `/api/users/details/${id}`,
+    { headers: { Authorization: `Bearer ${user.token}`, }, })
     .then((res) => res.json());
 };
 
-export { getCouponDetail, getUserDetail, };
+const getUserReview = (id) => {
+  return fetch(process.env.REACT_APP_END_POINT + `/api/reviews/get-review/${id}`,
+    { headers: { Authorization: `Bearer ${user.token}`, }, })
+    .then((res) => res.json());
+};
+
+export { getCouponDetail, getUserDetail, getUserReview, };
