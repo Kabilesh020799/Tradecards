@@ -55,6 +55,7 @@ const LocationToggle = (props) => {
           } else {
             setError('user denied geolocation');
           }
+          setIsModalOpen(false);
         });
     } else {
       console.log('Geolocation is not supported by this browser.');
