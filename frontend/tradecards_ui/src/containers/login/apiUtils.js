@@ -3,7 +3,7 @@ const onLogin = (userName, password) => {
     emailId: userName,
     password,
   };
-  return fetch(process.env.REACT_APP_END_POINT + '/api/login', {
+  return fetch((process.env.NODE_ENV === 'production' ? process.env.REACT_APP_END_POINT_PROD : process.env.REACT_APP_END_POINT) + '/api/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', },
     body: JSON.stringify(data),
@@ -20,7 +20,7 @@ const onSignup = (userName, password, firstName, lastName) => {
     firstName,
     lastName,
   };
-  return fetch(process.env.REACT_APP_END_POINT + '/api/signup', {
+  return fetch((process.env.NODE_ENV === 'production' ? process.env.REACT_APP_END_POINT_PROD : process.env.REACT_APP_END_POINT) + '/api/signup', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', },
     body: JSON.stringify(data),

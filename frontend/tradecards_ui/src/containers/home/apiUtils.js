@@ -3,7 +3,7 @@ import { getStorage } from '../../common-utils';
 const user = JSON.parse(getStorage('userInfo'));
 
 const getAllCoupons = () => {
-  return fetch(process.env.REACT_APP_END_POINT + '/api/coupons', {
+  return fetch((process.env.NODE_ENV === 'production' ? process.env.REACT_APP_END_POINT_PROD : process.env.REACT_APP_END_POINT) + '/api/coupons', {
     method: 'GET',
     headers: { Authorization: `Bearer ${user.token}`, },
   })
@@ -11,7 +11,7 @@ const getAllCoupons = () => {
 };
 
 const getCouponsByCategory = ({ categoryId, }) => {
-  return fetch(process.env.REACT_APP_END_POINT + '/api/coupons', {
+  return fetch((process.env.NODE_ENV === 'production' ? process.env.REACT_APP_END_POINT_PROD : process.env.REACT_APP_END_POINT) + '/api/coupons', {
     method: 'GET',
     headers: { Authorization: `Bearer ${user.token}`, },
   })
