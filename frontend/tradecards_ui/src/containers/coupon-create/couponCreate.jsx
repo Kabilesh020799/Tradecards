@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Button, MenuItem, Select } from '@mui/material';
+import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { onCouponCreate } from './apiUtils';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +11,7 @@ function CouponCreate (props) {
   const [couponDescription, setCouponDescription,] = useState('');
   const [couponVendor, setCouponVendor,] = useState('');
   const [couponCategorySelect, setCouponCategorySelect,] = useState([]);
-  const [couponCategory, setCouponCategory,] = useState('');
+  const [couponCategory, setCouponCategory,] = useState('Grocery');
   const [couponCategoryId, setCouponCategoryId,] = useState(null);
   const [couponValue, setCouponValue,] = useState('');
   const [couponPrice, setCouponPrice,] = useState('');
@@ -31,13 +32,12 @@ function CouponCreate (props) {
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString().slice(0, 10);
     setCouponListingDate(formattedDate);
-
-    const user = JSON.parse(localStorage.getItem('userInfo'));
+    const user2 = JSON.parse(localStorage.getItem('userInfo'));
     const fetchData = async () => {
       try {
         const response = await fetch(process.env.REACT_APP_END_POINT + '/api/categories', {
           headers: {
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${user2.token}`,
             'Content-Type': 'application/json',
           },
         });
@@ -96,13 +96,11 @@ function CouponCreate (props) {
   return (
     <div className='createCoupon-wrapper'>
      <div className='createCoupon'>
-      {
-        <div className='createCoupon-heading'>Post a coupon!</div>
-      }
-
+      <div className='createCoupon-heading'>Post a coupon!</div>
       <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0', }}>
         <label style={{ marginRight: '10px', }}>Coupon Name:</label>
         <InputHolder
+          className='createCoupon-input'
           value={couponTitle}
           onChange={setCouponTitle}
           placeholder="Coupon Name"
@@ -112,6 +110,7 @@ function CouponCreate (props) {
         <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0', }}>
         <label style={{ marginRight: '10px', }}>Description:</label>
         <InputHolder
+          className='createCoupon-input'
           value={couponDescription}
           onChange={setCouponDescription}
           placeholder="Description"
@@ -121,6 +120,7 @@ function CouponCreate (props) {
         <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0', }}>
         <label style={{ marginRight: '10px', }}>Coupon Vendor:</label>
         <InputHolder
+          className='createCoupon-input'
           value={couponVendor}
           onChange={setCouponVendor}
           placeholder="Vendor"
@@ -130,6 +130,7 @@ function CouponCreate (props) {
         <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0', }}>
         <label style={{ marginRight: '10px', }}>Category</label>
         <Select
+          className='createCoupon-dropdown'
           id='couponCategorySelect'
           labelId='couponCategorySelectLabel'
           value={couponCategory}
@@ -150,6 +151,7 @@ function CouponCreate (props) {
         <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0', }}>
         <label style={{ marginRight: '10px', }}>Coupon type</label>
         <Select
+          className='createCoupon-dropdown'
           id='couponTypeSelect'
           labelId='couponTypeSelectLabel'
           value={couponType}
@@ -162,8 +164,9 @@ function CouponCreate (props) {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0', }}>
-        <label style={{ marginRight: '10px', }}>Coupon Price:</label>
+        <label style={{ marginRight: '10px', }}>Coupon Value:</label>
         <InputHolder
+          className='createCoupon-input'
           value={couponValue}
           onChange={setCouponValue}
           placeholder="Original Value"
@@ -173,6 +176,7 @@ function CouponCreate (props) {
         <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0', }}>
         <label style={{ marginRight: '10px', }}>Coupon Price:</label>
         <InputHolder
+          className='createCoupon-input'
           value={couponPrice}
           onChange={setCouponPrice}
           placeholder="Selling price"
@@ -182,6 +186,7 @@ function CouponCreate (props) {
         <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0', }}>
         <label style={{ marginRight: '10px', }}>Expiry Date:</label>
         <InputHolder
+          className='createCoupon-input'
           value={couponValidity}
           onChange={setCouponValidity}
           type="date"
@@ -192,6 +197,7 @@ function CouponCreate (props) {
         <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0', }}>
         <label style={{ marginRight: '10px', }}>Coupon Location:</label>
         <InputHolder
+          className='createCoupon-input'
           value={couponLocation}
           onChange={setCouponLocation}
           placeholder="Location"
@@ -201,6 +207,7 @@ function CouponCreate (props) {
         <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0', }}>
         <label style={{ marginRight: '10px', }}>Listing date:</label>
         <InputHolder
+          className='createCoupon-input'
           value={couponListingDate}
           onChange={setCouponListingDate}
           readOnly={true}
@@ -213,7 +220,6 @@ function CouponCreate (props) {
         <input
           type="file"
           accept="image/*"
-          // value={couponImage}
           onChange={handleImageChange}
           placeholder="Image"
           style={{ margin: '10px 0', }}
@@ -237,5 +243,9 @@ function CouponCreate (props) {
     </div>
   );
 }
+
+CouponCreate.propTypes = { isEdit: PropTypes.bool, };
+
+CouponCreate.defaultProps = { isEdit: false, };
 
 export default CouponCreate;

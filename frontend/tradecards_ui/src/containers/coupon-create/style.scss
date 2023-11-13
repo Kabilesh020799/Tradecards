@@ -1,61 +1,93 @@
 .createCoupon-wrapper {
-    // flex properties
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+  // flex properties
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
   
-    height: 100%;
+  height: 100%;
+  
+  .createCoupon-image {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 200px;
+    }
+  }
+  
+  .createCoupon {
+    height: fit-content;
+    background: #fff;
+    padding: 20px 60px;
+    border-radius: 10px;
     background: hsla(318, 22%, 27%, 1);
     background: linear-gradient(90deg, hsla(318, 22%, 27%, 1) 0%, hsla(351, 45%, 45%, 1) 100%);
     background: -moz-linear-gradient(90deg, hsla(318, 22%, 27%, 1) 0%, hsla(351, 45%, 45%, 1) 100%);
     background: -webkit-linear-gradient(90deg, hsla(318, 22%, 27%, 1) 0%, hsla(351, 45%, 45%, 1) 100%);
   
-    .createCoupon-image {
-      height: 300px;
-    }
   
-    .createCoupon {
-      height: fit-content;
-      background: #fff;
-      padding: 20px 60px;
-      border-radius: 10px;
-      color: #000;
-  
-      // flex properties
-      display: flex;
-      justify-content: center;
-      align-items: left;
-      flex-direction: column;
+    // flex properties
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
 
-      // &-input-pair {
-      //   display: flex;
-      // }
   
-      &-heading {
-        font-weight: bold;
-        cursor: auto;
-      }
-    
-      &-input {
-        width: 400px;
-        margin-top: 20px;
-        display: flex;
-        justify-content: space-between;
-      }
-    
-      &-submit {
-        margin-top: 20px !important;
-        background: hsla(318, 22%, 27%, 1);
-        &:hover {
-          background:  hsla(318, 22%, 27%, 1);
-        }
-      }
-    
-      &-switch {
-        cursor: pointer;
-        margin-top: 20px;
-      }
-    
+    &-heading {
+      font-weight: bold;
+      cursor: auto;
+      color: #fff;
     }
+    .css-q0jhri-MuiInputBase-root-MuiInput-root::before {
+      border: none;
+    }
+    .css-q0jhri-MuiInputBase-root-MuiInput-root::after {
+      border: none;
+    }
+    
+    &-input {
+      width: 400px;
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 8px; 
+      input {
+        border-radius: 8px;
+        height: 40px;
+        padding-left: 12px;
+        background: hsl(216.52deg 92% 95.1%);
+      }
+    }
+
+    &-dropdown {
+      width: 400px; /* Set the width as needed */
+      margin-top: 20px;
+    
+      .MuiSelect-select {
+        padding-left: 12px;
+        background: hsl(216.52deg 92% 95.1%);
+      }
+    }
+    
+    &-submit {
+      margin-top: 20px !important;
+      background: hsla(318, 22%, 27%, 1);
+      cursor: pointer;
+  
+      &:hover {
+        background:  hsla(318, 22%, 27%, 1);
+      }
+    }
+    
+    &-switch {
+      cursor: pointer;
+      margin-top: 20px;
+      color: #fff;
+    }
+    
   }
+}
