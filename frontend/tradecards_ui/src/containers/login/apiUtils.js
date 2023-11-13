@@ -1,9 +1,12 @@
+// const REACT_APP_END_POINT = 'http://localhost:8080';
+const REACT_APP_END_POINT_PROD = 'http://csci5308vm13.research.cs.dal.ca';
+
 const onLogin = (userName, password) => {
   const data = {
     emailId: userName,
     password,
   };
-  return fetch((process.env.NODE_ENV === 'production' ? process.env.REACT_APP_END_POINT_PROD : process.env.REACT_APP_END_POINT) + '/api/login', {
+  return fetch(REACT_APP_END_POINT_PROD + '/api/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', },
     body: JSON.stringify(data),
@@ -20,7 +23,7 @@ const onSignup = (userName, password, firstName, lastName) => {
     firstName,
     lastName,
   };
-  return fetch((process.env.NODE_ENV === 'production' ? process.env.REACT_APP_END_POINT_PROD : process.env.REACT_APP_END_POINT) + '/api/signup', {
+  return fetch(REACT_APP_END_POINT_PROD + '/api/signup', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', },
     body: JSON.stringify(data),

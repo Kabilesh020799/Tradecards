@@ -1,9 +1,11 @@
 import { getStorage } from '../../common-utils';
 
 const user = JSON.parse(getStorage('userInfo'));
+// const REACT_APP_END_POINT = 'http://localhost:8080';
+const REACT_APP_END_POINT_PROD = 'http://csci5308vm13.research.cs.dal.ca';
 
 const getAllCoupons = () => {
-  return fetch((process.env.NODE_ENV === 'production' ? process.env.REACT_APP_END_POINT_PROD : process.env.REACT_APP_END_POINT) + '/api/coupons', {
+  return fetch(REACT_APP_END_POINT_PROD + '/api/coupons', {
     method: 'GET',
     headers: { Authorization: `Bearer ${user.token}`, },
   })
@@ -11,7 +13,7 @@ const getAllCoupons = () => {
 };
 
 const getCouponsByCategory = ({ categoryId, }) => {
-  return fetch((process.env.NODE_ENV === 'production' ? process.env.REACT_APP_END_POINT_PROD : process.env.REACT_APP_END_POINT) + '/api/coupons', {
+  return fetch(REACT_APP_END_POINT_PROD + '/api/coupons', {
     method: 'GET',
     headers: { Authorization: `Bearer ${user.token}`, },
   })
