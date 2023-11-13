@@ -2,17 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import NavBar from '../../components/nav-bar';
 import { convertBase64toImage } from '../../common-utils';
-import { getAllCoupons } from '../home/apiUtils';
-import { useNavigate } from 'react-router-dom';
+import { getAllCoupons, getCouponsByCategory } from '../home/apiUtils';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const CouponGrid = (props) => {
   const [couponsData, setCouponsData,] = useState([]);
+  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    getAllCoupons()
-      .then((res) => setCouponsData(res));
-  }, []);
+    const searchParams = new URLSearchParams(location.search);
+    const categoryId = searchParams.get('category');
+    if (categoryId) {
+      getCouponsByCategory({ categoryId, })
+        .then((res) => setCouponsData(res));
+    } else {
+      getAllCoupons()
+        .then((res) => setCouponsData(res));
+    }
+  }, [location.search,]);
 
   return (
     <div className='coupon-grid'>
