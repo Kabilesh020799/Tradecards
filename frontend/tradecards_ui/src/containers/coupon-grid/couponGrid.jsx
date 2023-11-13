@@ -4,6 +4,7 @@ import NavBar from '../../components/nav-bar';
 import { convertBase64toImage } from '../../common-utils';
 import { getAllCoupons, getCouponsByCategory } from '../home/apiUtils';
 import { useLocation, useNavigate } from 'react-router-dom';
+import EmptyState from '../../components/empty-state/emptyState';
 
 const CouponGrid = (props) => {
   const [couponsData, setCouponsData,] = useState([]);
@@ -33,59 +34,63 @@ const CouponGrid = (props) => {
             columns={{ xs: 4, sm: 8, md: 12, }}
           >
             {
-              couponsData?.map((coupon) => (
-                <Grid
-                  item
-                  key={coupon?.couponID || coupon?.couponName}
-                  onClick={() => navigate(`/coupon-detail/${coupon?.couponID}`)}
-                >
-                  <Card sx={{ maxWidth: 300, }}>
-                    <CardMedia
-                      sx={{ height: 140, }}
-                      image={convertBase64toImage(coupon?.couponImage)}
-                      title={coupon?.couponName}
-                    />
-                    <CardContent className='coupon-listing-card-content'>
-                      <Typography
-                        gutterBottom
-                        variant='h5'
-                        component="div"
-                        className='coupon-listing-card-content-heading'
-                      >
-                        {coupon?.couponName}
-                      </Typography>
-                      <Typography
-                        variant='body2'
-                        color="text.secondary"
-                        className='coupon-listing-card-content-desc'
-                      >
-                        {coupon?.couponDesc}
-                      </Typography>
-                      {
-                      coupon?.couponImage
-                        ? (
-                          <Typography
-                            variant='body2'
-                            color="text.secondary"
-                            className='coupon-listing-card-content-desc'
-                          >
-                            <i
-                              className="fa-solid fa-location-dot"
-                              style={{ marginRight: '12px', }}
-                            ></i>
-                            {coupon?.couponLocation}
-                          </Typography>
-                          )
-                        : null
-                    }
-                    </CardContent>
-                    <CardActions>
-                      <Button size="small">{coupon.userName}</Button>
-                      <Button size="small">Buy Now</Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
-              ))
+              !couponsData?.length
+                ? <EmptyState />
+                : (
+                    couponsData?.map((coupon) => (
+                  <Grid
+                    item
+                    key={coupon?.couponID || coupon?.couponName}
+                    onClick={() => navigate(`/coupon-detail/${coupon?.couponID}`)}
+                  >
+                    <Card sx={{ maxWidth: 300, }}>
+                      <CardMedia
+                        sx={{ height: 140, }}
+                        image={convertBase64toImage(coupon?.couponImage)}
+                        title={coupon?.couponName}
+                      />
+                      <CardContent className='coupon-listing-card-content'>
+                        <Typography
+                          gutterBottom
+                          variant='h5'
+                          component="div"
+                          className='coupon-listing-card-content-heading'
+                        >
+                          {coupon?.couponName}
+                        </Typography>
+                        <Typography
+                          variant='body2'
+                          color="text.secondary"
+                          className='coupon-listing-card-content-desc'
+                        >
+                          {coupon?.couponDesc}
+                        </Typography>
+                        {
+                        coupon?.couponImage
+                          ? (
+                            <Typography
+                              variant='body2'
+                              color="text.secondary"
+                              className='coupon-listing-card-content-desc'
+                            >
+                              <i
+                                className="fa-solid fa-location-dot"
+                                style={{ marginRight: '12px', }}
+                              ></i>
+                              {coupon?.couponLocation}
+                            </Typography>
+                            )
+                          : null
+                      }
+                      </CardContent>
+                      <CardActions>
+                        <Button size="small">{coupon.userName}</Button>
+                        <Button size="small">Buy Now</Button>
+                      </CardActions>
+                    </Card>
+                  </Grid>
+                    ))
+                  )
             }
           </Grid>
         </Box>
