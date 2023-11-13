@@ -1,9 +1,6 @@
 package dal.asdc.tradecards.Service.impl;
 
 import dal.asdc.tradecards.Controller.CouponsController;
-import dal.asdc.tradecards.Model.DAO.CategoryDao;
-import dal.asdc.tradecards.Model.DAO.CouponsDao;
-import dal.asdc.tradecards.Service.CouponsService; // Import the correct CouponsService interface or class
 import dal.asdc.tradecards.Model.DAO.CouponsDao;
 import dal.asdc.tradecards.Model.DTO.CouponsDTO;
 import dal.asdc.tradecards.Repository.CouponsRepository;
@@ -22,7 +19,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 
 import java.util.Date;
 
@@ -31,7 +27,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class CouponsServiceImplTest {
     @Mock
-    private CouponsImpl couponsService;
+    private CouponsServiceImpl couponsService;
     private CouponsController couponsController;
 
     @BeforeEach
@@ -101,12 +97,11 @@ public class CouponsServiceImplTest {
         sampleCouponDTO.setCategoryID(456);
         sampleCouponDTO.setCouponImage(sampleImageBase64);
 
-        when(couponsService.createCoupon(any(CouponsDTO.class))).thenReturn(new CouponsDao());
+        when(couponsService.createCoupon(sampleCouponDTO)).thenReturn(new CouponsDao(sampleCouponDTO.getCouponCategory(), sampleCouponDTO.getCouponLocation()));
 
-        ResponseEntity<String> response = couponsController.createCoupon(sampleCouponDTO);
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertNotNull(response.getBody());
+        CouponsDao coupon = couponsService.createCoupon(sampleCouponDTO);
+        assertEquals("Test Category", coupon.getCouponCategory());
+        assertEquals("Halifax", coupon.getCouponLocation());
     }
 
     @Test
@@ -120,7 +115,7 @@ public class CouponsServiceImplTest {
 
         Mockito.when(couponsRepository.findById(1)).thenReturn(java.util.Optional.of(sampleCoupon));
 
-        CouponsImpl couponsService = new CouponsImpl(couponsRepository);
+        CouponsServiceImpl couponsService = new CouponsServiceImpl(couponsRepository);
 
         CouponsDao retrievedCoupon = couponsService.getCouponById(1);
 
@@ -136,7 +131,7 @@ public class CouponsServiceImplTest {
 
         Mockito.when(couponsRepository.findById(1)).thenReturn(java.util.Optional.empty());
 
-        CouponsImpl couponsService = new CouponsImpl(couponsRepository);
+        CouponsServiceImpl couponsService = new CouponsServiceImpl(couponsRepository);
 
         CouponsDao result = couponsService.getCouponById(1);
 
@@ -160,7 +155,7 @@ public class CouponsServiceImplTest {
 
         Mockito.when(couponsRepository.save(Mockito.any(CouponsDao.class))).thenReturn(updatedCoupon);
 
-        CouponsImpl couponsService = new CouponsImpl(couponsRepository);
+        CouponsServiceImpl couponsService = new CouponsServiceImpl(couponsRepository);
 
         CouponsDao result = couponsService.updateCoupon(1, updatedCoupon);
 
@@ -180,7 +175,7 @@ public class CouponsServiceImplTest {
 
         Mockito.when(couponsRepository.findById(1)).thenReturn(java.util.Optional.empty());
 
-        CouponsImpl couponsService = new CouponsImpl(couponsRepository);
+        CouponsServiceImpl couponsService = new CouponsServiceImpl(couponsRepository);
 
         CouponsDao updatedCoupon = new CouponsDao();
         updatedCoupon.setCouponName("Updated Coupon");

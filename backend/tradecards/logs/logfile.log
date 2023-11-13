@@ -712,7 +712,7 @@
 2023-11-03T21:03:33.218-03:00  INFO 6624 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 2023-11-03T21:03:33.219-03:00  INFO 6624 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
 2023-11-03T21:03:33.276-03:00  WARN 6624 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-11-03T21:03:33.630-03:00  WARN 6624 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+2023-11-03T21:03:33.630-03:00  WARN 6624 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration :
 
 Using generated security password: 072821c6-4601-4bd0-8459-8b0c4879bb50
 

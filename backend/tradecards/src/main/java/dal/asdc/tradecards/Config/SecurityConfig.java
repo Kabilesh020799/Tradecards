@@ -53,7 +53,12 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/api/login/", "/api/signup/");
+        return (web) -> web.ignoring().requestMatchers(
+                "/api/login",
+                "/api/signup",
+                "/api/forget-password-request",
+                "/api/verify-otp",
+                "/api/set-new-password");
     }
 
     @Bean
@@ -62,7 +67,13 @@ public class SecurityConfig {
                 .cors(request -> new CorsConfiguration().addAllowedOrigin("*"))
                 .csrf(c -> c.disable())
                 .authorizeHttpRequests(
-                        auth->auth.requestMatchers("/api/login", "/api/signup").permitAll()
+                        auth->auth.requestMatchers(
+                                "/api/login",
+                                "/api/signup",
+                                "/api/forget-password-request",
+                                "/api/verify-otp",
+                                "/api/set-new-password")
+                        .permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(ex->ex.authenticationEntryPoint(point))
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

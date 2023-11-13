@@ -2,7 +2,7 @@ package dal.asdc.tradecards.Controller;
 
 import java.util.HashMap;
 
-import dal.asdc.tradecards.Model.DTO.VerifyAccountDTO;
+import dal.asdc.tradecards.Model.DTO.*;
 import dal.asdc.tradecards.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import dal.asdc.tradecards.Exception.DuplicateEntryException;
 import dal.asdc.tradecards.Exception.InvalidAccountCredentialsException;
-import dal.asdc.tradecards.Model.DTO.ForgetPasswordDTO;
-import dal.asdc.tradecards.Model.DTO.UserLoginDTO;
-import dal.asdc.tradecards.Model.DTO.UserSignUpDTO;
 import dal.asdc.tradecards.Service.EmailService;
 
 @RestController
@@ -68,28 +65,38 @@ public class AuthenticationController {
         }
     }
 
-//    @PostMapping("/forget-password-request")
-//    public ResponseEntity<?> forgetPasswordRequest(@RequestBody ForgetPasswordDTO forgetPasswordDTO) throws Exception {
-//        try {
-//            HashMap<String, Object> tokenClaims = userService.forgetPasswordRequest(forgetPasswordDTO);
-//            emailService.sendEmail((String) tokenClaims.get("emailID"), "TradeCards - Forget Password Request", "Your OTP for forget password is: " + tokenClaims.get("otp"));
-//            HashMap<String, Object> responseClaims = new HashMap<String, Object>();
-//            responseClaims.put("token", tokenClaims.get("token"));
-//            responseClaims.put("email", tokenClaims.get("emailID"));
-//            return ResponseEntity.ok(responseClaims);
-//        } catch(Exception error) {
-//            return ResponseEntity.internalServerError().body(error);
-//        }
-//    }
+    @PostMapping("/forget-password-request")
+    public ResponseEntity<?> forgetPasswordRequest(@RequestBody ForgetPasswordDTO forgetPasswordDTO) throws Exception {
+        try {
+            HashMap<String, Object> tokenClaims = userService.forgetPasswordRequest(forgetPasswordDTO);
+            emailService.sendEmail((String) tokenClaims.get("emailID"), "TradeCards - Forget Password Request", "Your OTP for forget password is: " + tokenClaims.get("otp"));
+            HashMap<String, Object> responseClaims = new HashMap<String, Object>();
+            responseClaims.put("token", tokenClaims.get("token"));
+            responseClaims.put("email", tokenClaims.get("emailID"));
+            return ResponseEntity.ok(responseClaims);
+        } catch(Exception error) {
+            return ResponseEntity.internalServerError().body(error);
+        }
+    }
 
-//    @PostMapping("/forget-password-verification")
-//    public ResponseEntity<?> forgetPasswordVerification(@RequestHeader("Authorization") String bearerToken, @RequestBody ForgetPasswordDTO forgetPasswordDTO) throws Exception {
-//        try {
-//            return ResponseEntity.ok(userService.forgetPasswordVerification(bearerToken, forgetPasswordDTO));
-//        } catch(Exception error) {
-//            return ResponseEntity.internalServerError().body(error);
-//        }
-//    }
+    @PostMapping("/verify-otp")
+    public ResponseEntity<?> OTPVerification(@RequestBody VerifyOTPDTO verifyOTPDTO) throws Exception {
+        try {
+            return ResponseEntity.ok(userService.OTPVerification(verifyOTPDTO));
+        } catch(Exception error) {
+            return ResponseEntity.internalServerError().body(error);
+        }
+    }
+
+    @PostMapping("/set-new-password")
+    public ResponseEntity<?> setPassword(@RequestBody NewPasswordDTO newPasswordDTO) {
+        try {
+            HashMap<String, Object> response = userService.setPassword(newPasswordDTO);
+            return ResponseEntity.ok(response);
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error.getMessage());
+        }
+    }
 
     private void authenticate(String username, String password) throws Exception {
         try {
