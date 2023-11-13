@@ -2,7 +2,7 @@ import { getStorage } from '../../common-utils';
 
 const user = JSON.parse(getStorage('userInfo'));
 // const REACT_APP_END_POINT = 'http://localhost:8080';
-const REACT_APP_END_POINT_PROD = 'http://csci5308vm13.research.cs.dal.ca';
+const REACT_APP_END_POINT_PROD = 'http://csci5308vm13.research.cs.dal.ca:8080';
 
 const getCategories = () => {
   return fetch(REACT_APP_END_POINT_PROD + '/api/categories', { headers: { Authorization: `Bearer ${user.token}`, }, })
