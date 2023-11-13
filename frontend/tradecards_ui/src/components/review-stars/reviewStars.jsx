@@ -11,13 +11,13 @@ const ReviewStars = (props) => {
 
   const renderStars = () => (
     <div>
-      {[...Array(filledStars),].map((_, index) => (
+      (Rating - {[...Array(filledStars),].map((_, index) => (
         <Star
           key={index}
           filled={true}
           halfFilled={false}
         />
-      ))}
+    ))}
       {hasHalfStar && (
       <Star
         filled={false}
@@ -29,7 +29,7 @@ const ReviewStars = (props) => {
           filled={false}
           halfFilled={false}
         />
-      ))}
+      ))})
     </div>
   );
 

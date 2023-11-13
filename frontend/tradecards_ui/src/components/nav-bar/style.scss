@@ -33,9 +33,8 @@
         color: hsla(318, 22%, 27%, 1) !important;
         margin-right: 12px !important;
       }
-      &-sign-out{
-        color: #fff !important;
-        margin-left: 12px;
+      &-avatar {
+        margin-right: 12px;
       }
     }
   }
@@ -45,7 +44,7 @@
     width: 100%;
     margin-top: 20px;
     background: hsl(318deg 22.11% 14.7%);
-    padding: 8px;
+    padding: 8px 0;
 
     &-label {
       margin-left: 12px;

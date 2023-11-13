@@ -44,10 +44,10 @@ const CouponListing = (props) => {
             couponLists?.slice(0, 5)?.map((coupon) => (
               <Grid
                 item
-                key={coupon?.couponId || coupon?.couponName}
+                key={coupon?.couponID || coupon?.couponName}
                 onClick={() => navigate(`/coupon-detail/${coupon?.couponID}`)}
               >
-                <Card sx={{ maxWidth: 300, }}>
+                <Card sx={{ maxWidth: 300, minHeight: 300, }}>
                   <CardMedia
                     sx={{ height: 140, }}
                     image={convertBase64toImage(coupon?.couponImage)}
@@ -69,6 +69,20 @@ const CouponListing = (props) => {
                     >
                       {coupon?.couponDesc}
                     </Typography>
+                    {
+                      coupon?.couponImage
+                        ? (
+                          <Typography
+                            variant='body2'
+                            color="text.secondary"
+                            className='coupon-listing-card-content-desc'
+                          >
+                            <i className="fa-solid fa-location-dot"></i>
+                            {coupon?.couponLocation}
+                          </Typography>
+                          )
+                        : null
+                    }
                   </CardContent>
                   <CardActions>
                     <Button size="small">{coupon.userName}</Button>
