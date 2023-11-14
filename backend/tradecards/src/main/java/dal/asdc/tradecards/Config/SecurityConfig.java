@@ -38,18 +38,6 @@ public class SecurityConfig {
     @Autowired
     private UserService jwtUserDetailsService;
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("*");
-        configuration.addAllowedMethod("*");
-        configuration.addAllowedHeader("*");
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-
-        return source;
-    }
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
@@ -64,7 +52,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .cors(request -> new CorsConfiguration().addAllowedOrigin("*"))
+                .cors(request -> new CorsConfiguration().applyPermitDefaultValues())
                 .csrf(c -> c.disable())
                 .authorizeHttpRequests(
                         auth->auth.requestMatchers(
