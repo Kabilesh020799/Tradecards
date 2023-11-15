@@ -1,13 +1,15 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import MainRoute from './routes';
+import './containers/index.scss';
+import './components/index.scss';
 
-function App() {
+function App () {
   return (
-    <div className="App">
-      <header className="App-header">
-        Welcome to Trade Cards Testing
-      </header>
-    </div>
+    <Router>
+      <MainRoute />
+    </Router>
   );
 }
 

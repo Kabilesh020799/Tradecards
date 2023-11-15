@@ -1,0 +1,18 @@
+.coupon-listing-card {
+  min-width: 235px;
+  &-content {
+    &-heading {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 200px;
+      font-size: 20px !important;
+    }
+    &-desc {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 200px;
+    }
+  }
+}
