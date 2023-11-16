@@ -4,6 +4,8 @@ import ForgetPassword from './containers/forgetPassword';
 import Home from './containers/home';
 import CouponGrid from './containers/coupon-grid/';
 import CouponCreate from './containers/coupon-create/couponCreate';
+import CouponDetail from './containers/coupon-detail';
+import UserProfile from './containers/user-profile';
 
 const routes = [
   {

@@ -1,10 +1,10 @@
 package dal.asdc.tradecards.Service.impl;
 
+import dal.asdc.tradecards.Exception.DuplicateEntryException;
 import dal.asdc.tradecards.Exception.OTPVerificationFailed;
+import dal.asdc.tradecards.Exception.OTPVerificationFailedException;
 import dal.asdc.tradecards.Model.DAO.UserDao;
-import dal.asdc.tradecards.Model.DTO.UserLoginDTO;
-import dal.asdc.tradecards.Model.DTO.UserSignUpDTO;
-import dal.asdc.tradecards.Model.DTO.VerifyAccountDTO;
+import dal.asdc.tradecards.Model.DTO.*;
 import dal.asdc.tradecards.Repository.UserRepository;
 import dal.asdc.tradecards.Service.UserService;
 import dal.asdc.tradecards.Utility.JWTTokenUtil;
@@ -13,17 +13,22 @@ import io.jsonwebtoken.Claims;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import dal.asdc.tradecards.Model.DTO.EditUserRequestDTO;
+
 import java.util.Optional;
 import java.util.HashMap;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import dal.asdc.tradecards.Utility.JWTTokenUtil;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UserServiceImplTest {
     @Mock
@@ -264,7 +269,7 @@ public class UserServiceImplTest {
 
         assertNotNull(loadedUser);
         assertEquals("test@example.com", loadedUser.getEmailID());
-        assertEquals("Doe", loadedUser.getFirstName());
+        assertEquals("John", loadedUser.getFirstName());
     }
 
     @Test
@@ -274,9 +279,7 @@ public class UserServiceImplTest {
 
         when(userRepository.findByEmailID(emailID)).thenReturn(null);
 
-        assertThrows(UsernameNotFoundException.class, () -> {
-            userService.loadUserByEmailID(emailID);
-        });
+        assertNull(userService.loadUserByEmailID(emailID));
     }
 
     @Test
@@ -310,5 +313,101 @@ public class UserServiceImplTest {
         UserDao loadedUser = userService.getUserByUserId(userid);
 
         assertNull(loadedUser);
+    }
+
+    @Test
+    @DisplayName("testing forgot password api response")
+    void testForgetPasswordRequest() throws Exception {
+        UserRepository userRepository = mock(UserRepository.class);
+        JWTTokenUtil jwtTokenUtil = mock(JWTTokenUtil.class);
+        UtilityFunctions utilityFunctions = mock(UtilityFunctions.class);
+
+        UserDao userDao = new UserDao();
+        userDao.setEmailID("test@example.com");
+        userDao.setFirstName("John");
+
+        ForgetPasswordDTO forgetPasswordDTO = new ForgetPasswordDTO();
+        forgetPasswordDTO.setEmailID("test@example.com");
+
+        HashMap<String, Object> claims = new HashMap<>();
+        claims.put("emailID", userDao.getEmailID());
+        claims.put("otp", 123456); // Mocked OTP value
+        claims.put("first name", userDao.getFirstName());
+        String jwtToken = "mockedJwtToken";
+        claims.put("token", jwtToken);
+
+        // Creating a mock UserService
+        UserServiceImpl userService = new UserServiceImpl(userRepository, jwtTokenUtil, utilityFunctions);
+
+        when(userRepository.findByEmailID("test@example.com")).thenReturn(userDao);
+        when(utilityFunctions.generateOTP()).thenReturn(123456);
+        when(jwtTokenUtil.generateFifteenMinuteExpiryToken(ArgumentMatchers.anyMap())).thenReturn(jwtToken);
+
+        HashMap<String, Object> result = userService.forgetPasswordRequest(forgetPasswordDTO);
+
+        verify(userRepository, times(1)).findByEmailID("test@example.com");
+        verify(utilityFunctions, times(1)).generateOTP();
+        verify(jwtTokenUtil, times(1)).generateFifteenMinuteExpiryToken(ArgumentMatchers.anyMap());
+
+        assertEquals(claims, result);
+    }
+
+    @Test
+    void testOTPVerificationWithCorrectOTP() {
+        UserServiceImpl userService = new UserServiceImpl();
+        userService.userOTP = 123456;
+
+        // Creating a DTO with correct OTP
+        VerifyOTPDTO correctOtpDTO = new VerifyOTPDTO();
+        correctOtpDTO.setOtp(123456);
+
+        try {
+            HashMap<String, Object> result = userService.OTPVerification(correctOtpDTO);
+            assertTrue(result.containsKey("message"));
+            assertEquals("OTP verification successful", result.get("message"));
+        } catch (Exception e) {
+            fail("Exception should not be thrown for correct OTP");
+        }
+    }
+
+    @Test
+    void testOTPVerificationWithIncorrectOTP() {
+        UserServiceImpl userService = new UserServiceImpl();
+        userService.userOTP = 123456;
+
+        // Creating a DTO with incorrect OTP
+        VerifyOTPDTO incorrectOtpDTO = new VerifyOTPDTO();
+        incorrectOtpDTO.setOtp(654321); // Set an incorrect OTP for testing
+
+        assertThrows(OTPVerificationFailedException.class, () -> {
+            userService.OTPVerification(incorrectOtpDTO);
+        });
+    }
+
+    @Test
+    void testSetPassword() {
+        UserRepository userRepository = mock(UserRepository.class);
+        BCryptPasswordEncoder passwordEncoder = mock(BCryptPasswordEncoder.class);
+
+        // Creating a NewPasswordDTO
+        NewPasswordDTO newPasswordDTO = new NewPasswordDTO();
+        newPasswordDTO.setEmailID("test@example.com");
+        newPasswordDTO.setNewPassword("newPassword");
+
+        // Creating a mock UserService
+        UserServiceImpl userService = new UserServiceImpl(userRepository, passwordEncoder);
+
+        // Mocking the BCryptPasswordEncoder behavior
+        when(passwordEncoder.encode("newPassword")).thenReturn("encodedPassword");
+
+        // Calling the method under test
+        try {
+            HashMap<String, Object> result = userService.setPassword(newPasswordDTO);
+            assertTrue(result.containsKey("message"));
+            assertEquals("Password changed successfully", result.get("message"));
+        } catch (Exception e) {
+            // If an exception is thrown, fail the test
+            fail("Exception should not be thrown for setting password");
+        }
     }
 }

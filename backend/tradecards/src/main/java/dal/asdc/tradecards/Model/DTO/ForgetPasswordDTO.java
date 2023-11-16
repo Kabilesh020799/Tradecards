@@ -7,7 +7,5 @@ import lombok.Setter;
 @Setter
 public class ForgetPasswordDTO {
     private String emailID;
-    private String otp;
-    private String password;
 }
 

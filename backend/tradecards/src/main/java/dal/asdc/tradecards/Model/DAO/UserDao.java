@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import java.util.List;
 
 import java.util.Date;
 
@@ -40,6 +41,12 @@ public class UserDao {
     @Column(name = "last_name")
     private String LastName;
 
+    @OneToMany(mappedBy = "reviewerUser")
+    private List<ReviewDao> givenReviews;
+
+    @OneToMany(mappedBy = "reviewedUser")
+    private List<ReviewDao> receivedReviews;
+
     public UserDao() {
     }
 
@@ -50,10 +57,14 @@ public class UserDao {
         this.password = password;
     }
 
-    public UserDao(String emailID, String lastName, String firstName) {
+    public UserDao(int userID, String emailID, String lastName, String firstName, List<ReviewDao> receivedReviews, List<ReviewDao> givenReviews) {
+        this.userid = userID;
         this.FirstName = lastName;
         this.LastName = firstName;
         this.emailID = emailID;
+        this.receivedReviews = receivedReviews;
+        this.givenReviews = givenReviews;
     }
+
 }
 

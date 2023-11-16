@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
-import { navBarSubContents } from './constants';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import LocationToggle from './components/location-toggle';
 import SearchBar from '../search-bar';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
+import AvatarItem from './components/avatar/avatar';
+import { getCategories } from './apiUtils';
 
 const NavBar = (props) => {
   const { className, } = props;
 
   const [location, setLocation,] = useState('');
+  const [categories, setCategories,] = useState([]);
+
   const navigate = useNavigate();
 
   const onLocationChange = (loc) => {
@@ -19,6 +22,15 @@ const NavBar = (props) => {
   const onLogout = () => {
     navigate('/login');
   };
+
+  const onClickProfile = () => {
+    navigate('/user-profile');
+  };
+
+  useEffect(() => {
+    getCategories()
+      .then((res) => setCategories(res));
+  }, []);
 
   return (
     <div className={`${className} nav-bar`}>
@@ -43,20 +55,22 @@ const NavBar = (props) => {
             location={location}
             onLocationChange={onLocationChange}
           />
-          <Button className='nav-bar-components-right-sign-out'
-            onClick={onLogout}>
-            Sign out
-          </Button>
+          <AvatarItem
+            onSignout={onLogout}
+            className="nav-bar-components-right-avatar"
+            onClickProfile={onClickProfile}
+          />
         </div>
       </div>
       <div className='nav-bar-sub-contents'>
         {
-          navBarSubContents.map((navBarSubContent) => (
+          categories.map((category) => (
             <div
-              key={navBarSubContent.value}
+              key={category?.categoryID}
               className='nav-bar-sub-contents-label'
+              onClick={() => navigate(`/coupon-listing?category=${category?.categoryID}`)}
             >
-              {navBarSubContent.label}
+              {category?.categoryName}
             </div>
           ))
         }

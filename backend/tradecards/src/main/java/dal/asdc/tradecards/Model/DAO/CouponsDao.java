@@ -64,6 +64,11 @@ public class CouponsDao {
     public CouponsDao() {
     }
 
+    public CouponsDao(String couponCategory, String couponLocation) {
+        this.CouponCategory = couponCategory;
+        this.CouponLocation = couponLocation;
+    }
+
     public void setIsSold(boolean sold) {
         this.isSold = sold;
     }

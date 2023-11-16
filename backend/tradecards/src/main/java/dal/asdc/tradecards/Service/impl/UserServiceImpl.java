@@ -35,6 +35,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UtilityFunctions utilityFunctions;
 
+    public int userOTP = 0;
+
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -45,6 +47,14 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
         this.jwtTokenUtil = jwtTokenUtil;
         this.utilityFunctions = utilityFunctions;
+    }
+
+    public UserServiceImpl() {
+
+    }
+
+    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -88,33 +98,39 @@ public class UserServiceImpl implements UserService {
         return claims;
     }
 
-//    @Override
-//    public HashMap<String, Object> forgetPasswordRequest(ForgetPasswordDTO forgetPasswordDTO) throws Exception {
-//        UserDao userDao = userRepository.findByEmailID(forgetPasswordDTO.getEmailID());
-//        HashMap<String, Object> claims = new HashMap<>();
-//        claims.put("emailID", userDao.getEmailID());
-//        claims.put("otp", utilityFunctions.generateOTP());
-//        claims.put("first name", userDao.getFirstName());
-//        String jwtToken = jwtTokenUtil.generateFifteenMinuteExpiryToken(claims);
-//        claims.put("token", jwtToken);
-//        return claims;
-//    }
+    @Override
+    public HashMap<String, Object> forgetPasswordRequest(ForgetPasswordDTO forgetPasswordDTO) throws Exception {
+        UserDao userDao = userRepository.findByEmailID(forgetPasswordDTO.getEmailID());
+        HashMap<String, Object> claims = new HashMap<>();
+        claims.put("emailID", userDao.getEmailID());
+        claims.put("otp", utilityFunctions.generateOTP());
+        claims.put("first name", userDao.getFirstName());
+        String jwtToken = jwtTokenUtil.generateFifteenMinuteExpiryToken(claims);
+        claims.put("token", jwtToken);
+        userOTP = (int) claims.get("otp");
+        return claims;
+    }
 
-//    @Override
-//    public HashMap<String, Object> forgetPasswordVerification(String token, ForgetPasswordDTO forgetPasswordDTO) throws Exception {
-//        Claims tokenClaims = jwtTokenUtil.getAllClaimsFromToken(token.substring(7));
-//        String otp = tokenClaims.get("otp").toString();
-//        if(otp.equalsIgnoreCase(forgetPasswordDTO.getOtp())) {
-//            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//            userRepository.setPassword((String) tokenClaims.get("emailID"), passwordEncoder.encode(forgetPasswordDTO.getPassword()));
-//            HashMap<String, Object> claims = new HashMap<>();
-//            claims.put("message", "Password changed successfully");
-//            return claims;
-//        }
-//        else {
-//            throw new OTPVerificationFailedException("OTP does not match", new Exception("OTP does not match", null));
-//        }
-//    }
+    @Override
+    public HashMap<String, Object> OTPVerification(VerifyOTPDTO verifyOTPDTO) throws Exception {
+        if(userOTP == verifyOTPDTO.getOtp()) {
+            HashMap<String, Object> response = new HashMap<>();
+            response.put("message", "OTP verification successful");
+            return response;
+        }
+        else {
+            throw new OTPVerificationFailedException("OTP does not match", new Exception("OTP does not match", null));
+        }
+    }
+
+    @Override
+    public HashMap<String, Object> setPassword(NewPasswordDTO newPasswordDTO) throws Exception {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        userRepository.setPassword(newPasswordDTO.getEmailID(), passwordEncoder.encode(newPasswordDTO.getNewPassword()));
+        HashMap<String, Object> response = new HashMap<>();
+        response.put("message", "Password changed successfully");
+        return response;
+    }
 
     @Override
     public Object verifyAccount(String token, VerifyAccountDTO verifyAccountDTO) throws Exception {
@@ -145,18 +161,14 @@ public class UserServiceImpl implements UserService {
                 .build();
     }
 
-        @Override
-        public UserDao loadUserByEmailID(String emailID) throws UsernameNotFoundException {
-            UserDao userDao = userRepository.findByEmailID(emailID);
-            if (userDao == null) {
-                throw new UsernameNotFoundException("User not found with emailID: " + emailID);
-            }
-            return new UserDao(
-                    userDao.getEmailID(),
-                    userDao.getLastName(),
-                    userDao.getFirstName()
-            );
+    @Override
+    public UserDao loadUserByEmailID(String emailID) throws UsernameNotFoundException {
+        Optional<UserDao> userDao = Optional.ofNullable(userRepository.findByEmailID(emailID));
+        if (userDao.isEmpty()) {
+            return null;
         }
+        return userDao.get();
+    }
 
     public UserDao updateUser(EditUserRequestDTO updatedUser){
         String emailID = updatedUser.getEmailID();
@@ -167,7 +179,6 @@ public class UserServiceImpl implements UserService {
         existingUser.setFirstName(updatedUser.getFirstName());
         existingUser.setLastName(updatedUser.getLastName());
 
-        // Hash the updated password and set it in user db
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(updatedUser.getPassword());
         existingUser.setPassword(hashedPassword);
@@ -185,10 +196,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDao getUserByUserId(int userid) {
-        Optional<UserDao> userOptional = userRepository.findById(String.valueOf(userid));
+        Optional<UserDao> userDao = userRepository.findById(String.valueOf(userid));
 
-        if (userOptional.isPresent()) {
-            return userOptional.get();
+        if (userDao.isPresent()) {
+            return userDao.get();
         } else {
             return null;
         }

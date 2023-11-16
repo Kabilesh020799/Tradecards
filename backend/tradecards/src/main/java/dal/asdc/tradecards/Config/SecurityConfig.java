@@ -6,6 +6,7 @@ import dal.asdc.tradecards.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -38,31 +39,30 @@ public class SecurityConfig {
     @Autowired
     private UserService jwtUserDetailsService;
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("*");
-        configuration.addAllowedMethod("*");
-        configuration.addAllowedHeader("*");
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-
-        return source;
-    }
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/api/login/", "/api/signup/");
+        return (web) -> web.ignoring().requestMatchers(
+                "/api/login",
+                "/api/signup",
+                "/api/forget-password-request",
+                "/api/verify-otp",
+                "/api/set-new-password");
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .cors(request -> new CorsConfiguration().addAllowedOrigin("*"))
+                .cors(request -> new CorsConfiguration().applyPermitDefaultValues())
                 .csrf(c -> c.disable())
                 .authorizeHttpRequests(
-                        auth->auth.requestMatchers("/api/login", "/api/signup").permitAll()
+                        auth->auth.requestMatchers(
+                                "/api/login",
+                                "/api/signup",
+                                "/api/forget-password-request",
+                                "/api/verify-otp",
+                                "/api/set-new-password")
+                        .permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(ex->ex.authenticationEntryPoint(point))
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

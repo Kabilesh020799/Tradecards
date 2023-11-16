@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import dal.asdc.tradecards.Service.UserService;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000/", "http://csci5308vm13.research.cs.dal.ca:3000/", "http://csci5308vm13.research.cs.dal.ca:8080/"})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 @RequestMapping("/api")
 public class UserController {
     @Autowired
@@ -39,8 +39,6 @@ public class UserController {
     public ResponseEntity<UserDao> editUserDetails(@RequestBody EditUserRequestDTO editUserRequest) {
         try{
             String emailID = editUserRequest.getEmailID();
-
-            // Check if the user with the provided email ID exists
             UserDao existingUser = userService.loadUserByEmailID(emailID);
 
             if (existingUser == null) {
