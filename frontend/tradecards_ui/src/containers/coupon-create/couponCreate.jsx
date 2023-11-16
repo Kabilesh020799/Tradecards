@@ -87,11 +87,13 @@ function CouponCreate (props) {
         setCouponVendor(couponDetails.couponBrand);
         setCouponCategory(couponDetails.couponCategory);
         setCouponCategoryId(couponDetails.categoryID);
-        setCouponValue(couponDetails.couponValue);
-        setCouponPrice(couponDetails.couponSellingPrice);
-        setCouponValidity(couponDetails.expiryDate);
+        setCouponValue(couponDetails.couponValue.toString());
+        setCouponPrice(couponDetails.couponSellingPrice.toString());
+        const validity = new Date(couponDetails.expiryDate);
+        setCouponValidity(validity.toISOString().slice(0, 10));
         setCouponLocation(couponDetails.couponLocation);
-        setCouponListingDate(couponDetails.couponListingDate);
+        const listingDate = new Date(couponDetails.couponListingDate);
+        setCouponListingDate(listingDate.toISOString().slice(0, 10));
         setCouponType(couponDetails.online);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -105,7 +107,6 @@ function CouponCreate (props) {
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        // const base64String = event.target.result.split(',')[1];
         const base64String = event.target.result.replace(/^data:image\/[a-z]+;base64,/, '');
         setCouponImage(base64String);
       };
@@ -122,7 +123,6 @@ function CouponCreate (props) {
       const { categoryID, categoryName, } = selectedCategory;
       setCouponCategory(categoryName);
       setCouponCategoryId(categoryID);
-      console.log(categoryID, categoryName);
     }
   };
 
