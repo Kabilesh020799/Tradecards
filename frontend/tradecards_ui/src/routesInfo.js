@@ -36,6 +36,11 @@ const routes = [
     route: 'coupon-create',
     component: <CouponCreate />,
   },
+  {
+    id: 'coupon-edit',
+    route: 'coupon-edit/:id',
+    component: <CouponCreate isEdit={true} />,
+  },
 ];
 
 export default routes;
