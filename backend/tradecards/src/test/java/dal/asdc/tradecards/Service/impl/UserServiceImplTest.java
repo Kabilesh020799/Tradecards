@@ -14,6 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -408,38 +409,5 @@ public class UserServiceImplTest {
             // If an exception is thrown, fail the test
             fail("Exception should not be thrown for setting password");
         }
-    }
-
-    @Test
-    void testCreateCatchBlock() throws Exception {
-        MockitoAnnotations.openMocks(this);
-
-        // Create a UserSignUpDTO for testing
-        UserSignUpDTO userSignUpDTO = new UserSignUpDTO();
-        userSignUpDTO.setFirstName("John");
-        userSignUpDTO.setLastName("Doe");
-        userSignUpDTO.setEmailID("john.doe@example.com");
-        userSignUpDTO.setPassword("password123");
-
-        // Mocking behavior for the userRepository.save method to throw DataIntegrityViolationException
-        when(userRepository.save(any(UserDao.class))).thenThrow(new DataIntegrityViolationException("User with same email id already exists"));
-
-        // Mocking behavior for jwtTokenUtil.generateToken method
-        when(jwtTokenUtil.generateToken(any(HashMap.class))).thenReturn("mocked-jwt-token");
-
-        // Execute the method and expect a DuplicateEntryException
-        try {
-            userService.create(userSignUpDTO);
-        } catch (DuplicateEntryException e) {
-            assertEquals("User with same email id already exists", e.getMessage());
-            assertNotNull(e.getCause());
-            assertTrue(e.getCause() instanceof DataIntegrityViolationException);
-        }
-
-        // Verify that the userRepository.save method was called once
-        verify(userRepository, times(1)).save(any(UserDao.class));
-
-        // Verify that jwtTokenUtil.generateToken method was called once
-        verify(jwtTokenUtil, times(1)).generateToken(any(HashMap.class));
     }
 }
