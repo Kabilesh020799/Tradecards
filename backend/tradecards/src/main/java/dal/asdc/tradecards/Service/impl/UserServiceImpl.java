@@ -35,7 +35,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UtilityFunctions utilityFunctions;
 
-    public int userOTP = 0;
+    private int userOTP = 0;
+
+    public void setUserOTP(int otp){
+        this.userOTP = otp;
+    }
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
