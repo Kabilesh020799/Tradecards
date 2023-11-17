@@ -39,17 +39,6 @@ public class SecurityConfig {
     @Autowired
     private UserService jwtUserDetailsService;
 
-
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers(
-                "/api/login",
-                "/api/signup",
-                "/api/forget-password-request",
-                "/api/verify-otp",
-                "/api/set-new-password");
-    }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
