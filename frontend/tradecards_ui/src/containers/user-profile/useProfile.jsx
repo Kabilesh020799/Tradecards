@@ -15,12 +15,24 @@ const UserProfile = () => {
       <div className='user-profile-account'>
         <div className='user-profile-account-head'>Account Details</div>
         <div className='user-profile-account-subhead'>
-          <span className='user-profile-account-subhead-title'>Email address</span>
-          <span className='user-profile-account-subhead-value'>{user?.email}</span>
+          <div className='user-profile-account-subhead-container'>
+            <span className='user-profile-account-subhead-title'>Email address</span>
+            <span className='user-profile-account-subhead-value'>{user?.email}</span>
+          </div>
+          <i
+            className="fa-solid fa-pen-to-square"
+            style={{ color: 'hsl(318, 22%, 27%)', cursor: 'pointer', }}
+          ></i>
         </div>
         <div className='user-profile-account-subhead'>
-          <span className='user-profile-account-subhead-title'>Password</span>
-          <span className='user-profile-account-subhead-value'>*******</span>
+          <div className='user-profile-account-subhead-container'>
+            <span className='user-profile-account-subhead-title'>Password</span>
+            <span className='user-profile-account-subhead-value'>*******</span>
+          </div>
+          <i
+            className="fa-solid fa-pen-to-square"
+            style={{ color: 'hsl(318, 22%, 27%)', cursor: 'pointer', }}
+          ></i>
         </div>
       </div>
       <div className='user-profile-coupons'>
