@@ -19,7 +19,6 @@ import dal.asdc.tradecards.Exception.InvalidAccountCredentialsException;
 import dal.asdc.tradecards.Service.EmailService;
 
 @RestController
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 @RequestMapping("/api")
 public class AuthenticationController {
 
