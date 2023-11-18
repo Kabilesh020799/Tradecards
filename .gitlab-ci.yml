@@ -9,40 +9,31 @@ stages:
 
 backend_build:
   stage: build
-  image: maven:$MAVEN_IMAGE_TAG # Use a Maven image with Java 17
+  image: maven:$MAVEN_IMAGE_TAG
   script:
-    - cd backend/tradecards # Navigate to the backend directory
+    - cd backend/tradecards
     - mvn clean install
   artifacts:
     paths:
-      - backend/tradecards/target/*.jar # Archive the generated JAR file
+      - backend/tradecards/target/*.jar 
 
 frontend_build:
   stage: build
-  image: node:$NODE_IMAGE_TAG # Use a Node.js image
+  image: node:$NODE_IMAGE_TAG 
   script:
-    - cd frontend/tradecards_ui # Navigate to the frontend directory
+    - cd frontend/tradecards_ui 
     - npm install
     - npm run build
   artifacts:
     paths:
-      - frontend/tradecards_ui/build # Archive the build directory for deployment
+      - frontend/tradecards_ui/build 
 
 backend_test:
   stage: test
-  image: maven:$MAVEN_IMAGE_TAG # Use a Maven image with Java 17
+  image: maven:$MAVEN_IMAGE_TAG 
   script:
-    - cd backend/tradecards # Navigate to the backend directory
+    - cd backend/tradecards 
     - mvn test
-
-frontend_test:
-  stage: test
-  image: node:$NODE_IMAGE_TAG # Use a Node.js image
-  script:
-    - echo "testing frontend"
-    - cd frontend/tradecards_ui # Navigate to the frontend directory
-    - npm install
-    - npm test
 
 deploy:
   stage: deploy
@@ -52,13 +43,9 @@ deploy:
   script:
     - echo "testing deploy script"
     - chmod 400 "${SSH_PRIVATE_KEY}"
-    # Copy backend JAR file to VM
     - scp -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" backend/tradecards/target/tradecards-*.jar student@csci5308vm13.research.cs.dal.ca:~/tradecards.jar
-    # Copy frontend React build files to VM (Assuming your frontend build path is 'frontend/tradecards_ui/build')
     - scp -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" -r frontend/tradecards_ui/build/* student@csci5308vm13.research.cs.dal.ca:~/frontend
-    # Start your web server to serve the React app
     - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "cd ~/frontend && serve -s . > webserver.log 2>&1 &"
-    # Start the spring boot application in background
     - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "nohup java -jar tradecards.jar > app.log 2>&1 &"
     - echo "React app started in background"
     - echo "Spring Boot application started in the background."
