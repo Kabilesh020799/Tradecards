@@ -26,6 +26,15 @@ const CouponDetail = () => {
     return reviews?.reduce((sum, review) => sum + review?.rating, 0) / reviews?.length;
   };
 
+  const convertDate = (timestamp) => {
+    const date = new Date(timestamp);
+
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
   return (
     <div className='coupon-detail'>
       <NavBar />
@@ -82,6 +91,19 @@ const CouponDetail = () => {
             <span className='coupon-detail-info-seller-name-star'>
               {user?.receivedReviews ? <ReviewStars review={getAverageReview(user?.receivedReviews)}/> : null}
             </span>
+          </div>
+          <div style={{ fontWeight: 'bold', }}>Popular Reviews</div>
+          <div className='reviews'>
+            {user?.receivedReviews?.map((review) => (
+              <div
+                key={review?.reviewId}
+                className='review'
+              >
+                <div className='review-content'>{review?.content}</div>
+                <ReviewStars review={review?.rating}/>
+                <div className='review-date'>{convertDate(review?.reviewDate)}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
