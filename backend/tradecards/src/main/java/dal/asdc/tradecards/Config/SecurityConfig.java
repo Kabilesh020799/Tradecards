@@ -53,6 +53,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
+                .cors(request -> new CorsConfiguration().addAllowedOrigin("*"))
                 .csrf(c -> c.disable())
                 .authorizeHttpRequests(
                         auth->auth.requestMatchers(
