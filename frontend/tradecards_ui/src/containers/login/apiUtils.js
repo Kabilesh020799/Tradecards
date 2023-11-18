@@ -8,6 +8,7 @@ const onLogin = (userName, password) => {
   };
   return fetch(REACT_APP_END_POINT_PROD + '/api/login', {
     method: 'POST',
+    mode: 'cors',
     headers: { 'Content-Type': 'application/json', },
     body: JSON.stringify(data),
   })
@@ -25,6 +26,7 @@ const onSignup = (userName, password, firstName, lastName) => {
   };
   return fetch(REACT_APP_END_POINT_PROD + '/api/signup', {
     method: 'POST',
+    mode: 'cors',
     headers: { 'Content-Type': 'application/json', },
     body: JSON.stringify(data),
   })
