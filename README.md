@@ -31,7 +31,7 @@ Make sure you have Node.js and npm installed.
 ### Backend Installation
 
 - cd backend\tradecards
-- mvn install
+- mvn clean install
 
 ## Backend dependencies
 
@@ -113,4 +113,20 @@ Make sure you have Node.js and npm installed.
 
 ## How to Build and Run
 
-Provide instructions on how to build and run your project.
+## Frontend build and run
+
+- npm run build
+
+## Backend build and run
+
+- mvn clean install
+The build artifacts, including the JAR file, will be available in the target directory.
+To deploy the backend of the full-stack web application, follow these steps:
+
+1. **Copy JAR File:**
+
+   Copy the generated JAR file from the `target` directory after the backend build to your deployment environment.
+   cp backend/target/your-backend-app.jar /path/to/deployment/directory
+
+2. **Deploy:**
+    java -jar /path/to/deployment/directory/your-backend-app.jar
