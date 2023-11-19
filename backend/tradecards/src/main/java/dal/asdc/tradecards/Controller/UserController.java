@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import dal.asdc.tradecards.Service.UserService;
 
 @RestController
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 @RequestMapping("/api")
 public class UserController {
     @Autowired
