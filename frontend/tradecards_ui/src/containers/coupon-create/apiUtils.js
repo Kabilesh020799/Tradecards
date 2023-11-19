@@ -30,7 +30,7 @@ const onCouponCreate = (couponTitle, couponDescription, couponVendor, couponVali
 
 const onCouponEdit = (couponTitle, couponDescription, couponVendor, couponValidity,
   couponValue, couponPrice, sold, couponType, couponCategory, couponListingDate,
-  couponLocation, userId, categoryId, id) => {
+  couponLocation, userId, categoryId, couponImage, id) => {
   const data = {
     userid: userId,
     couponListingDate: couponListingDate,
@@ -44,7 +44,8 @@ const onCouponEdit = (couponTitle, couponDescription, couponVendor, couponValidi
     isOnline: couponType,
     categoryID: categoryId,
     isSold: sold,
-    couponCategory: couponCategory
+    couponCategory: couponCategory,
+    couponImage: couponImage,
   };
   return fetch(process.env.REACT_APP_END_POINT + '/api/coupon/update-coupon/' + id, {
     method: 'PUT',

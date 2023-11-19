@@ -95,6 +95,7 @@ function CouponCreate (props) {
         const listingDate = new Date(couponDetails.couponListingDate);
         setCouponListingDate(listingDate.toISOString().slice(0, 10));
         setCouponType(couponDetails.online);
+        setCouponImage(couponDetails.couponImage);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -132,7 +133,7 @@ function CouponCreate (props) {
     if (isEdit) {
       onCouponEdit(couponTitle, couponDescription, couponVendor, couponValidity,
         couponValueNumber, couponPriceNumber, sold, couponType, couponCategory,
-        couponListingDate, couponLocation, userId, couponCategoryIdNumber, id);
+        couponListingDate, couponLocation, userId, couponCategoryIdNumber, couponImage, id);
     } else {
       onCouponCreate(couponTitle, couponDescription, couponVendor, couponValidity,
         couponValueNumber, couponPriceNumber, sold, couponType, couponCategory,
@@ -313,7 +314,6 @@ function CouponCreate (props) {
             </td>
           </tr>
 
-          {!isEdit && (
           <tr>
             <td style={{ display: 'flex', alignItems: 'center', }}>
               <label style={{ marginRight: '10px', marginTop: '22px', }}>Upload Photo!</label>
@@ -328,7 +328,6 @@ function CouponCreate (props) {
             />
             </td>
           </tr>
-          )}
         </tbody>
       </table>
 
