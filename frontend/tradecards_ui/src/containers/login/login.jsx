@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import { onLogin, onSignup } from './apiUtils';
 import InputHolder from './components/input';
 import { setStorage } from '../../common-utils';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase';
+// import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
 function Login (props) {
   const { isLogin, } = props;
@@ -20,20 +23,33 @@ function Login (props) {
 
   const onSubmit = () => {
     if (isLogin) {
-      onLogin(userName, password).then((res) => {
+      onLogin(userName, password).then(async (res) => {
         if (res.token) {
           setStorage('userInfo', JSON.stringify(res));
           navigate('/home');
+          try {
+            await signInWithEmailAndPassword(auth, userName, password);
+          } catch (err) {
+            console.log(err);
+          }
         }
       });
     } else {
-      onSignup(userName, password, firstName, lastName).then((res) => {
+      onSignup(userName, password, firstName, lastName).then(async (res) => {
         if (res.token) {
           navigate('/login');
           setIsSignupSuccess(true);
           setTimeout(() => {
             setIsSignupSuccess(false);
           }, 4000);
+          try {
+            createUserWithEmailAndPassword(auth, res.emailID, password)
+              .catch((error) => {
+                console.log(error);
+              });
+          } catch (err) {
+            console.log(err);
+          }
         }
       });
     }
