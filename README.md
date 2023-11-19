@@ -8,6 +8,33 @@ Briefly describe what your project does.
 
 List of dependencies used in the project:
 
+### Frontend Pre-requisiste Software
+
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
+
+### Backend Pre-requisiste Software
+
+- [Java Development Kit 17 (JDK)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+- [MySQL Workbench](https://www.mysql.com/products/workbench/)
+- [Maven](https://maven.apache.org/)
+
+## Installation
+
+### Frontend Installation
+
+Make sure you have Node.js and npm installed.
+
+- cd frontend\tradecards_ui
+- npm install
+
+### Backend Installation
+
+- cd backend\tradecards
+- mvn install
+
+## Backend dependencies
+
 ### [Spring Boot](https://spring.io/projects/spring-boot)
 
 - **Version**: 3.1.4
