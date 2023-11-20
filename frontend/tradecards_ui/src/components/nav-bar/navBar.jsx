@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 import AvatarItem from './components/avatar/avatar';
 import { getCategories } from './apiUtils';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase';
 
 const NavBar = (props) => {
   const { className, } = props;
@@ -20,6 +22,7 @@ const NavBar = (props) => {
   };
 
   const onLogout = () => {
+    signOut(auth);
     navigate('/login');
   };
 

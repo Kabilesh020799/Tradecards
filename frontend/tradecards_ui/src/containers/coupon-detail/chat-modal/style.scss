@@ -1,0 +1,19 @@
+.chat-modal {
+  &-header {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    padding-bottom: 30px;
+    border-bottom: 1px solid hsl(318, 22%, 27%);
+
+    &-title {
+      color: hsl(318, 22%, 27%);
+    }
+  }
+  &-description {
+
+  }
+  &-sender {
+    
+  }
+}

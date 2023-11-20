@@ -7,7 +7,8 @@ import { onLogin, onSignup } from './apiUtils';
 import InputHolder from './components/input';
 import { setStorage } from '../../common-utils';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { auth, db } from '../../firebase';
+import { doc, setDoc } from 'firebase/firestore';
 // import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
 function Login (props) {
@@ -44,6 +45,19 @@ function Login (props) {
           }, 4000);
           try {
             createUserWithEmailAndPassword(auth, res.emailID, password)
+              .then(async (resItem) => {
+                try {
+                  await setDoc(doc(db, 'users', resItem.user.uid), {
+                    uid: resItem.user.uid,
+                    firstName,
+                    lastName,
+                    email: res.emailID,
+                  });
+                  await setDoc(doc(db, 'userChats', resItem.user.uid), {});
+                } catch (err) {
+                  console.log(err);
+                }
+              })
               .catch((error) => {
                 console.log(error);
               });
