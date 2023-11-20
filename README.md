@@ -8,6 +8,33 @@ Briefly describe what your project does.
 
 List of dependencies used in the project:
 
+### Frontend Pre-requisiste Software
+
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
+
+### Backend Pre-requisiste Software
+
+- [Java Development Kit 17 (JDK)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+- [MySQL Workbench](https://www.mysql.com/products/workbench/)
+- [Maven](https://maven.apache.org/)
+
+## Installation
+
+### Frontend Installation
+
+Make sure you have Node.js and npm installed.
+
+- cd frontend\tradecards_ui
+- npm install
+
+### Backend Installation
+
+- cd backend\tradecards
+- mvn clean install
+
+## Backend dependencies
+
 ### [Spring Boot](https://spring.io/projects/spring-boot)
 
 - **Version**: 3.1.4
@@ -86,4 +113,20 @@ List of dependencies used in the project:
 
 ## How to Build and Run
 
-Provide instructions on how to build and run your project.
+## Frontend build and run
+
+- npm run build
+
+## Backend build and run
+
+- mvn clean install
+The build artifacts, including the JAR file, will be available in the target directory.
+To deploy the backend of the full-stack web application, follow these steps:
+
+1. **Copy JAR File:**
+
+   Copy the generated JAR file from the `target` directory after the backend build to your deployment environment.
+   cp backend/target/your-backend-app.jar /path/to/deployment/directory
+
+2. **Deploy:**
+    java -jar /path/to/deployment/directory/your-backend-app.jar

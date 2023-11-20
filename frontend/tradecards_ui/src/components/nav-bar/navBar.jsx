@@ -50,6 +50,7 @@ const NavBar = (props) => {
           <Button
             variant='contained'
             className='nav-bar-components-right-add-coupon'
+            onClick={() => navigate('/coupon-create')}
           >
             Add a Coupon
           </Button>

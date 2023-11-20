@@ -3,6 +3,7 @@ import Login from './containers/login';
 import ForgetPassword from './containers/forgetPassword';
 import Home from './containers/home';
 import CouponGrid from './containers/coupon-grid/';
+import CouponCreate from './containers/coupon-create/couponCreate';
 import CouponDetail from './containers/coupon-detail';
 import UserProfile from './containers/user-profile';
 
@@ -33,6 +34,16 @@ const routes = [
     component: <CouponGrid />,
   },
   {
+    id: 'coupon-create',
+    route: 'coupon-create',
+    component: <CouponCreate />,
+  },
+  {
+    id: 'coupon-edit',
+    route: 'coupon-edit/:id',
+    component: <CouponCreate isEdit={true} />,
+  },
+  {
     id: 'coupon-details',
     route: 'coupon-detail/:couponId',
     component: <CouponDetail />,
@@ -42,6 +53,7 @@ const routes = [
     route: 'user-profile',
     component: <UserProfile />,
   },
+
 ];
 
 export default routes;
