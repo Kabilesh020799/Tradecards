@@ -355,7 +355,7 @@ public class UserServiceImplTest {
     @Test
     void testOTPVerificationWithCorrectOTP() {
         UserServiceImpl userService = new UserServiceImpl();
-        userService.userOTP = 123456;
+        userService.setUserOTP(123456);
 
         // Creating a DTO with correct OTP
         VerifyOTPDTO correctOtpDTO = new VerifyOTPDTO();
@@ -373,7 +373,7 @@ public class UserServiceImplTest {
     @Test
     void testOTPVerificationWithIncorrectOTP() {
         UserServiceImpl userService = new UserServiceImpl();
-        userService.userOTP = 123456;
+        userService.setUserOTP(123456);
 
         // Creating a DTO with incorrect OTP
         VerifyOTPDTO incorrectOtpDTO = new VerifyOTPDTO();
