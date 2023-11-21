@@ -7,6 +7,18 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service class for sending emails in the Trade Cards application.
+ *
+ * <p>Provides functionality to send emails using the configured {@link org.springframework.mail.javamail.JavaMailSender}.</p>
+ *
+ * <p>Two constructors are available: a default constructor for Spring bean initialization
+ * and a parameterized constructor for specifying sender, receiver, subject, and body at creation.</p>
+ *
+ * @author Harshpreet Singh
+ * @author Parth Modi
+ */
+
 @Service
 @Getter
 @Setter

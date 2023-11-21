@@ -3,6 +3,17 @@ package dal.asdc.tradecards.Service;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Represents the content of an email in the Trade Cards application.
+ *
+ * <p>Encapsulates the recipient's address, subject, and text body.</p>
+ *
+ * <p>Generated getter and setter methods provided by {@link lombok.Getter} and {@link lombok.Setter}.</p>
+ *
+ *  @author Harshpreet Singh
+ *  @author Parth Modi
+ */
+
 @Getter
 @Setter
 public class EmailContent {
