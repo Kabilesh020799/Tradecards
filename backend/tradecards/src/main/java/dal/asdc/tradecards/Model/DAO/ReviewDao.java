@@ -7,6 +7,20 @@ import lombok.Setter;
 
 import java.util.Date;
 
+/**
+ * ReviewDao represents a data access object (DAO) for managing reviews
+ * in the Trade Cards application.
+ *
+ * <p>Annotated with JPA for database persistence and Lombok for automatic
+ * getter and setter generation. Corresponds to the "review" table in the database.</p>
+ *
+ * <p>Properties include reviewId, rating, content, reviewDate, reviewerUser, and reviewedUser.
+ * The class also includes many-to-one relationships with UserDao for reviewer and reviewed users.</p>
+ *
+ * @author Harshpreet Singh
+ * @author Parth Modi
+ */
+
 @Entity
 @Getter
 @Setter

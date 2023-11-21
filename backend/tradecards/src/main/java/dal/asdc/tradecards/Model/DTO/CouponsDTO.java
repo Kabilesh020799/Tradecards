@@ -2,6 +2,19 @@ package dal.asdc.tradecards.Model.DTO;
 
 import java.util.Date;
 
+/**
+ * The CouponsDTO class represents a data transfer object (DTO) for coupon information
+ * in the Trade Cards application.
+ *
+ * <p>This class encapsulates the details of a coupon, including its name, description, brand,
+ * expiry date, value, selling price, sold status, online availability, category, listing date,
+ * location, user ID, category ID, and image URL.</p>
+ *
+ * <p>The class provides getter and setter methods for accessing and modifying these properties.</p>
+ *
+ * @author Harshpreet Singh
+ */
+
 public class CouponsDTO {
     private String couponName;
     private String couponDesc;
