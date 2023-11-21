@@ -1,8 +1,18 @@
-# TradeCards
+<p align="center">
+    <img src="tradecards.png" alt="tradecards">
+</p>
 
-## Description
+<p align="center">
+  <a href="https://git.cs.dal.ca/courses/2023-fall/csci-5308/Group13/-/pipelines">
+    <img alt="Build" src="https://github.com/cryptomator/cryptomator/workflows/Build/badge.svg">
+  </a>
+</p>
 
-Briefly describe what your project does.
+## Introduction
+
+TradeCards is an innovative platform designed for coupon enthusiasts and savvy shoppers alike. With TradeCards, users can easily sign up, showcase, and sell their coupons, creating a dynamic marketplace for incredible savings. Not only can users browse a diverse array of coupons posted by others, but they can also engage in real-time conversations through our integrated chat feature.
+
+What sets TradeCards apart is the ability for users to seamlessly exchange coupons offline, fostering a sense of community and trust among deal-seekers. To enhance transparency and confidence in transactions, users can leave reviews for sellers, providing valuable insights that future buyers can reference while browsing the platform.
 
 ## Dependencies
 
@@ -101,15 +111,15 @@ Make sure you have Node.js and npm installed.
 - **Version**: 3.1.2
 - **Description**: Maven plugin for running tests.
 
-    - Additional Dependencies:
-        - [JUnit Jupiter Engine](https://junit.org/junit5/docs/current/user-guide/#running-tests-build-plugins)
+  - Additional Dependencies:
+    - [JUnit Jupiter Engine](https://junit.org/junit5/docs/current/user-guide/#running-tests-build-plugins)
 
 ### [Spring Boot Maven Plugin](https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/htmlsingle/)
 
 - **Description**: Maven plugin for building Spring Boot applications.
 
-    - Configuration:
-        - Excludes Lombok during the build.
+  - Configuration:
+    - Excludes Lombok during the build.
 
 ## How to Build and Run
 
@@ -120,13 +130,35 @@ Make sure you have Node.js and npm installed.
 ## Backend build and run
 
 - mvn clean install
-The build artifacts, including the JAR file, will be available in the target directory.
-To deploy the backend of the full-stack web application, follow these steps:
+
+  The build artifacts, including the JAR file, will be available in the target directory.
+  To deploy the backend of the full-stack web application, follow these steps:
 
 1. **Copy JAR File:**
 
    Copy the generated JAR file from the `target` directory after the backend build to your deployment environment.
-   cp backend/target/your-backend-app.jar /path/to/deployment/directory
+   cp backend/target/tradecards.jar /path/to/deployment/directory
 
 2. **Deploy:**
-    java -jar /path/to/deployment/directory/your-backend-app.jar
+   java -jar /path/to/deployment/directory/tradecards.jar
+
+
+### Development Team
+
+Meet the amazing individuals behind TradeCards:
+
+1. **Harshpreet Singh**
+   - *Role*: Backend Developer
+   - *GitLab*: [@harshpreet](https://git.cs.dal.ca/harshpreet)
+
+2. **Jayrajsinh Mahavirsinh Jadeja**
+   - *Role*: Frontend Developer
+   - *GitLab*: [@jjadeja](https://git.cs.dal.ca/jjadeja)
+
+3. **Kabilesh Ravi chandran**
+   - *Role*: Frontend Developer
+   - *GitLab*: [@kchandran](https://git.cs.dal.ca/kchandran)
+
+4. **Parth Pinakin Modi**
+   - *Role*: Backend Developer
+   - *GitLab*: [@ppmodi](https://git.cs.dal.ca/ppmodi)

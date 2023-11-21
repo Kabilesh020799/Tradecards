@@ -35,7 +35,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UtilityFunctions utilityFunctions;
 
-    public int userOTP = 0;
+    private int userOTP = 0;
+
+    public void setUserOTP(int otp){
+        this.userOTP = otp;
+    }
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -92,6 +96,7 @@ public class UserServiceImpl implements UserService {
         HashMap<String, Object> claims = new HashMap<>();
         claims.put("email", userDao.getEmailID());
         claims.put("firstName", userDao.getFirstName());
+        claims.put("lastName", userDao.getLastName());
         String jwtToken = jwtTokenUtil.generateToken(claims);
         claims.put("token", jwtToken);
         claims.put("userId", userDao.getUserid());

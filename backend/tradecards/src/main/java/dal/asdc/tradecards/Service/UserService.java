@@ -9,6 +9,18 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service interface for managing user-related operations in the Trade Cards application.
+ * Extends {@link org.springframework.security.core.userdetails.UserDetailsService}.
+ * Annotated with {@link org.springframework.stereotype.Service}.
+ *
+ * <p>Implementations of this interface should provide concrete logic for user creation, login,
+ * password reset, OTP verification, setting a new password, account verification, and user retrieval.</p>
+ *
+ * @author Harshpreet Singh
+ * @author Parth Modi
+ */
+
 @Service
 public interface UserService extends UserDetailsService {
 

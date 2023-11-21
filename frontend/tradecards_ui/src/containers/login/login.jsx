@@ -33,6 +33,9 @@ function Login (props) {
           } catch (err) {
             console.log(err);
           }
+          setTimeout(() => {
+            navigate('/home');
+          }, 500);
         }
       });
     } else {

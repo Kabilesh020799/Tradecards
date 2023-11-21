@@ -13,4 +13,13 @@ public class TradecardsApplication {
 		SpringApplication.run(TradecardsApplication.class, args);
 	}
 
+	@Bean
+	public WebMvcConfigurer configure(){
+		return new WebMvcConfigurer() {
+			public void addCorsMapping(CorsRegistry reg){
+				reg.addMapping("/**").allowedOrigins("*");
+			}
+		};
+	}
+
 }

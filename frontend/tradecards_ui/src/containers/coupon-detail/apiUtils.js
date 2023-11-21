@@ -21,4 +21,26 @@ const getUserDetail = (id) => {
     .then((res) => res.json());
 };
 
-export { getCouponDetail, getUserDetail, };
+const postReview = (params) => {
+  const {
+    review,
+    rating,
+    reviewedUserID,
+  } = params;
+
+  return fetch(REACT_APP_END_POINT_PROD + '/api/reviews/create', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${user.token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      content: review,
+      rating,
+      reviewedUserID,
+      reviewerUserID: user?.userId,
+    }),
+  });
+};
+
+export { getCouponDetail, getUserDetail, postReview, };

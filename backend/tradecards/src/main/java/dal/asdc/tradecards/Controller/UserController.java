@@ -11,6 +11,14 @@ import org.springframework.web.bind.annotation.*;
 
 import dal.asdc.tradecards.Service.UserService;
 
+/**
+ * The UserController class handles seller user-related operations
+ * such as get users, find user by email, edit user profile and get user details
+ *
+ * @author Harshpreet Singh
+ * @author Parth Modi
+ */
+
 @RestController
 @RequestMapping("/api")
 public class UserController {

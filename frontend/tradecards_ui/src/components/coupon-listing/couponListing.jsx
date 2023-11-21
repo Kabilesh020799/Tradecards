@@ -86,7 +86,7 @@ const CouponListing = (props) => {
                   </CardContent>
                   <CardActions>
                     <Button size="small">{coupon.userName}</Button>
-                    <Button size="small">Buy Now</Button>
+                    <Button size="small">More Info</Button>
                   </CardActions>
                 </Card>
               </Grid>
