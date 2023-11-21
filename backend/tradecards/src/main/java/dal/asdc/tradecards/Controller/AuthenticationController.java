@@ -18,6 +18,14 @@ import dal.asdc.tradecards.Exception.DuplicateEntryException;
 import dal.asdc.tradecards.Exception.InvalidAccountCredentialsException;
 import dal.asdc.tradecards.Service.EmailService;
 
+/**
+ * The AuthenticationController class handles authentication-related operations
+ * such as user signup, login, account verification, password recovery, OTP verification,
+ * and setting a new password.
+ *
+ * @author Parth Modi
+ */
+
 @RestController
 @RequestMapping("/api")
 public class AuthenticationController {

@@ -8,6 +8,21 @@ import java.util.List;
 
 import java.util.Date;
 
+/**
+ * {@code UserDao} represents a data access object (DAO) for managing user information
+ * in the Trade Cards application.
+ *
+ * <p>Annotated with JPA for database persistence and Lombok for automatic
+ * getter and setter generation. Corresponds to the "user" table in the database.</p>
+ *
+ * <p>Properties include userid, emailID, password, is_deleted, is_verified, updated_at,
+ * FirstName, LastName, givenReviews, and receivedReviews. The class includes one-to-many
+ * relationships with ReviewDao for given and received reviews.</p>
+ *
+ * @author Harshpreet Singh
+ * @author Parth Modi
+ */
+
 @Entity
 @Getter
 @Setter
