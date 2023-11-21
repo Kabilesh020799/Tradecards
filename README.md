@@ -1,5 +1,12 @@
-[![tradecards](tradecards.png)](http://csci5308vm13.research.cs.dal.ca/)
-[![Build](https://github.com/cryptomator/cryptomator/workflows/Build/badge.svg)](https://git.cs.dal.ca/courses/2023-fall/csci-5308/Group13/-/pipelines)
+<p align="center">
+    <img src="tradecards.png" alt="tradecards">
+</p>
+
+<p align="center">
+  <a href="https://git.cs.dal.ca/courses/2023-fall/csci-5308/Group13/-/pipelines">
+    <img alt="Build" src="https://github.com/cryptomator/cryptomator/workflows/Build/badge.svg">
+  </a>
+</p>
 
 ## Introduction
 
