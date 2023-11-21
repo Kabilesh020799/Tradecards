@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-const REACT_APP_END_POINT_PROD = 'http://localhost:8080';
-// const REACT_APP_END_POINT_PROD = 'http://csci5308vm13.research.cs.dal.ca:8080';
-=======
 import { setStorage } from '../../common-utils';
 
-// const REACT_APP_END_POINT_PROD = 'http://localhost:8080';
-const REACT_APP_END_POINT_PROD = 'http://csci5308vm13.research.cs.dal.ca:8080';
->>>>>>> dev
+const REACT_APP_END_POINT_PROD = 'http://localhost:8080';
+// const REACT_APP_END_POINT_PROD = 'http://csci5308vm13.research.cs.dal.ca:8080';
 
 const onLogin = (userName, password) => {
   const data = {

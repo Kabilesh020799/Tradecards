@@ -139,11 +139,15 @@ const CouponDetail = () => {
           </div>
         </div>
       </div>
-      <ChatModal
-        isOpen={isChatOpened}
-        onClose={() => setIsChatOpened(false)}
-        receiver={user}
-      />
+      {
+        isChatOpened
+          ? <ChatModal
+              isOpen={isChatOpened}
+              onClose={() => setIsChatOpened(false)}
+              receiver={user}
+        />
+          : null
+      }
       {
         openReviewModa && (
           <Modal open={openReviewModa}

@@ -52,8 +52,7 @@ function Login (props) {
                 try {
                   await setDoc(doc(db, 'users', resItem.user.uid), {
                     uid: resItem.user.uid,
-                    firstName,
-                    lastName,
+                    displayName: firstName,
                     email: res.emailID,
                   });
                   await setDoc(doc(db, 'userChats', resItem.user.uid), {});

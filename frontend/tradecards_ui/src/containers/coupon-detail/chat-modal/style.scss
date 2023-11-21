@@ -1,3 +1,5 @@
+@use './chat-interface/style.scss' as ChatModal;
+
 .chat-modal {
   &-header {
     display: flex;
