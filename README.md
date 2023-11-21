@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="tradecards.png" alt="tradecards">
+    <img src="images/tradecards.png" alt="tradecards">
 </p>
 
 <p align="center">
@@ -13,6 +13,12 @@
 TradeCards is an innovative platform designed for coupon enthusiasts and savvy shoppers alike. With TradeCards, users can easily sign up, showcase, and sell their coupons, creating a dynamic marketplace for incredible savings. Not only can users browse a diverse array of coupons posted by others, but they can also engage in real-time conversations through our integrated chat feature.
 
 What sets TradeCards apart is the ability for users to seamlessly exchange coupons offline, fostering a sense of community and trust among deal-seekers. To enhance transparency and confidence in transactions, users can leave reviews for sellers, providing valuable insights that future buyers can reference while browsing the platform.
+
+## Screenshots
+
+[![tradecards](images/homepage_tradecards.png)](http://csci5308vm13.research.cs.dal.ca/)
+
+[![tradecards](images/couponpage_tradecards.png)](http://csci5308vm13.research.cs.dal.ca/)
 
 ## Dependencies
 
