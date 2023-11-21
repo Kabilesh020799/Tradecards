@@ -6,6 +6,7 @@ import CouponGrid from './containers/coupon-grid/';
 import CouponCreate from './containers/coupon-create/couponCreate';
 import CouponDetail from './containers/coupon-detail';
 import UserProfile from './containers/user-profile';
+import CouponGridByUser from './containers/coupon-grid-by-user/couponGridByUser';
 
 const routes = [
   {
@@ -32,6 +33,11 @@ const routes = [
     id: 'coupon-listing',
     route: 'coupon-listing',
     component: <CouponGrid />,
+  },
+  {
+    id: 'coupon-listing-by-user',
+    route: 'coupon-listing-by-user',
+    component: <CouponGridByUser />,
   },
   {
     id: 'coupon-create',

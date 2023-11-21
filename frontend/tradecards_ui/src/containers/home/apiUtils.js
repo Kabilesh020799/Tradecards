@@ -27,7 +27,23 @@ const getCouponsByCategory = ({ categoryId, }) => {
     });
 };
 
+const getCouponsByUser = ({ userid, }) => {
+  return fetch(REACT_APP_END_POINT_PROD + '/api/coupons', {
+    method: 'GET',
+    headers: { Authorization: `Bearer ${user.token}`, },
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      if (userid) {
+        return res.filter((resItem) => resItem.userid === Number(userid));
+      } else {
+        return res;
+      }
+    });
+};
+
 export {
   getAllCoupons,
   getCouponsByCategory,
+  getCouponsByUser,
 };

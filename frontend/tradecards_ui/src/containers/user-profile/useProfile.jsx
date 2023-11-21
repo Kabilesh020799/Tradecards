@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.scss';
 import NavBar from '../../components/nav-bar';
 import { getStorage } from '../../common-utils';
 import TabItem from './component/tab';
+import CouponListingByUser from '../../components/coupon-listing-by-user/couponListingByUser';
+import { getCouponsByUser } from '../home/apiUtils';
 
 const UserProfile = () => {
   const user = JSON.parse(getStorage('userInfo'));
+  const userid = user.userId;
+  const [couponsData, setCouponsData,] = useState([]);
+
+  useEffect(() => {
+    getCouponsByUser({ userid, })
+      .then((res) => setCouponsData(res));
+    console.log(couponsData);
+    console.log(userid);
+  }, []);
+
   return (
     <div className='user-profile'>
       <NavBar />
@@ -25,6 +37,12 @@ const UserProfile = () => {
       </div>
       <div className='user-profile-coupons'>
         <TabItem />
+      </div>
+      <div className='coupon-listing'
+        style={{ paddingBottom: '40px', }}>
+        <CouponListingByUser
+          couponLists={couponsData}
+        />
       </div>
     </div>
   );
