@@ -102,7 +102,7 @@ function CouponCreate (props) {
         console.error('Error fetching data:', error);
       }
     };
-    fetchData();
+    if (isEdit)fetchData();
   }, [isEdit,]);
 
   const handleImageChange = (e) => {
