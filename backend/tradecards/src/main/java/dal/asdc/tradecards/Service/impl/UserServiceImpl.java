@@ -96,6 +96,7 @@ public class UserServiceImpl implements UserService {
         HashMap<String, Object> claims = new HashMap<>();
         claims.put("email", userDao.getEmailID());
         claims.put("firstName", userDao.getFirstName());
+        claims.put("lastName", userDao.getLastName());
         String jwtToken = jwtTokenUtil.generateToken(claims);
         claims.put("token", jwtToken);
         claims.put("userId", userDao.getUserid());
