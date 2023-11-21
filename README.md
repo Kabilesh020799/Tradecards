@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="Images/tradecards.png" alt="tradecards">
+    <img align="center" src="Images/tradecards.png" alt="tradecards">
 </p>
 
 <p align="center">
