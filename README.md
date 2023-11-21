@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="images/tradecards.png" alt="tradecards">
+    <img src="Images/tradecards.png" alt="tradecards">
 </p>
 
 <p align="center">
@@ -16,9 +16,9 @@ What sets TradeCards apart is the ability for users to seamlessly exchange coupo
 
 ## Screenshots
 
-[![tradecards](images/homepage_tradecards.png)](http://csci5308vm13.research.cs.dal.ca/)
+[![tradecards](Images/homepage_tradecards.png)](http://csci5308vm13.research.cs.dal.ca/)
 
-[![tradecards](images/couponpage_tradecards.png)](http://csci5308vm13.research.cs.dal.ca/)
+[![tradecards](Images/couponpage_tradecards.png)](http://csci5308vm13.research.cs.dal.ca/)
 
 ## Dependencies
 
