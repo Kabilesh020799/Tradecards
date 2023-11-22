@@ -5,7 +5,6 @@ import { Alert, Button, Snackbar } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { onLogin, onSignup } from './apiUtils';
 import InputHolder from './components/input';
-import { setStorage } from '../../common-utils';
 
 function Login (props) {
   const { isLogin, } = props;
@@ -22,8 +21,9 @@ function Login (props) {
     if (isLogin) {
       onLogin(userName, password).then((res) => {
         if (res.token) {
-          setStorage('userInfo', JSON.stringify(res));
-          navigate('/home');
+          setTimeout(() => {
+            navigate('/home');
+          }, 500);
         }
       });
     } else {

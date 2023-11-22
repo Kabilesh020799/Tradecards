@@ -25,6 +25,8 @@ function CouponCreate (props) {
 
   const { id, } = useParams();
 
+  // const REACT_APP_END_POINT_PROD = 'http://localhost:8080';
+  const REACT_APP_END_POINT_PROD = 'http://csci5308vm13.research.cs.dal.ca:8080';
   const couponValueNumber = Number(couponValue);
   const couponPriceNumber = Number(couponPrice);
   const couponCategoryIdNumber = Number(couponCategoryId);
@@ -37,7 +39,7 @@ function CouponCreate (props) {
     const user2 = JSON.parse(localStorage.getItem('userInfo'));
     const fetchData = async () => {
       try {
-        const response = await fetch(process.env.REACT_APP_END_POINT + '/api/categories', {
+        const response = await fetch(REACT_APP_END_POINT_PROD + '/api/categories', {
           headers: {
             Authorization: `Bearer ${user2.token}`,
             'Content-Type': 'application/json',
@@ -70,7 +72,7 @@ function CouponCreate (props) {
     const user = JSON.parse(localStorage.getItem('userInfo'));
     const fetchData = async () => {
       try {
-        const response = await fetch(process.env.REACT_APP_END_POINT + '/api/coupon/get-coupon/' + id, {
+        const response = await fetch(REACT_APP_END_POINT_PROD + '/api/coupon/get-coupon/' + id, {
           headers: {
             Authorization: `Bearer ${user.token}`,
             'Content-Type': 'application/json',
@@ -99,7 +101,7 @@ function CouponCreate (props) {
         console.error('Error fetching data:', error);
       }
     };
-    fetchData();
+    if (isEdit)fetchData();
   }, [isEdit,]);
 
   const handleImageChange = (e) => {

@@ -9,8 +9,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * The ReviewController class handles seller review-related operations
+ * such as create review, get review and delete review
+ *
+ * @author Harshpreet Singh
+ * @author Parth Modi
+ */
+
 @RestController
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 @RequestMapping("/api/reviews")
 public class ReviewController {
 

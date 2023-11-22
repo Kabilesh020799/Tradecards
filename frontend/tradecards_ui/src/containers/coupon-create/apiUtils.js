@@ -1,6 +1,9 @@
 /* eslint-disable */
 const user = JSON.parse(localStorage.getItem('userInfo'));
 
+// const REACT_APP_END_POINT_PROD = 'http://localhost:8080';
+const REACT_APP_END_POINT_PROD = 'http://csci5308vm13.research.cs.dal.ca:8080';
+
 const onCouponCreate = (couponTitle, couponDescription, couponVendor, couponValidity,
   couponValue, couponPrice, sold, couponType, couponCategory, couponListingDate,
   couponLocation, userId, categoryId, couponImage) => {
@@ -20,7 +23,7 @@ const onCouponCreate = (couponTitle, couponDescription, couponVendor, couponVali
     categoryID: categoryId,
     couponImage: couponImage,
   };
-  return fetch(process.env.REACT_APP_END_POINT + '/api/coupon/create-coupons', {
+  return fetch(REACT_APP_END_POINT_PROD + '/api/coupon/create-coupons', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json',
       'Authorization': `Bearer ${user.token}` },
@@ -47,7 +50,7 @@ const onCouponEdit = (couponTitle, couponDescription, couponVendor, couponValidi
     couponCategory: couponCategory,
     couponImage: couponImage,
   };
-  return fetch(process.env.REACT_APP_END_POINT + '/api/coupon/update-coupon/' + id, {
+  return fetch(REACT_APP_END_POINT_PROD + '/api/coupon/update-coupon/' + id, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json',
       'Authorization': `Bearer ${user.token}` },

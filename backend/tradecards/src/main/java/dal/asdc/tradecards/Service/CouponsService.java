@@ -5,6 +5,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service interface for managing coupons in the Trade Cards application.
+ * Implemented by classes providing coupon-related functionality.
+ * Annotated with {@link org.springframework.stereotype.Service}.
+ *
+ * @author Harshpreet Singh
+ * @author Parth Modi
+ */
+
 @Service
 public interface CouponsService {
     public CouponsDao createCoupon(CouponsDTO couponsDTO) ;

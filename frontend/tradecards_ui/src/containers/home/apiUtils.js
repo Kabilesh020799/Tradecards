@@ -1,12 +1,13 @@
 import { getStorage } from '../../common-utils';
 
 const user = JSON.parse(getStorage('userInfo'));
-// const REACT_APP_END_POINT = 'http://localhost:8080';
-const REACT_APP_END_POINT_PROD = 'http://localhost:8080';
+// const REACT_APP_END_POINT_PROD = 'http://localhost:8080';
+const REACT_APP_END_POINT_PROD = 'http://csci5308vm13.research.cs.dal.ca:8080';
 
 const getAllCoupons = () => {
   return fetch(REACT_APP_END_POINT_PROD + '/api/coupons', {
     method: 'GET',
+    mode: 'cors',
     headers: { Authorization: `Bearer ${user.token}`, },
   })
     .then((res) => res.json());
@@ -15,6 +16,7 @@ const getAllCoupons = () => {
 const getCouponsByCategory = ({ categoryId, }) => {
   return fetch(REACT_APP_END_POINT_PROD + '/api/coupons', {
     method: 'GET',
+    mode: 'cors',
     headers: { Authorization: `Bearer ${user.token}`, },
   })
     .then((res) => res.json())

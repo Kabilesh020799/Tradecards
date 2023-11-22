@@ -1,5 +1,3 @@
-\*\*
-
 ## TradeCard Project rules for developers
 
 We are going to follow the monorepo approach for our development.

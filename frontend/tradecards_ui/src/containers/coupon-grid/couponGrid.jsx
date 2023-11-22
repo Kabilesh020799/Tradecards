@@ -75,7 +75,6 @@ const CouponGrid = (props) => {
                             >
                               <i
                                 className="fa-solid fa-location-dot"
-                                style={{ marginRight: '12px', }}
                               ></i>
                               {coupon?.couponLocation}
                             </Typography>
@@ -85,7 +84,7 @@ const CouponGrid = (props) => {
                       </CardContent>
                       <CardActions>
                         <Button size="small">{coupon.userName}</Button>
-                        <Button size="small">Buy Now</Button>
+                        <Button size="small">More Info</Button>
                       </CardActions>
                     </Card>
                   </Grid>
