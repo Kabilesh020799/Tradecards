@@ -36,7 +36,7 @@ const ChatModal = (props) => {
         await updateDoc(doc(db, 'userChats', user?.uid), {
           [chatID + '.userInfo']: {
             uid: receiverDetail?.uid,
-            firstName: receiverDetail?.firstName,
+            firstName: receiverDetail?.displayName,
             emailID: receiver?.emailID,
           },
           [chatID + '.date']: serverTimestamp(),
