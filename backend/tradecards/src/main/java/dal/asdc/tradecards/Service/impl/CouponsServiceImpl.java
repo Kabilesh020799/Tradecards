@@ -9,6 +9,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
+/**
+ * Implementation of the {@link dal.asdc.tradecards.Service.CouponsService} interface
+ * providing functionality related to coupon management.
+ *
+ * // Create a new coupon
+ *
+ * @author Harshpreet Singh
+ * @author Parth Modi
+ */
+
 @Service
 public class CouponsServiceImpl implements CouponsService {
 

@@ -22,6 +22,15 @@ import org.springframework.stereotype.Service;
 import dal.asdc.tradecards.Model.DAO.UserDao;
 import dal.asdc.tradecards.Repository.UserRepository;
 
+/**
+ * Implementation of the {@link dal.asdc.tradecards.Service.UserService} interface
+ * providing functionality related to user management.
+ *
+ *
+ * @author Harshpreet Singh
+ * @author Parth Modi
+ */
+
 
 @Service
 public class UserServiceImpl implements UserService {

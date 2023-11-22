@@ -7,6 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+/**
+ * Implementation of the {@link dal.asdc.tradecards.Service.CategoryService} interface
+ * providing functionality related to trade categories.
+ *
+ * // Get all trade categories
+ *
+ * @author Harshpreet Singh
+ */
+
 @Service
 public class CategoryServiceImpl implements CategoryService {
     @Autowired

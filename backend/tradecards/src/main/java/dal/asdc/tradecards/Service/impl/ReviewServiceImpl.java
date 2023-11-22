@@ -14,6 +14,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Implementation of the {@link dal.asdc.tradecards.Service.CouponsService} interface
+ * providing functionality related to user review management.
+ *
+ * @author Harshpreet Singh
+ * @author Parth Modi
+ */
+
 @Service
 public class ReviewServiceImpl implements ReviewService {
 
