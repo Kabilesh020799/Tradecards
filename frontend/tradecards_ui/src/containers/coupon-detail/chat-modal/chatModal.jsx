@@ -97,7 +97,6 @@ const ChatModal = (props) => {
 
   useEffect(() => {
     const unSub = onSnapshot(doc(db, 'chats', data.chatId), (doc) => {
-      console.log(doc.data());
       doc.exists() && setMessages(doc.data().messages);
     });
 
