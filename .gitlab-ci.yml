@@ -4,51 +4,75 @@ variables:
 
 stages:
   - build
-  - test
-  - deploy
+  # - test
+  # - deploy
+  - issue
 
-backend_build:
+smell_detection:
   stage: build
   image: maven:$MAVEN_IMAGE_TAG
   script:
-    - cd backend/tradecards
-    - mvn clean install
+    - echo "Compiling the project"
+    - mkdir smells/
+    - java -jar .gitlab/DesigniteJava.jar -i backend/tradecards -o smells/ -d
   artifacts:
     paths:
-      - backend/tradecards/target/*.jar 
+      - smells/
+      - $CI_PROJECT_DIR
 
-frontend_build:
-  stage: build
-  image: node:$NODE_IMAGE_TAG 
+  stage: issue
+  dependencies:
+    - smell_detection
+  image: "python:3.10"
   script:
-    - cd frontend/tradecards_ui 
-    - npm install
-    - npm run build
-  artifacts:
-    paths:
-      - frontend/tradecards_ui/build 
+    - ls -a smells/
+    - pip install -r .gitlab/requirements.txt
+    - python .gitlab/issue.py $CI_COMMIT_SHA
 
-backend_test:
-  stage: test
-  image: maven:$MAVEN_IMAGE_TAG 
-  script:
-    - cd backend/tradecards 
-    - mvn test
+# backend_build:
+#   stage: build
+#   image: maven:$MAVEN_IMAGE_TAG
+#   script:
+#     - cd backend/tradecards
+#     - mvn clean install
+#   artifacts:
+#     paths:
+#       - backend/tradecards/target/*.jar 
 
-deploy:
-  stage: deploy
-  only: 
-    - dev
-  image: kroniak/ssh-client
-  script:
-    - chmod 400 "${SSH_PRIVATE_KEY}"
-    - scp -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" backend/tradecards/target/tradecards-*.jar student@csci5308vm13.research.cs.dal.ca:~/tradecards.jar
-    - scp -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" -r frontend/tradecards_ui/build/* student@csci5308vm13.research.cs.dal.ca:~/frontend
-    - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "cd ~/frontend && serve -s . > webserver.log 2>&1 &"
-    - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "nohup java -jar tradecards.jar > app.log 2>&1 &"
-    - echo "React app started in background"
-    - echo "Spring Boot application started in the background."
+# frontend_build:
+#   stage: build
+#   image: node:$NODE_IMAGE_TAG 
+#   script:
+#     - cd frontend/tradecards_ui 
+#     - npm install
+#     - npm run build
+#   artifacts:
+#     paths:
+#       - frontend/tradecards_ui/build 
 
-cache:
-  paths:
-    - backend/tradecards/.m2/repository/ 
+# backend_test:
+#   stage: test
+#   image: maven:$MAVEN_IMAGE_TAG 
+#   script:
+#     - cd backend/tradecards 
+#     - mvn test
+
+
+
+# deploy:
+#   stage: deploy
+#   only: 
+#     - dev
+#   image: kroniak/ssh-client
+#   script:
+#     - chmod 400 "${SSH_PRIVATE_KEY}"
+#     - scp -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" backend/tradecards/target/tradecards-*.jar student@csci5308vm13.research.cs.dal.ca:~/tradecards.jar
+#     - scp -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" -r frontend/tradecards_ui/build/* student@csci5308vm13.research.cs.dal.ca:~/frontend
+#     - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "cd ~/frontend && serve -s . > webserver.log 2>&1 &"
+#     - ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY}" student@csci5308vm13.research.cs.dal.ca "nohup java -jar tradecards.jar > app.log 2>&1 &"
+#     - echo "React app started in background"
+#     - echo "Spring Boot application started in the background."
+
+# cache:
+#   paths:
+#     - backend/tradecards/.m2/repository/ 
