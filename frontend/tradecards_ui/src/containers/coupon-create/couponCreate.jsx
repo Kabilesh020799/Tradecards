@@ -9,6 +9,9 @@ import InputHolder from '../login/components/input';
 function CouponCreate (props) {
   const { isEdit, } = props;
 
+  // const REACT_APP_END_POINT_PROD = 'http://localhost:8080';
+  const REACT_APP_END_POINT_PROD = 'http://csci5308vm13.research.cs.dal.ca:8080';
+
   const [couponTitle, setCouponTitle,] = useState('');
   const [couponDescription, setCouponDescription,] = useState('');
   const [couponVendor, setCouponVendor,] = useState('');
@@ -25,8 +28,6 @@ function CouponCreate (props) {
 
   const { id, } = useParams();
 
-  // const REACT_APP_END_POINT_PROD = 'http://localhost:8080';
-  const REACT_APP_END_POINT_PROD = 'http://csci5308vm13.research.cs.dal.ca:8080';
   const couponValueNumber = Number(couponValue);
   const couponPriceNumber = Number(couponPrice);
   const couponCategoryIdNumber = Number(couponCategoryId);
@@ -102,7 +103,7 @@ function CouponCreate (props) {
         console.error('Error fetching data:', error);
       }
     };
-    if (isEdit)fetchData();
+    if (isEdit) fetchData();
   }, [isEdit,]);
 
   const handleImageChange = (e) => {

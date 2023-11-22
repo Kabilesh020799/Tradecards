@@ -23,7 +23,7 @@ const onCouponCreate = (couponTitle, couponDescription, couponVendor, couponVali
     categoryID: categoryId,
     couponImage: couponImage,
   };
-  return fetch(REACT_APP_END_POINT_PROD + '/api/coupon/create-coupons', {
+  return fetch(REACT_APP_END_POINT_PROD+ '/api/coupon/create-coupons', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json',
       'Authorization': `Bearer ${user.token}` },
