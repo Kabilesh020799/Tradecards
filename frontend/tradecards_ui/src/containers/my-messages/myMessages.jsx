@@ -114,7 +114,6 @@ const MyMessages = () => {
   const getFirstLetter = (name) => {
     return name?.[0];
   };
-  console.log(selectedReceiver);
   const onSendMsg = async () => {
     await updateDoc(doc(db, 'chats', data.chatId), {
       messages: arrayUnion({
@@ -162,7 +161,7 @@ const MyMessages = () => {
         >
           <ChatInterface
             messages={messages}
-            receiver={selectedReceiver?.[1]}
+            receiver={selectedReceiver?.[1]?.userInfo}
             sender={user}
           />
         </Typography>
