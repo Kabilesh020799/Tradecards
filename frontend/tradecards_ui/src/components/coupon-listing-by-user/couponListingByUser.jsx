@@ -19,6 +19,9 @@ const CouponListingByUser = (props) => {
   const [selectedCoupon, setSelectedCoupon] = useState(null);
   const [coupons, setCoupons] = useState(couponLists);
 
+  // const REACT_APP_END_POINT_PROD = 'http://localhost:8080';
+  const REACT_APP_END_POINT_PROD = 'http://csci5308vm13.research.cs.dal.ca:8080';
+
   const onEdit = (event) => {
     event.stopPropagation();
     const couponID = event.currentTarget.getAttribute('data-couponid');
@@ -37,7 +40,7 @@ const CouponListingByUser = (props) => {
     const user = JSON.parse(localStorage.getItem('userInfo'));
     const fetchData = async () => {
       try {
-        const response = await fetch(process.env.REACT_APP_END_POINT + '/api/coupon/delete-coupon/' + couponID, {
+        const response = await fetch(REACT_APP_END_POINT_PROD + '/api/coupon/delete-coupon/' + couponID, {
           method: 'DELETE',
           headers: {
             Authorization: `Bearer ${user.token}`,
