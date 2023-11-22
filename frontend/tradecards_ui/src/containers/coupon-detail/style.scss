@@ -82,10 +82,40 @@
 
       &-name {
         display: flex;
+        align-items: center;
+        gap: 20px;
+      }
 
-        &-star {
-          margin-left: 20px;
+      &-popreviews {
+        margin-top: 20px;
+      }
+      &-reviews {
+        max-height: 500px;
+        border: 1px solid hsl(318, 22%, 27%);
+        padding: 20px;
+        margin-right: 20px;
+        overflow-y: scroll;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        &-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          padding-bottom: 20px;
+          border-bottom: 1px solid hsl(318, 22%, 27%);
+
+          &-review {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+          }
         }
+      }
+      &-reviews::-webkit-scrollbar {
+        display: none;
       }
     }
   }

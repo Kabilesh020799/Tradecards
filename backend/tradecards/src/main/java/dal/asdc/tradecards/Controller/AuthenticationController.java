@@ -3,6 +3,7 @@ package dal.asdc.tradecards.Controller;
 import java.util.HashMap;
 
 import dal.asdc.tradecards.Model.DTO.*;
+import dal.asdc.tradecards.Service.EmailContent;
 import dal.asdc.tradecards.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,8 +18,15 @@ import dal.asdc.tradecards.Exception.DuplicateEntryException;
 import dal.asdc.tradecards.Exception.InvalidAccountCredentialsException;
 import dal.asdc.tradecards.Service.EmailService;
 
+/**
+ * The AuthenticationController class handles authentication-related operations
+ * such as user signup, login, account verification, password recovery, OTP verification,
+ * and setting a new password.
+ *
+ * @author Parth Modi
+ */
+
 @RestController
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 @RequestMapping("/api")
 public class AuthenticationController {
 
@@ -31,11 +39,16 @@ public class AuthenticationController {
     @Autowired
     private EmailService emailService;
 
+    private EmailContent emailContent = new EmailContent();
+
     @PostMapping("/signup")
     public ResponseEntity<?> doSignup(@RequestBody UserSignUpDTO userSignUpDTO) throws Exception {
         try {
             HashMap<String, Object> claims = userService.create(userSignUpDTO);
-            emailService.sendEmail((String) claims.get("email"), "Trade Cards Team - Verify your account", "Your OTP for account verification is: " + claims.get("otp"));
+            emailContent.setTo((String) claims.get("email"));
+            emailContent.setSubject("Trade Cards Team - Verify your account");
+            emailContent.setText("Your OTP for account verification is: " + claims.get("otp"));
+            emailService.sendEmail(emailContent);
             return ResponseEntity.status(HttpStatus.CREATED).body(claims);
         } catch(DuplicateEntryException error) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
@@ -69,7 +82,10 @@ public class AuthenticationController {
     public ResponseEntity<?> forgetPasswordRequest(@RequestBody ForgetPasswordDTO forgetPasswordDTO) throws Exception {
         try {
             HashMap<String, Object> tokenClaims = userService.forgetPasswordRequest(forgetPasswordDTO);
-            emailService.sendEmail((String) tokenClaims.get("emailID"), "TradeCards - Forget Password Request", "Your OTP for forget password is: " + tokenClaims.get("otp"));
+            emailContent.setTo((String) tokenClaims.get("emailID"));
+            emailContent.setSubject("TradeCards - Forget Password Request");
+            emailContent.setText("Your OTP for forget password is: " + tokenClaims.get("otp"));
+            emailService.sendEmail(emailContent);
             HashMap<String, Object> responseClaims = new HashMap<String, Object>();
             responseClaims.put("token", tokenClaims.get("token"));
             responseClaims.put("email", tokenClaims.get("emailID"));
