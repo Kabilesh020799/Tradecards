@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Avatar } from '@mui/material';
+import { getStorage } from '../../../../common-utils';
 
 const Chat = (props) => {
   const {
@@ -20,7 +21,7 @@ const Chat = (props) => {
   } else if (message?.senderId === sender?.uid) {
     return (
       <div className='sender-chat chat-style'>
-        <Avatar>{getInitial(receiver?.firstName)}</Avatar>
+        <Avatar>{getInitial(sender?.displayName || JSON.parse(getStorage('userInfo')).firstName)}</Avatar>
         <div className='sender-chat-msg'>{message?.text}</div>
       </div>
     );
@@ -39,6 +40,7 @@ Chat.propTypes = {
   sender: PropTypes.shape({
     uid: PropTypes.string,
     firstName: PropTypes.string,
+    displayName: PropTypes.string,
   }),
 };
 
