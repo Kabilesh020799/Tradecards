@@ -70,7 +70,7 @@ const CouponListing = (props) => {
                       {coupon?.couponDesc}
                     </Typography>
                     {
-                      coupon?.couponImage
+                      coupon?.couponLocation
                         ? (
                           <Typography
                             variant='body2'

@@ -103,6 +103,9 @@ const CouponDetail = () => {
         <div className='coupon-detail-info-desc'>
           {couponInfo?.couponDesc}
         </div>
+        <div className='coupon-detail-info-location'>
+          <div>{couponInfo?.couponLocation}</div>
+        </div>
         <div className='coupon-detail-info-seller'>
           <div style={{ fontWeight: 'bold', marginBottom: '12px', }}>Seller Information</div>
           <div className='coupon-detail-info-seller-name'>

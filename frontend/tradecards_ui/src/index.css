@@ -11,6 +11,9 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

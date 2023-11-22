@@ -7,6 +7,7 @@ const Banner = (props) => {
     slides,
     interval,
   } = props;
+  console.log(props);
   const [current, setCurrent,] = useState(0);
 
   const onSlideChange = (index) => {
@@ -26,6 +27,7 @@ const Banner = (props) => {
         <div
           key={index}
           className={`slide ${index === current ? 'active' : ''}`}
+          onClick={slide?.onClick}
         >
           <img src={slide.image}
             alt={slide.caption} />
