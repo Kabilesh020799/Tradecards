@@ -34,7 +34,7 @@ const ReviewStars = (props) => {
     </div>
   );
 
-  return <div>{!!review && renderStars()}</div>;
+  return <div>{review ? renderStars() : null}</div>;
 };
 
 ReviewStars.propTypes = { review: PropTypes.number.isRequired, };
