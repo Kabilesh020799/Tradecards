@@ -1,4 +1,5 @@
 const cities = [
+  'All location',
   'Halifax',
   'Toronto',
   'Waterloo',

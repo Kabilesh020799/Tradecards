@@ -12,13 +12,15 @@ import { getStorage, setStorage } from '../../common-utils';
 const NavBar = (props) => {
   const { className, } = props;
 
-  const [location, setLocation,] = useState('All location');
+  const [location, setLocation,] = useState('');
   const [categories, setCategories,] = useState([]);
 
   const navigate = useNavigate();
 
   const onLocationChange = (loc) => {
     setLocation(loc);
+    setStorage('location', loc);
+    window.location.reload();
   };
 
   const onLogout = () => {
@@ -37,12 +39,12 @@ const NavBar = (props) => {
 
   useEffect(() => {
     const localLocation = getStorage('location');
-    setLocation(localLocation);
+    if (localLocation !== '') {
+      setLocation(localLocation);
+    } else {
+      setLocation('All location');
+    }
   }, []);
-
-  useEffect(() => {
-    setStorage('location', location);
-  }, [location,]);
 
   return (
     <div className={`${className} nav-bar`}>

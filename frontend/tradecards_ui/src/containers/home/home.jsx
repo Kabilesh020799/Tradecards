@@ -3,20 +3,28 @@ import NavBar from '../../components/nav-bar';
 import Slideshow from '../../components/banner/banner';
 import CouponListing from '../../components/coupon-listing';
 import { getAllCoupons } from './apiUtils';
+import { convertBase64toImage } from '../../common-utils';
+import { useNavigate } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
+import EmptyState from '../../components/empty-state/emptyState';
 
 const Home = (props) => {
-  const [couponsData, setCouponsData,] = useState([]);
+  const [couponsData, setCouponsData,] = useState();
+  const navigate = useNavigate();
+  const [slides, setSlides,] = useState([]);
 
-  const slides = [
-    {
-      image: 'https://seasidefm.com/wp-content/uploads/2023/10/fall-Dance-4.png',
-      caption: 'Slide 1',
-    },
-    {
-      image: 'https://discoverhalifaxns.com/wp-content/uploads/2023/08/88123_Event_Image_fe0e4e08-76a3-46a0-9063-5a3a84e0aee6.jpg',
-      caption: 'Slide 2',
-    },
-  ];
+  useEffect(() => {
+    if (couponsData) {
+      setSlides([
+        ...couponsData?.map((couponData) => (
+          {
+            image: convertBase64toImage(couponData?.couponImage),
+            onClick: () => navigate(`/coupon-detail/${couponData?.couponID}`),
+          }
+        )),
+      ]);
+    }
+  }, [couponsData,]);
 
   useEffect(() => {
     getAllCoupons()
@@ -24,18 +32,38 @@ const Home = (props) => {
   }, []);
 
   return (
-    <div>
+    <div style={{ height: '100%', }}>
       <NavBar />
-      <Slideshow
-        slides={slides}
-        interval={3000}
-      />
-      <div className='coupon-listing'>
-        <CouponListing
-          couponLists={couponsData}
-          isMoreCouponsAvailable={true}
+  {
+    !couponsData
+      ? <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+        <CircularProgress
+          color="secondary"
         />
       </div>
+      : (
+        <>
+          {
+            couponsData?.length
+              ? (
+                  <>
+                    <Slideshow
+                      slides={slides?.slice(0, 5)}
+                      interval={3000}
+                    />
+                    <div className='coupon-listing'>
+                      <CouponListing
+                        couponLists={couponsData}
+                        isMoreCouponsAvailable={true}
+                      />
+                    </div>
+                  </>
+                )
+              : <EmptyState />
+          }
+        </>
+        )
+  }
     </div>
   );
 };
