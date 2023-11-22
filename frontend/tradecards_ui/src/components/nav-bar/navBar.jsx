@@ -26,6 +26,7 @@ const NavBar = (props) => {
   const onLogout = () => {
     signOut(auth);
     navigate('/login');
+    localStorage.clear();
   };
 
   const onClickProfile = () => {

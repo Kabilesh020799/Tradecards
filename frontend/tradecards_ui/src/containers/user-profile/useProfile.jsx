@@ -47,7 +47,7 @@ const UserProfile = () => {
     <div className='user-profile'>
       <NavBar />
       <div className='user-profile-detail'>
-        <span className='user-profile-detail-name'>Hi, {user?.firstName}-{user?.lastName}</span>
+        <span className='user-profile-detail-name'>Hi, {user?.firstName}{user?.lastName ? `-${user?.lastName}` : ''}</span>
       </div>
       <div className='user-profile-account'>
         <div className='user-profile-account-head'>Account Details</div>
