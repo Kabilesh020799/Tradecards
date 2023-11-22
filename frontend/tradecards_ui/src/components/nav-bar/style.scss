@@ -70,11 +70,6 @@
     outline: none;
     border: none;
     border-radius: 8px;
-
-    // restricting the back drop
-    .css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop {
-      background: transparent;
-    }
     
     &-contents {
       height: 100%;
@@ -83,6 +78,8 @@
       justify-content: space-between;
       outline: none;
       border: none;
+      z-index: 10;
+      position: relative;
 
       .location-selector {
         display: flex;
@@ -126,6 +123,8 @@
 
             &-city {
               cursor: pointer;
+              border-right: 1px solid lightgrey;
+              padding-right: 8px;
             }
           }
         }
@@ -139,9 +138,8 @@
       &-footer {
         display: flex;
         border-top: 1px solid rgb(27, 27, 67);
-        padding: 8px 8px;
         justify-content: flex-end;
-
+        padding-top: 20px;
         &-btn {
           margin-right: 12px !important;
           background-color: #7a2727 !important;
