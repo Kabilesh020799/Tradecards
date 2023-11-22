@@ -10,6 +10,7 @@ import { ChatContext } from '../../../context/chatContext';
 import { getStorage } from '../../../common-utils';
 import { v4 as uuid } from 'uuid';
 import ChatInterface from './chat-interface';
+
 const ChatModal = (props) => {
   const {
     receiver,

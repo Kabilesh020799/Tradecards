@@ -62,6 +62,7 @@ const NavBar = (props) => {
             onSignout={onLogout}
             className="nav-bar-components-right-avatar"
             onClickProfile={onClickProfile}
+            onClickMessages={() => navigate('/messages')}
           />
         </div>
       </div>
