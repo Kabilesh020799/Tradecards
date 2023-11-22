@@ -18,8 +18,8 @@ smell_detection:
   artifacts:
     paths:
       - smells/
-      - $CI_PROJECT_DIR
 
+pipenline:
   stage: issue
   dependencies:
     - smell_detection
