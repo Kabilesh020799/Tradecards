@@ -8,7 +8,8 @@ body {
   height: 100vh;
   color: #F2F5F9;
   background: #eae8f6;
-
+  font-weight: 400;
+  font-style: normal;
 }
 
 code {
