@@ -11,7 +11,6 @@ const AuthorizationContextProvider = ({ children, }) => {
   useEffect(() => {
     const reset = onAuthStateChanged(auth, (user) => {
       setUser(user);
-      console.log(user);
     });
     return () => {
       reset();

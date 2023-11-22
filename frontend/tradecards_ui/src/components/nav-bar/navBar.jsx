@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import LocationToggle from './components/location-toggle';
-import SearchBar from '../search-bar';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 import AvatarItem from './components/avatar/avatar';
 import { getCategories } from './apiUtils';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
+import { getStorage, setStorage } from '../../common-utils';
 
 const NavBar = (props) => {
   const { className, } = props;
 
-  const [location, setLocation,] = useState('');
+  const [location, setLocation,] = useState('All location');
   const [categories, setCategories,] = useState([]);
 
   const navigate = useNavigate();
@@ -35,6 +35,15 @@ const NavBar = (props) => {
       .then((res) => setCategories(res));
   }, []);
 
+  useEffect(() => {
+    const localLocation = getStorage('location');
+    setLocation(localLocation);
+  }, []);
+
+  useEffect(() => {
+    setStorage('location', location);
+  }, [location,]);
+
   return (
     <div className={`${className} nav-bar`}>
       <div className='nav-bar-components'>
@@ -44,7 +53,6 @@ const NavBar = (props) => {
           src='/img/logo.png'
           onClick={() => navigate('/home')}
         />
-          <SearchBar onSearch={null}/>
         </div>
         <div className='nav-bar-components-right'>
           <Button

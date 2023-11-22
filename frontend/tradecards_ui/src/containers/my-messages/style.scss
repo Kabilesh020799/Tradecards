@@ -16,7 +16,10 @@
       border-bottom: 1px solid hsla(318, 22%, 27%, 1);
       cursor: pointer;
     }
-    .left-container-user:hover {
+    &-user:hover {
+      background-color:	#eae8f6;
+    }
+    .selected {
       background-color:	#eae8f6;
     }
   }
