@@ -22,7 +22,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-@Table(name = "coupon")
+@Table(name = "coupons")
 public class CouponsDao {
     @Id
     @Column(name = "CouponID")
