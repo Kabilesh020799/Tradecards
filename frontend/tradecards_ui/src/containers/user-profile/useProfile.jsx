@@ -1,20 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.scss';
 import NavBar from '../../components/nav-bar';
 import { getStorage } from '../../common-utils';
 import TabItem from './component/tab';
+import CouponListingByUser from '../../components/coupon-listing-by-user/couponListingByUser';
+import { getCouponsByUser } from '../home/apiUtils';
 import { Box, Modal, TextField, Typography } from '@mui/material';
 import { editUser } from './apiUtils';
 
 const UserProfile = () => {
   const user = JSON.parse(getStorage('userInfo'));
-
+  const userid = user.userId;
+  const [couponsData, setCouponsData,] = useState([]);
   const [isEditField, setIsEditField,] = useState('');
   const [email, setEmail,] = useState('');
   const [password, setPassword,] = useState('');
   const [isPassPrompt, setIsPassPrompt,] = useState(false);
   const [firstName, setFirstName,] = useState('');
   const [lastName, setLastName,] = useState('');
+
+  useEffect(() => {
+    getCouponsByUser({ userid, })
+      .then((res) => setCouponsData(res));
+    console.log(couponsData);
+    console.log(userid);
+  }, []);
 
   const modalStyle = {
     position: 'absolute',
@@ -111,6 +121,12 @@ const UserProfile = () => {
       </div>
       <div className='user-profile-coupons'>
         <TabItem />
+      </div>
+      <div className='coupon-listing'
+        style={{ paddingBottom: '40px', }}>
+        <CouponListingByUser
+          couponLists={couponsData}
+        />
       </div>
       <Modal
         open={isPassPrompt}

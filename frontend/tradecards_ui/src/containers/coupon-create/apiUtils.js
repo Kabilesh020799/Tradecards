@@ -28,7 +28,7 @@ const onCouponCreate = (couponTitle, couponDescription, couponVendor, couponVali
     headers: { 'Content-Type': 'application/json',
       'Authorization': `Bearer ${user.token}` },
     body: JSON.stringify(data),
-  }).then((res) => res.json()).then((res) => console.log(res));
+  }).then((res) => res);
 };
 
 const onCouponEdit = (couponTitle, couponDescription, couponVendor, couponValidity,
@@ -55,7 +55,7 @@ const onCouponEdit = (couponTitle, couponDescription, couponVendor, couponValidi
     headers: { 'Content-Type': 'application/json',
       'Authorization': `Bearer ${user.token}` },
     body: JSON.stringify(data),
-  }).then((res) => res.json()).then((res) => console.log(res));
+  }).then((res) => res);
 };
 
 export { onCouponCreate, onCouponEdit };
