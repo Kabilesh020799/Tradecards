@@ -32,6 +32,7 @@ const CouponGrid = (props) => {
             container
             spacing={{ xs: 3, md: 3, }}
             columns={{ xs: 4, sm: 8, md: 12, }}
+            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}
           >
             {
               !couponsData?.length
