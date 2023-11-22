@@ -54,6 +54,11 @@ function CouponCreate (props) {
 
         const data = await response.json();
         setCouponCategorySelect(data);
+        if (data.length > 0) {
+          const defaultCategory = data[0];
+          setCouponCategory(defaultCategory.categoryName);
+          setCouponCategoryId(defaultCategory.categoryID);
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -99,6 +104,7 @@ function CouponCreate (props) {
         const listingDate = new Date(couponDetails.couponListingDate);
         setCouponListingDate(listingDate.toISOString().slice(0, 10));
         setCouponType(couponDetails.online);
+        setCouponImage(couponDetails.couponImage);
       } catch (error) {
         console.error('Error fetching data:', error);
       }

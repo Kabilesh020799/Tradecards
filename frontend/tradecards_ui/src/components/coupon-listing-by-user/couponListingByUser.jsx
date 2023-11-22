@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { coupons } from '../coupon-listing/constants';
 import { useNavigate } from 'react-router-dom';
 import { convertBase64toImage } from '../../common-utils';
+import { toast } from 'react-toastify';
 import './modal.css';
 
 const CouponListingByUser = (props) => {
@@ -46,6 +47,8 @@ const CouponListingByUser = (props) => {
 
         if (!response.ok) {
           throw new Error('Network response was not ok');
+        } else if (response.ok) {
+          toast.success('Coupon deleted successfully!');
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -117,13 +120,19 @@ const CouponListingByUser = (props) => {
                   </CardContent>
                   <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Button size="small"
-                    onClick={onEdit}
-                    data-couponid={coupon?.couponID}>Edit details</Button>
+                      onClick={onEdit}
+                      data-couponid={coupon?.couponID}>
+                      <i
+                      className="fa-solid fa-pen-to-square"
+                      style={{ color: 'hsl(318, 22%, 27%)', cursor: 'pointer', }}
+                      ></i>
+                    </Button>
+
                     <Button size="small"
                     onClick={onDelete}
                     data-couponid={coupon?.couponID}
                     >
-                      <i className="fa-solid fa-trash" style={{ color: 'red' }}></i>
+                      <i className="fa-solid fa-trash" style={{ color: 'hsl(318, 22%, 27%)' }}></i>
                     </Button>
                     
                   </CardActions>
@@ -141,8 +150,10 @@ const CouponListingByUser = (props) => {
         <div className='modal' onClick={() => setShowModal(false)}>
           <div className='modal-content' onClick={(e) => e.stopPropagation()}>
             <p>Are you sure you want to delete this coupon?</p>
-            <button onClick={confirmDelete}>Yes</button>
-            <button onClick={() => setShowModal(false)}>No</button>
+            <div style={{ display:'flex', justifyContent:'end' }}>
+              <Button variant="contained" onClick={confirmDelete} className='yes'>Yes</Button>
+              <Button variant="text" onClick={() => setShowModal(false)} style={{color:'hsl(318, 22%, 27%)'}}>No</Button>
+            </div>
           </div>
         </div>
       )}
