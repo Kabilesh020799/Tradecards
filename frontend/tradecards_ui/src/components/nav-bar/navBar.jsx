@@ -26,6 +26,7 @@ const NavBar = (props) => {
   const onLogout = () => {
     signOut(auth);
     navigate('/login');
+    localStorage.clear();
   };
 
   const onClickProfile = () => {
@@ -39,7 +40,7 @@ const NavBar = (props) => {
 
   useEffect(() => {
     const localLocation = getStorage('location');
-    if (localLocation !== '') {
+    if (localLocation?.length) {
       setLocation(localLocation);
     } else {
       setLocation('All location');
