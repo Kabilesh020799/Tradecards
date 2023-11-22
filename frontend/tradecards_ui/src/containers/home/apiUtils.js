@@ -10,7 +10,9 @@ const getAllCoupons = () => {
     mode: 'cors',
     headers: { Authorization: `Bearer ${user.token}`, },
   })
-    .then((res) => res.json());
+    .then((res) => res.json())
+    .then((res) => res.filter((resItem) => resItem?.userid !== user?.userId))
+  ;
 };
 
 const getCouponsByCategory = ({ categoryId, }) => {

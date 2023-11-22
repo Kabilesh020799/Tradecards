@@ -86,8 +86,10 @@ const AvatarItem = (props) => {
       <MenuItem onClick={onViewProfile}>
         <Avatar /> My account
       </MenuItem>
-      <MenuItem onClick={onClickMessages}
-        style={{ display: 'flex', gap: '20px', }}>
+      <MenuItem
+        onClick={onClickMessages}
+        style={{ display: 'flex', gap: '20px', }}
+      >
         <i className="fa-regular fa-message"></i>
         My Messages
       </MenuItem>
