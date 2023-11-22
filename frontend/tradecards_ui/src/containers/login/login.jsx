@@ -5,6 +5,11 @@ import { Alert, Button, Snackbar } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { onLogin, onSignup } from './apiUtils';
 import InputHolder from './components/input';
+import { setStorage } from '../../common-utils';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth, db } from '../../firebase';
+import { doc, setDoc } from 'firebase/firestore';
+// import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
 function Login (props) {
   const { isLogin, } = props;
@@ -19,21 +24,48 @@ function Login (props) {
 
   const onSubmit = () => {
     if (isLogin) {
-      onLogin(userName, password).then((res) => {
+      onLogin(userName, password).then(async (res) => {
         if (res.token) {
+          setStorage('userInfo', JSON.stringify(res));
+          navigate('/home');
+          try {
+            await signInWithEmailAndPassword(auth, userName, password);
+          } catch (err) {
+            console.log(err);
+          }
           setTimeout(() => {
             navigate('/home');
           }, 500);
         }
       });
     } else {
-      onSignup(userName, password, firstName, lastName).then((res) => {
+      onSignup(userName, password, firstName, lastName).then(async (res) => {
         if (res.token) {
           navigate('/login');
           setIsSignupSuccess(true);
           setTimeout(() => {
             setIsSignupSuccess(false);
           }, 4000);
+          try {
+            createUserWithEmailAndPassword(auth, res.emailID, password)
+              .then(async (resItem) => {
+                try {
+                  await setDoc(doc(db, 'users', resItem.user.uid), {
+                    uid: resItem.user.uid,
+                    displayName: firstName,
+                    email: res.emailID,
+                  });
+                  await setDoc(doc(db, 'userChats', resItem.user.uid), {});
+                } catch (err) {
+                  console.log(err);
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          } catch (err) {
+            console.log(err);
+          }
         }
       });
     }

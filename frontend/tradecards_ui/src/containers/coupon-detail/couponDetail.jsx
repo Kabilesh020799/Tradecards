@@ -6,12 +6,14 @@ import './style.scss';
 import NavBar from '../../components/nav-bar';
 import { Avatar, Box, Button, InputLabel, MenuItem, Modal, Select, TextField, Typography } from '@mui/material';
 import ReviewStars from '../../components/review-stars';
+import ChatModal from './chat-modal';
 
 const CouponDetail = () => {
   const { couponId, } = useParams();
 
   const [couponInfo, setCouponInfo,] = useState(null);
   const [user, setUser,] = useState({});
+  const [isChatOpened, setIsChatOpened,] = useState(false);
   const [openReviewModa, setOpenReviewModal,] = useState(false);
   const [review, setReview,] = useState('');
   const [rating, setRating,] = useState(0);
@@ -87,6 +89,7 @@ const CouponDetail = () => {
             <Button
               variant='contained'
               className='coupon-detail-image-container-btn'
+              onClick={() => setIsChatOpened(true)}
             >
               Have a chat with seller
             </Button>
@@ -136,6 +139,15 @@ const CouponDetail = () => {
           </div>
         </div>
       </div>
+      {
+        isChatOpened
+          ? <ChatModal
+              isOpen={isChatOpened}
+              onClose={() => setIsChatOpened(false)}
+              receiver={user}
+        />
+          : null
+      }
       {
         openReviewModa && (
           <Modal open={openReviewModa}

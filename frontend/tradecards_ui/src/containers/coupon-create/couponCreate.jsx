@@ -5,9 +5,13 @@ import React, { useState, useEffect } from 'react';
 import { onCouponCreate, onCouponEdit } from './apiUtils';
 import { useNavigate, useParams } from 'react-router-dom';
 import InputHolder from '../login/components/input';
+import { toast } from 'react-toastify';
 
 function CouponCreate (props) {
   const { isEdit, } = props;
+
+  // const REACT_APP_END_POINT_PROD = 'http://localhost:8080';
+  const REACT_APP_END_POINT_PROD = 'http://csci5308vm13.research.cs.dal.ca:8080';
 
   const [couponTitle, setCouponTitle,] = useState('');
   const [couponDescription, setCouponDescription,] = useState('');
@@ -25,8 +29,6 @@ function CouponCreate (props) {
 
   const { id, } = useParams();
 
-  // const REACT_APP_END_POINT_PROD = 'http://localhost:8080';
-  const REACT_APP_END_POINT_PROD = 'http://csci5308vm13.research.cs.dal.ca:8080';
   const couponValueNumber = Number(couponValue);
   const couponPriceNumber = Number(couponPrice);
   const couponCategoryIdNumber = Number(couponCategoryId);
@@ -97,12 +99,11 @@ function CouponCreate (props) {
         const listingDate = new Date(couponDetails.couponListingDate);
         setCouponListingDate(listingDate.toISOString().slice(0, 10));
         setCouponType(couponDetails.online);
-        setCouponImage(couponDetails.couponImage);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
-    if (isEdit)fetchData();
+    if (isEdit) fetchData();
   }, [isEdit,]);
 
   const handleImageChange = (e) => {
@@ -135,12 +136,24 @@ function CouponCreate (props) {
     if (isEdit) {
       onCouponEdit(couponTitle, couponDescription, couponVendor, couponValidity,
         couponValueNumber, couponPriceNumber, sold, couponType, couponCategory,
-        couponListingDate, couponLocation, userId, couponCategoryIdNumber, couponImage, id);
+        couponListingDate, couponLocation, userId, couponCategoryIdNumber, couponImage, id)
+        .then((res) => {
+          if (res) {
+            navigate('/user-profile');
+            toast.success('Coupon edited successfully!');
+          }
+        });
     } else {
       onCouponCreate(couponTitle, couponDescription, couponVendor, couponValidity,
         couponValueNumber, couponPriceNumber, sold, couponType, couponCategory,
-        couponListingDate, couponLocation, userId, couponCategoryIdNumber, couponImage);
-    }
+        couponListingDate, couponLocation, userId, couponCategoryIdNumber, couponImage)
+        .then((res) => {
+          if (res) {
+            navigate('/home');
+            toast.success('Coupon created successfully!');
+          }
+        });
+    };
   };
 
   const onNavigate = () => {
@@ -346,6 +359,7 @@ function CouponCreate (props) {
         >
           {`${'Go back to Home'}`}
         </div>
+
      </div>
     </div>
   );

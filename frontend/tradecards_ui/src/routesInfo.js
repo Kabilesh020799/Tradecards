@@ -7,6 +7,7 @@ import CouponCreate from './containers/coupon-create/couponCreate';
 import CouponDetail from './containers/coupon-detail';
 import UserProfile from './containers/user-profile';
 import CouponGridByUser from './containers/coupon-grid-by-user/couponGridByUser';
+import MyMessages from './containers/my-messages';
 
 const routes = [
   {
@@ -59,7 +60,11 @@ const routes = [
     route: 'user-profile',
     component: <UserProfile />,
   },
-
+  {
+    id: 'my-messages',
+    route: 'messages',
+    component: <MyMessages />,
+  },
 ];
 
 export default routes;
