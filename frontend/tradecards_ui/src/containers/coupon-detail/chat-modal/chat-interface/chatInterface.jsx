@@ -12,14 +12,14 @@ const Chat = (props) => {
 
   if (message?.senderId === receiver?.uid) {
     return (
-      <div className='receiver-chat'>
+      <div className='receiver-chat chat-style'>
         <Avatar>{getInitial(receiver?.firstName)}</Avatar>
         <div className='receiver-chat-msg'>{message?.text}</div>
       </div>
     );
   } else if (message?.senderId === sender?.uid) {
     return (
-      <div className='sender-chat'>
+      <div className='sender-chat chat-style'>
         <Avatar>{getInitial(receiver?.firstName)}</Avatar>
         <div className='sender-chat-msg'>{message?.text}</div>
       </div>
@@ -59,13 +59,12 @@ const ChatInterface = (props) => {
     <div className='chat-interface'>
       {
         messages?.map((message) => (
-          <div key={message?.id}>
-            <Chat
-              message={message}
-              receiver={receiver}
-              sender={sender}
-            />
-          </div>
+          <Chat
+            message={message}
+            receiver={receiver}
+            sender={sender}
+            key={message?.id}
+          />
         ))
       }
     </div>

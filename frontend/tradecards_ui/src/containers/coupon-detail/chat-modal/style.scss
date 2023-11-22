@@ -13,9 +13,19 @@
     }
   }
   &-description {
-
+    flex: 1;
+    overflow: auto;
+    padding-bottom: 12px;
+  }
+  &-description::-webkit-scrollbar {
+    display: none;
   }
   &-sender {
-    
+    display: flex;
+    align-items: center;
+
+    &-input {
+      flex: 1;
+    }
   }
 }

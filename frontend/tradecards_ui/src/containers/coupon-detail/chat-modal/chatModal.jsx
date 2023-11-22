@@ -22,6 +22,7 @@ const ChatModal = (props) => {
   const [chats, setChats,] = useState([]);
   const [messages, setMessages,] = useState([]);
   const [receiverDetails, setReceiverDetails,] = useState({});
+  const [newChat, setNewChat,] = useState('');
 
   const handleChats = async (receiverDetail) => {
     const chatID = user?.uid > receiverDetail?.uid
@@ -83,8 +84,6 @@ const ChatModal = (props) => {
     user?.uid && getChats();
   }, [user?.uid,]);
 
-  console.log(data, messages);
-
   useEffect(() => {
     if (Object.entries(chats)?.length) dispatch({ type: 'CHANGE_USER', payload: Object.entries(chats)?.[0]?.[1]?.userInfo, });
   }, [chats,]);
@@ -114,11 +113,12 @@ const ChatModal = (props) => {
     await updateDoc(doc(db, 'chats', data.chatId), {
       messages: arrayUnion({
         id: uuid(),
-        text: 'ji',
+        text: newChat,
         senderId: user?.uid,
         date: Timestamp.now(),
       }),
     });
+    setNewChat('');
   };
 
   return (
@@ -151,7 +151,10 @@ const ChatModal = (props) => {
         <div className='chat-modal-sender'>
           <TextField
             type='text'
-            onChange={null}
+            onChange={(e) => setNewChat(e.target.value)}
+            value={newChat}
+            className='chat-modal-sender-input'
+            onKeyDown={(e) => { if (e.key === 'Enter') onSendMsg(); }}
           />
           <Button onClick={onSendMsg}><i className="fa-solid fa-paper-plane"></i></Button>
         </div>

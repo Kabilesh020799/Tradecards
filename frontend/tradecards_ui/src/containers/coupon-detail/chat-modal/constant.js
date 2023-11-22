@@ -7,7 +7,11 @@ const modalStyle = {
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
+  height: 500,
   p: 4,
+  display: 'flex',
+  justifyContent: 'space-between',
+  flexDirection: 'column',
 };
 
 export { modalStyle, };
