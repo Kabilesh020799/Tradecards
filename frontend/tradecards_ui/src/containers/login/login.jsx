@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Alert, Button, Snackbar } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -9,16 +9,38 @@ import { setStorage } from '../../common-utils';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
 // import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+const validateForm = ({ password, }) => {
+  const validation = { password: false, };
+  if (password.length <= 6) {
+    validation.password = 'Password must be atleast 7 characters long.';
+  } else {
+    validation.password = false;
+  }
+  const isValid = Object.keys(validation).reduce(
+    (prev, fieldKey) => prev && !validation[fieldKey],
+    true
+  );
+  return {
+    messages: validation,
+    isValid,
+  };
+};
 
 function Login (props) {
   const { isLogin, } = props;
 
   const [userName, setUserName,] = useState('');
   const [password, setPassword,] = useState('');
+  const [messages, setMessages,] = useState({});
   const [firstName, setFirstName,] = useState('');
   const [lastName, setLastName,] = useState('');
   const [isSignupSuccess, setIsSignupSuccess,] = useState('');
 
+  const isPasswordValid = useMemo(() => {
+    if (password.length <= 6) return false;
+    return true;
+  }, [password,]);
+  console.log({ isPasswordValid, });
   const navigate = useNavigate();
 
   const onSubmit = () => {
@@ -38,6 +60,9 @@ function Login (props) {
         }
       });
     } else {
+      const { messages, isValid, } = validateForm({ password, });
+      setMessages(messages);
+      if (!isValid) return;
       onSignup(userName, password, firstName, lastName).then(async (res) => {
         if (res.token) {
           navigate('/login');
@@ -64,80 +89,69 @@ function Login (props) {
 
   return (
     <div className='login-wrapper '>
-
-     <div className='login'>
-      <div className='login-image'>
-          <img
-            src='/img/logo.png'
-          />
+      <div className='login'>
+        <div className='login-image'>
+          <img src='/img/logo.png' />
         </div>
-      {isLogin
-        ? (
-              <div className='login-heading'>Log In</div>
-          )
-        : (
-              <div className='login-heading'>Sign up</div>
-          )}
+        {isLogin
+          ? (
+          <div className='login-heading'>Log In</div>
+            )
+          : (
+          <div className='login-heading'>Sign up</div>
+            )}
         <InputHolder
           value={userName}
           onChange={setUserName}
-          placeholder="Email Id"
+          placeholder='Email Id'
         />
         <InputHolder
           value={password}
           onChange={setPassword}
           type='password'
-          placeholder="Password"
+          placeholder='Password'
         />
-        {
-          isLogin === false && (
-            <>
-              <InputHolder
-                value={firstName}
-                onChange={setFirstName}
-                type='text'
-                placeholder="First Name"
-              />
-              <InputHolder
-                value={lastName}
-                onChange={setLastName}
-                type='text'
-                placeholder="Last Name"
-              />
-            </>
-          )
-        }
-        <Button
-          variant="contained"
+        {isLogin === false && messages.password && (
+          <div>{messages.password}</div>
+        )}
+
+        {isLogin === false && (
+          <>
+            <InputHolder
+              value={firstName}
+              onChange={setFirstName}
+              type='text'
+              placeholder='First Name'
+            />
+            <InputHolder
+              value={lastName}
+              onChange={setLastName}
+              type='text'
+              placeholder='Last Name'
+            />
+          </>
+        )}
+        <Button variant='contained'
           onClick={onSubmit}
-          className='login-submit'
-        >
+          className='login-submit'>
           Submit
         </Button>
-        <div
-          onClick={onNavigate}
-          className='login-switch'
-        >
+        <div onClick={onNavigate}
+          className='login-switch'>
           {`${isLogin ? 'Do you want to Signup?' : 'Have an account? Login'}`}
         </div>
-        <div
-          onClick={onForgotPasswordNavigate}
-          className='login-switch'
-        >
+        <div onClick={onForgotPasswordNavigate}
+          className='login-switch'>
           {'Forgot password?'}
         </div>
-        <Snackbar
-          open={isSignupSuccess}
-          autoHideDuration={4000}
-        >
-        <Alert
-          severity="success"
-          sx={{ width: '100%', }}
-        >
-          This is a success message!
-        </Alert>
-      </Snackbar>
-     </div>
+        <Snackbar open={isSignupSuccess}
+          autoHideDuration={4000}>
+          <Alert severity='success'
+            sx={{ width: '100%', }}>
+            This is a success message!
+          </Alert>
+        </Snackbar>
+      </div>
     </div>
   );
 }
