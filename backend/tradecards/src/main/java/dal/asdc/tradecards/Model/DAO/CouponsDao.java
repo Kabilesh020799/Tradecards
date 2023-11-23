@@ -6,10 +6,23 @@ import lombok.Setter;
 
 import java.util.Date;
 
+/**
+ * CouponsDao represents a data access object (DAO) for managing coupons in the Trade Cards application.
+ * Annotated with JPA for database persistence and Lombok for automatic getter and setter generation.
+ * Corresponds to the "coupon" table in the database.
+ *
+ * <p>Properties include CouponID, CouponName, CouponDesc, ExpiryDate, CouponValue, CouponSellingPrice, isSold, isOnline,
+ * CouponCategory, CouponListingDate, CouponLocation, userid, CategoryID, and CouponImage.
+ * Includes methods for setting sold and online status.</p>
+ *
+ * @author Harshpreet Singh
+ * @author Parth Modi
+ */
+
 @Entity
 @Getter
 @Setter
-@Table(name = "coupon")
+@Table(name = "coupons")
 public class CouponsDao {
     @Id
     @Column(name = "CouponID")

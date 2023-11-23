@@ -1,5 +1,18 @@
 package dal.asdc.tradecards.Model.DTO;
 
+
+/**
+ * The EditUserRequestDTO class represents a data transfer object (DTO)
+ * for editing user information in the Trade Cards application.
+ *
+ * <p>This class encapsulates the details of user information that can be edited,
+ * including email ID, first name, last name, and password.</p>
+ *
+ * <p>The class provides getter and setter methods for accessing and modifying these properties.</p>
+ *
+ * @author Parth Modi
+ */
+
 public class EditUserRequestDTO {
     private String emailID;
     private String firstName;

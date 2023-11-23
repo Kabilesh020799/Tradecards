@@ -7,7 +7,7 @@ import { getStorage } from '../../../../common-utils';
 import PropTypes from 'prop-types';
 
 const AvatarItem = (props) => {
-  const { onSignout, className, onClickProfile, } = props;
+  const { onSignout, className, onClickProfile, onClickMessages, } = props;
 
   const [anchorEl, setAnchorEl,] = useState(null);
   const open = Boolean(anchorEl);
@@ -86,6 +86,13 @@ const AvatarItem = (props) => {
       <MenuItem onClick={onViewProfile}>
         <Avatar /> My account
       </MenuItem>
+      <MenuItem
+        onClick={onClickMessages}
+        style={{ display: 'flex', gap: '20px', }}
+      >
+        <i className="fa-regular fa-message"></i>
+        My Messages
+      </MenuItem>
       <MenuItem onClick={onLogout}>
         <ListItemIcon>
           <i className="fa-solid fa-right-from-bracket"></i>
@@ -101,6 +108,7 @@ AvatarItem.propTypes = {
   onSignout: PropTypes.func.isRequired,
   className: PropTypes.string,
   onClickProfile: PropTypes.func.isRequired,
+  onClickMessages: PropTypes.func.isRequired,
 };
 AvatarItem.defaultProps = { className: '', };
 

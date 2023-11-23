@@ -11,8 +11,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * The AuthenticationController class handles coupon-related operations
+ * such as create coupon, get all coupons, get coupon by id, delete coupon and edit coupon
+ *
+ * @author Harshpreet Singh
+ * @author Parth Modi
+ */
+
 @RestController
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 @RequestMapping("/api")
 public class CouponsController {
 

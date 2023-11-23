@@ -5,5 +5,8 @@
   &-list {
     margin-top: 20px;
     margin-left: 20px;
+    height: calc(100vh - 113px);
+    justify-content: center;
+    align-items: center;
   }
 }

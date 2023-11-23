@@ -1,5 +1,6 @@
 package dal.asdc.tradecards.Service.impl;
 
+import dal.asdc.tradecards.Exception.DuplicateEntryException;
 import dal.asdc.tradecards.Exception.OTPVerificationFailed;
 import dal.asdc.tradecards.Exception.OTPVerificationFailedException;
 import dal.asdc.tradecards.Model.DAO.UserDao;
@@ -13,8 +14,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
@@ -352,7 +355,7 @@ public class UserServiceImplTest {
     @Test
     void testOTPVerificationWithCorrectOTP() {
         UserServiceImpl userService = new UserServiceImpl();
-        userService.userOTP = 123456;
+        userService.setUserOTP(123456);
 
         // Creating a DTO with correct OTP
         VerifyOTPDTO correctOtpDTO = new VerifyOTPDTO();
@@ -370,7 +373,7 @@ public class UserServiceImplTest {
     @Test
     void testOTPVerificationWithIncorrectOTP() {
         UserServiceImpl userService = new UserServiceImpl();
-        userService.userOTP = 123456;
+        userService.setUserOTP(123456);
 
         // Creating a DTO with incorrect OTP
         VerifyOTPDTO incorrectOtpDTO = new VerifyOTPDTO();

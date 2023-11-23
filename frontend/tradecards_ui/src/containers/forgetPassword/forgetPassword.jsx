@@ -2,7 +2,7 @@
 import { Button } from '@mui/material';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { onForgotPassword } from './apiUtils';
+import { onForgotPassword, onSendOtp, onSetNewPassword } from './apiUtils';
 import { useNavigate } from 'react-router-dom';
 import InputHolder from '../login/components/input';
 
@@ -12,10 +12,24 @@ function ForgetPassword (props) {
   const [email, setEmail,] = useState('');
   const [confirmation, setConfirmation,] = useState('');
   const navigate = useNavigate();
+  const [otp, setOtp,] = useState('');
+  const [newPass, setNewPass,] = useState('');
 
   const onSubmit = () => {
-    onForgotPassword(email);
-    setConfirmation('Password reset link sent!');
+    if (confirmation === 'Password reset link sent!') {
+      onSendOtp({ email, otp, }).then((res) => {
+        setConfirmation('Otp setup successful');
+      });
+    } else if (confirmation === 'Otp setup successful') {
+      onSetNewPassword({ email, newPass, }).then(res => {
+        setConfirmation('New password setup succesfully');
+        navigate('/login');
+      });
+    } else {
+      onForgotPassword(email).then(res => {
+        setConfirmation('Password reset link sent!');
+      });
+    }
   };
 
   const onNavigate = () => {
@@ -23,6 +37,36 @@ function ForgetPassword (props) {
       navigate('/forget-password');
     } else {
       navigate('/login');
+    }
+  };
+
+  const getValue = () => {
+    if (confirmation === 'Password reset link sent!') {
+      return otp;
+    } else if (confirmation === 'Otp setup successful') {
+      return newPass;
+    } else {
+      return email;
+    }
+  };
+
+  const getOnchange = (val) => {
+    if (confirmation === 'Password reset link sent!') {
+      setOtp(val);
+    } else if (confirmation === 'Otp setup successful') {
+      setNewPass(val);
+    } else {
+      setEmail(val);
+    }
+  };
+
+  const getPlaceHolder = () => {
+    if (confirmation === 'Password reset link sent!') {
+      return 'Your OTP please';
+    } else if (confirmation === 'Otp setup successful') {
+      return 'Your new Password';
+    } else {
+      return 'Your registered email address';
     }
   };
 
@@ -34,11 +78,12 @@ function ForgetPassword (props) {
             src='/img/logo.png'
           />
         </div>
-        <div className='login-heading'>Enter your email below:</div>
+        { confirmation ? <div className='login-heading'>Enter your OTP</div> : <div className='login-heading'>Enter your email below:</div> }
         <InputHolder
-          value={email}
-          onChange={setEmail}
-          placeholder="Your registered email address"
+          value={getValue()}
+          onChange={getOnchange}
+          placeholder={getPlaceHolder()}
+          type={confirmation === 'Otp setup successful' ? 'password' : 'text'}
         />
         <div className='login-switch'>
           {confirmation}

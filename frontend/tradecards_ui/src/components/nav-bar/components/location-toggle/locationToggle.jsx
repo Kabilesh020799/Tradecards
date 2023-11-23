@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { APIKEY } from '../../constants';
 import PropTypes from 'prop-types';
-import { Button, Modal } from '@mui/material';
+import { Box, Button, Modal } from '@mui/material';
 import LocationSelector from '../location-selector/locationSelector';
 
 const LocationToggle = (props) => {
@@ -17,6 +17,22 @@ const LocationToggle = (props) => {
     enableHighAccuracy: true,
     timeout: 5000,
     maximumAge: 0,
+  };
+
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
+    border: 'none',
+    borderRadius: '8px',
+    outline: 'none',
   };
 
   // Gets the current location fromt the gps signal
@@ -79,36 +95,32 @@ const LocationToggle = (props) => {
       <Modal
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        className='nav-bar-modal'
+        sx={{ border: 'none', borderRadius: '8px', outline: 'none', }}
       >
-        <div className='nav-bar-modal-contents'>
-          {
-            isModalOpen
-              ? (
-                  <LocationSelector
-                    onDetectLocation={onDetectLocation}
-                    onLocationChange={onClickLocation}
-                    error={error}
-                  />
-                )
-              : null
-          }
-          <div className='nav-bar-modal-contents-footer'>
-            <Button
-              onClick={() => setIsModalOpen(false)}
-              variant='outlined'
-              className='nav-bar-modal-contents-footer-btn cancel'
-            >
-              Cancel
-            </Button>
-            <Button
-              variant='contained'
-              className='nav-bar-modal-contents-footer-btn'
-            >
-              Submit
-            </Button>
+        <Box sx={{ ...style, width: 550, height: 250, }}>
+          <div className='nav-bar-modal-contents'>
+            {
+              isModalOpen
+                ? (
+                    <LocationSelector
+                      onDetectLocation={onDetectLocation}
+                      onLocationChange={onClickLocation}
+                      error={error}
+                    />
+                  )
+                : null
+            }
+            <div className='nav-bar-modal-contents-footer'>
+              <Button
+                onClick={() => setIsModalOpen(false)}
+                variant='outlined'
+                className='nav-bar-modal-contents-footer-btn cancel'
+              >
+                Cancel
+              </Button>
+            </div>
           </div>
-        </div>
+        </Box>
       </Modal>
     </div>
   );

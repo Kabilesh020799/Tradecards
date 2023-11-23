@@ -70,7 +70,7 @@ const CouponListing = (props) => {
                       {coupon?.couponDesc}
                     </Typography>
                     {
-                      coupon?.couponImage
+                      coupon?.couponLocation
                         ? (
                           <Typography
                             variant='body2'
@@ -86,7 +86,7 @@ const CouponListing = (props) => {
                   </CardContent>
                   <CardActions>
                     <Button size="small">{coupon.userName}</Button>
-                    <Button size="small">Buy Now</Button>
+                    <Button size="small">More Info</Button>
                   </CardActions>
                 </Card>
               </Grid>
