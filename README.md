@@ -20,6 +20,8 @@ What sets TradeCards apart is the ability for users to seamlessly exchange coupo
 
 [![tradecards](Images/couponpage_tradecards.png)](http://csci5308vm13.research.cs.dal.ca/)
 
+[![tradecards](Images/chat_tradecards.png)](http://csci5308vm13.research.cs.dal.ca/)
+
 ## Dependencies
 
 List of dependencies used in the project:
@@ -148,23 +150,25 @@ Make sure you have Node.js and npm installed.
 2. **Deploy:**
    java -jar /path/to/deployment/directory/tradecards.jar
 
-
 ### Development Team
 
 Meet the amazing individuals behind TradeCards:
 
 1. **Harshpreet Singh**
-   - *Role*: Backend Developer
-   - *GitLab*: [@harshpreet](https://git.cs.dal.ca/harshpreet)
+
+   - _Role_: Backend Developer
+   - _GitLab_: [@harshpreet](https://git.cs.dal.ca/harshpreet)
 
 2. **Jayrajsinh Mahavirsinh Jadeja**
-   - *Role*: Frontend Developer
-   - *GitLab*: [@jjadeja](https://git.cs.dal.ca/jjadeja)
+
+   - _Role_: Frontend Developer
+   - _GitLab_: [@jjadeja](https://git.cs.dal.ca/jjadeja)
 
 3. **Kabilesh Ravi chandran**
-   - *Role*: Frontend Developer
-   - *GitLab*: [@kchandran](https://git.cs.dal.ca/kchandran)
+
+   - _Role_: Frontend Developer
+   - _GitLab_: [@kchandran](https://git.cs.dal.ca/kchandran)
 
 4. **Parth Pinakin Modi**
-   - *Role*: Backend Developer
-   - *GitLab*: [@ppmodi](https://git.cs.dal.ca/ppmodi)
+   - _Role_: Backend Developer
+   - _GitLab_: [@ppmodi](https://git.cs.dal.ca/ppmodi)
