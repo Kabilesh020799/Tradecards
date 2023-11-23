@@ -11,11 +11,14 @@ backend_build:
   stage: build
   image: maven:$MAVEN_IMAGE_TAG
   script:
+    - mkdir smells/
+    - java -jar .gitlab/DesigniteJava.jar -i backend/tradecards -o smells/ -d
     - cd backend/tradecards
     - mvn clean install
   artifacts:
     paths:
       - backend/tradecards/target/*.jar 
+      - smells
 
 frontend_build:
   stage: build
@@ -34,17 +37,6 @@ backend_test:
   script:
     - cd backend/tradecards 
     - mvn test
-
-smell_detection:
-  stage: build
-  image: maven:$MAVEN_IMAGE_TAG
-  script:
-    - echo "Compiling the project"
-    - mkdir smells/
-    - java -jar .gitlab/DesigniteJava.jar -i backend/tradecards -o smells/ -d
-  artifacts:
-    paths:
-      - smells/
 
 deploy:
   stage: deploy
