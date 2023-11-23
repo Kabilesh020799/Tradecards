@@ -55,7 +55,7 @@ deploy:
 smell_issue_creations:
   stage: deploy
   dependencies:
-    - smell_detection
+    - backend_build
   image: "python:3.10"
   script:
     - ls -a smells/
