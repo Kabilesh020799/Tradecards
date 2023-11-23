@@ -41,7 +41,7 @@ backend_test:
 deploy:
   stage: deploy
   only: 
-    - dev
+    - main
   image: kroniak/ssh-client
   script:
     - chmod 400 "${SSH_PRIVATE_KEY}"
@@ -54,6 +54,8 @@ deploy:
 
 smell_issue_creations:
   stage: deploy
+  only:
+    - main
   dependencies:
     - backend_build
   image: "python:3.10"
