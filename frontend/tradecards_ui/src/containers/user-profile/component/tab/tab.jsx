@@ -21,8 +21,6 @@ const TabItem = () => {
           >
             <Tab value="one"
               label="My coupons" />
-            <Tab value="two"
-              label="My purchases" />
           </Tabs>
         </Box>
   );

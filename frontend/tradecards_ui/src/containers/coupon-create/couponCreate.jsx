@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { onCouponCreate, onCouponEdit } from './apiUtils';
 import { useNavigate, useParams } from 'react-router-dom';
 import InputHolder from '../login/components/input';
+import { toast } from 'react-toastify';
 
 function CouponCreate (props) {
   const { isEdit, } = props;
@@ -53,6 +54,11 @@ function CouponCreate (props) {
 
         const data = await response.json();
         setCouponCategorySelect(data);
+        if (data.length > 0) {
+          const defaultCategory = data[0];
+          setCouponCategory(defaultCategory.categoryName);
+          setCouponCategoryId(defaultCategory.categoryID);
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -136,12 +142,24 @@ function CouponCreate (props) {
     if (isEdit) {
       onCouponEdit(couponTitle, couponDescription, couponVendor, couponValidity,
         couponValueNumber, couponPriceNumber, sold, couponType, couponCategory,
-        couponListingDate, couponLocation, userId, couponCategoryIdNumber, couponImage, id);
+        couponListingDate, couponLocation, userId, couponCategoryIdNumber, couponImage, id)
+        .then((res) => {
+          if (res) {
+            navigate('/user-profile');
+            toast.success('Coupon edited successfully!');
+          }
+        });
     } else {
       onCouponCreate(couponTitle, couponDescription, couponVendor, couponValidity,
         couponValueNumber, couponPriceNumber, sold, couponType, couponCategory,
-        couponListingDate, couponLocation, userId, couponCategoryIdNumber, couponImage);
-    }
+        couponListingDate, couponLocation, userId, couponCategoryIdNumber, couponImage)
+        .then((res) => {
+          if (res) {
+            navigate('/home');
+            toast.success('Coupon created successfully!');
+          }
+        });
+    };
   };
 
   const onNavigate = () => {
@@ -347,6 +365,7 @@ function CouponCreate (props) {
         >
           {`${'Go back to Home'}`}
         </div>
+
      </div>
     </div>
   );

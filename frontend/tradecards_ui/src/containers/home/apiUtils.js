@@ -13,7 +13,7 @@ const getAllCoupons = () => {
   })
     .then((res) => res.json())
     .then((res) => res.filter((resItem) => resItem?.userid !== user?.userId))
-    .then((res) => res.filter((resItem) => resItem?.couponLocation === location || location === 'All location'))
+    .then((res) => res.filter((resItem) => resItem?.couponLocation === location || location === 'All location' || !location))
   ;
 };
 
@@ -28,10 +28,26 @@ const getCouponsByCategory = ({ categoryId, }) => {
       if (categoryId) {
         console.log(res.filter((resItem) => resItem.categoryID === Number(categoryId))
           .filter((resItem1) => resItem1?.userid !== user?.userId)
-          .filter((resItem1) => resItem1?.couponLocation === location || location === 'All location'));
+          .filter((resItem1) => resItem1?.couponLocation === location || location === 'All location' || !location));
         return res.filter((resItem) => resItem.categoryID === Number(categoryId))
           .filter((resItem1) => resItem1?.userid !== user?.userId)
-          .filter((resItem1) => resItem1?.couponLocation === location || location === 'All location');
+          .filter((resItem1) => resItem1?.couponLocation === location || location === 'All location' || !location);
+      } else {
+        return res;
+      }
+    });
+};
+
+const getCouponsByUser = ({ userid, }) => {
+  return fetch(REACT_APP_END_POINT_PROD + '/api/coupons', {
+    method: 'GET',
+    mode: 'cors',
+    headers: { Authorization: `Bearer ${user.token}`, },
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      if (userid) {
+        return res.filter((resItem) => resItem.userid === Number(userid));
       } else {
         return res;
       }
@@ -41,4 +57,5 @@ const getCouponsByCategory = ({ categoryId, }) => {
 export {
   getAllCoupons,
   getCouponsByCategory,
+  getCouponsByUser,
 };

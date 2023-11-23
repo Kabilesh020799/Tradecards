@@ -48,7 +48,6 @@ function Login (props) {
       onLogin(userName, password).then(async (res) => {
         if (res.token) {
           setStorage('userInfo', JSON.stringify(res));
-          navigate('/home');
           try {
             await signInWithEmailAndPassword(auth, userName, password);
           } catch (err) {
@@ -56,7 +55,7 @@ function Login (props) {
           }
           setTimeout(() => {
             navigate('/home');
-          }, 500);
+          }, 1000);
         }
       });
     } else {
