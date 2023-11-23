@@ -12,7 +12,7 @@ import { auth } from '../../firebase';
 const validateForm = ({ password, }) => {
   const validation = { password: false, };
   if (password.length <= 6) {
-    validation.password = 'Password must be atleast 7 characters long.';
+    validation.password = 'Password must be atleast 7 characters long';
   } else {
     validation.password = false;
   }
