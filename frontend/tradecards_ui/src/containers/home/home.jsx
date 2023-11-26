@@ -3,7 +3,7 @@ import NavBar from '../../components/nav-bar';
 import Slideshow from '../../components/banner/banner';
 import CouponListing from '../../components/coupon-listing';
 import { getAllCoupons } from './apiUtils';
-import { convertBase64toImage } from '../../common-utils';
+import { convertBase64toImage, getStorage } from '../../common-utils';
 import { useNavigate } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import EmptyState from '../../components/empty-state/emptyState';
@@ -27,6 +27,9 @@ const Home = (props) => {
   }, [couponsData,]);
 
   useEffect(() => {
+    if (!getStorage('userInfo')) {
+      window.location.reload();
+    }
     getAllCoupons()
       .then((res) => setCouponsData(res));
   }, []);

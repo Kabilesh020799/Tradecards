@@ -166,9 +166,9 @@ Meet the amazing individuals behind TradeCards:
 
 3. **Kabilesh Ravi chandran**
 
-   - _Role_: Frontend Developer
+   - _Role_: Fullstack Developer
    - _GitLab_: [@kchandran](https://git.cs.dal.ca/kchandran)
 
 4. **Parth Pinakin Modi**
-   - _Role_: Backend Developer
+   - _Role_: Fullstack Developer
    - _GitLab_: [@ppmodi](https://git.cs.dal.ca/ppmodi)
