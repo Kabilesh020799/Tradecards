@@ -1,1 +1,23 @@
-node_modules
+# Local environment and secret files
+.env
+.env.*
+!.env.example
+
+# Dependencies and generated build output
+node_modules/
+target/
+*.class
+
+# Runtime logs
+logs/
+*.log
+*.log.*
+
+# IDE metadata and local run configurations
+.idea/
+.run/
+*.iml
+.vscode/
+
+# OS metadata
+.DS_Store

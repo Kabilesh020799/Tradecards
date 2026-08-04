@@ -1,174 +1,239 @@
-<p align="center">
-    <img align="center" src="Images/tradecards.png" alt="tradecards">
-</p>
+# TradeCards
+
+TradeCards is a marketplace for discovering, listing, and exchanging coupons.
+Users can create accounts, publish coupons, browse offers from other users, chat
+about a listing, and leave seller reviews after an exchange.
+
+▶ **[Watch the two-minute product walkthrough](docs/walkthrough/tradecards-walkthrough.mp4)**
+or [read the accessible transcript](docs/walkthrough/README.md).
+
+## Engineering highlights
+
+- Full-stack monorepo with a React frontend and Java 17 Spring Boot REST API
+- JWT-based authentication with registration, account verification, and password
+  recovery flows
+- Layered backend architecture separating controllers, services, repositories,
+  DTOs, and persistence models
+- End-to-end marketplace capabilities covering coupon search, listings, seller
+  profiles, and reviews
+- Real-time user messaging implemented with Firebase Authentication and Firestore
+- Automated backend test suite with an isolated in-memory database
+- GitLab CI pipeline for repeatable build and test automation
+- Documented Designite code-quality analysis comparing architecture, design, and
+  implementation smells before and after refactoring
+
+## My contribution — Kabilesh Ravi Chandran
+
+I primarily owned frontend development and integration for TradeCards, alongside
+targeted backend, testing, security, and CI contributions:
+
+- Built major React experiences, including navigation and geolocation controls,
+  coupon search and listings, coupon details, user profiles, reviews, password
+  recovery, loading states, and empty states.
+- Implemented the Firebase-backed messaging experience, including seller
+  conversations, chat modals, message routes, authorization context, and the
+  **My Messages** interface.
+- Integrated the frontend with Spring Boot APIs for login, registration, coupon
+  discovery, coupon details, profile editing, reviews, and password recovery.
+- Contributed to authentication and security integration through login and
+  authorization state, Firebase chat authentication, protected interactions, and
+  backend CORS/security configuration.
+- Contributed coupon retrieval behavior across `CouponsController`,
+  `CouponsService`, and its service implementation.
+- Added coupon-service tests and helped validate coupon API behavior.
+- Configured and iterated on GitLab CI, including automated Designite code-smell
+  analysis and before/after code-quality reporting used to assess refactoring.
+- Improved usability and visual consistency through location filtering,
+  responsive styling, design-system updates, and integration fixes.
+
+## Features
+
+- Account registration, authentication, verification, and password recovery
+- Coupon creation, editing, browsing, and seller-specific listings
+- Category-based coupon discovery
+- Real-time listing conversations powered by Firebase
+- Seller profiles and reviews
+- Email notifications for account and password-recovery workflows
+
+## Product walkthrough
+
+### 1. Homepage and coupon discovery
+
+Search available offers, filter by category or location, and browse recommended
+coupon listings from the marketplace homepage.
 
 <p align="center">
-  <a href="https://git.cs.dal.ca/courses/2023-fall/csci-5308/Group13/-/pipelines">
-    <img alt="Build" src="https://github.com/cryptomator/cryptomator/workflows/Build/badge.svg">
-  </a>
+  <img src="Images/homepage_tradecards.png" width="960" alt="TradeCards homepage showing search, category filters, location selection, and recommended coupons">
 </p>
+<p align="center"><em>Discover coupons through search, categories, recommendations, and location filters.</em></p>
 
-## Introduction
+### 2. Coupon details and reviews
 
-TradeCards is an innovative platform designed for coupon enthusiasts and savvy shoppers alike. With TradeCards, users can easily sign up, showcase, and sell their coupons, creating a dynamic marketplace for incredible savings. Not only can users browse a diverse array of coupons posted by others, but they can also engage in real-time conversations through our integrated chat feature.
+Open a listing to compare its original and selling prices, read its description,
+inspect seller information and ratings, or start the seller-review flow.
 
-What sets TradeCards apart is the ability for users to seamlessly exchange coupons offline, fostering a sense of community and trust among deal-seekers. To enhance transparency and confidence in transactions, users can leave reviews for sellers, providing valuable insights that future buyers can reference while browsing the platform.
+<p align="center">
+  <img src="Images/couponpage_tradecards.png" width="960" alt="TradeCards coupon detail page showing pricing, seller rating, reviews, and chat action">
+</p>
+<p align="center"><em>Evaluate an offer, review seller reputation, and contact the seller from one screen.</em></p>
 
-## Screenshots
+### 3. Messaging
 
-[![tradecards](Images/homepage_tradecards.png)](http://csci5308vm13.research.cs.dal.ca/)
+Buyers and sellers can continue a listing conversation in the real-time messaging
+workspace and coordinate an exchange.
 
-[![tradecards](Images/couponpage_tradecards.png)](http://csci5308vm13.research.cs.dal.ca/)
+<p align="center">
+  <img src="Images/chat_tradecards.png" width="960" alt="TradeCards messaging workspace showing a buyer and seller conversation">
+</p>
+<p align="center"><em>Real-time buyer–seller messaging keeps coupon exchanges inside the application.</em></p>
+
+### Additional flows
 
-[![tradecards](Images/chat_tradecards.png)](http://csci5308vm13.research.cs.dal.ca/)
+- **Creating a listing:** authenticated sellers can add coupon details, pricing,
+  category, location, description, and an image through the listing form.
+- **User profile:** users can maintain account details and manage the coupons they
+  have posted.
+- **Reviews:** buyers can rate sellers from a coupon detail page, while future
+  buyers can use seller ratings and reviews when evaluating an offer.
 
-## Dependencies
+## Technology
 
-List of dependencies used in the project:
+TradeCards is organized as a monorepo:
 
-### Frontend Pre-requisiste Software
+- `frontend/tradecards_ui`: React application
+- `backend/tradecards`: Java 17 and Spring Boot REST API
+- MySQL for application data
+- Firebase Authentication and Firestore for chat
 
-- [Node.js](https://nodejs.org/)
-- [npm](https://www.npmjs.com/)
+## Architecture
 
-### Backend Pre-requisiste Software
+```mermaid
+flowchart TD
+    User[User] --> React[React client]
+    React -->|REST / JSON| API[Spring Boot REST controllers]
+    API --> Services[Service layer]
+    Services --> Repositories[Repository layer]
+    Repositories -->|JPA / Hibernate| Database[(MySQL relational database)]
 
-- [Java Development Kit 17 (JDK)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
-- [MySQL Workbench](https://www.mysql.com/products/workbench/)
-- [Maven](https://maven.apache.org/)
+    React <-->|Authentication and real-time messages| Firebase[Firebase Auth and Firestore]
+    Services -->|Account verification and password recovery| Email[External SMTP email service]
+```
 
-## Installation
+The React client handles marketplace interactions and exchanges JSON with the
+Spring Boot controllers. Controllers delegate business rules to services, which
+use Spring Data repositories and JPA/Hibernate for relational persistence.
+Firebase provides chat authentication and real-time message storage, while the
+backend email service sends verification and password-recovery messages through
+an externally configured SMTP provider.
 
-### Frontend Installation
+## Local development
 
-Make sure you have Node.js and npm installed.
+### Prerequisites
 
-- cd frontend\tradecards_ui
-- npm install
+- Java 17
+- Node.js 18.18.2 (recorded in `frontend/tradecards_ui/.nvmrc`) and npm
+- MySQL 8
+- A Firebase web application with Authentication and Firestore enabled
+- SMTP credentials for verification and password-recovery email
 
-### Backend Installation
+Confirm the local runtimes before continuing:
 
-- cd backend\tradecards
-- mvn clean install
+```sh
+java -version
+node --version
+npm --version
+mysql --version
+```
 
-## Backend dependencies
+### 1. Create the database
 
-### [Spring Boot](https://spring.io/projects/spring-boot)
+Connect as a MySQL administrator and create a local database and application user:
 
-- **Version**: 3.1.4
-- **Description**: Spring Boot makes it easy to create stand-alone, production-grade Spring-based Applications.
+```sql
+CREATE DATABASE tradecards;
+CREATE USER 'tradecards'@'localhost' IDENTIFIED BY 'choose-a-local-password';
+GRANT ALL PRIVILEGES ON tradecards.* TO 'tradecards'@'localhost';
+FLUSH PRIVILEGES;
+```
 
-### [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/)
+Spring Boot uses Hibernate to create or update the application tables when the
+backend starts.
 
-- **Version**: 8.2.0
-- **Description**: Official MySQL driver for Java. Used for connecting to MySQL database.
+### 2. Configure and run the backend
 
-### [Spring Boot Starter Data JPA](https://spring.io/guides/gs/accessing-data-jpa/)
+```sh
+cd backend/tradecards
+cp .env.example .env
+```
 
-- **Description**: Starter for using Spring Data JPA with Hibernate for database interaction.
+Edit `.env` and set all of the following variables:
 
-### [Spring Boot Starter Security](https://spring.io/guides/gs/securing-web/)
+| Variable | Purpose |
+| --- | --- |
+| `DATABASE_URL` | MySQL JDBC URL, such as `jdbc:mysql://localhost:3306/tradecards` |
+| `DATABASE_USERNAME` | Local MySQL application user |
+| `DATABASE_PASSWORD` | Local MySQL application password |
+| `JWT_SECRET` | Long, random JWT signing secret (at least 32 bytes) |
+| `JWT_EXPIRATION_YEARS` | Token lifetime; defaults to `1` |
+| `MAIL_HOST` / `MAIL_PORT` | SMTP server and port |
+| `MAIL_USERNAME` / `MAIL_PASSWORD` | SMTP credentials |
 
-- **Description**: Starter for using Spring Security for authentication and authorization.
+Export the file into the current shell and start Spring Boot:
 
-### [Spring Boot Starter Web](https://spring.io/guides/gs/serving-web-content/)
+```sh
+set -a
+source .env
+set +a
+./mvnw spring-boot:run
+```
 
-- **Description**: Starter for building web applications with Spring MVC.
+The API starts on `http://localhost:8080`.
 
-### [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools)
+### 3. Configure and run the frontend
 
-- **Scope**: Runtime
-- **Optional**: true
-- **Description**: Provides fast application restarts, among other development-time features.
+In a second terminal, from the repository root:
 
-### [Lombok](https://projectlombok.org/)
+```sh
+cd frontend/tradecards_ui
+cp .env.example .env
+npm install
+npm start
+```
 
-- **Optional**: true
-- **Description**: Java library that helps reduce boilerplate code in Java classes.
+Populate `.env` with `REACT_APP_END_POINT=http://localhost:8080` and the Firebase
+web configuration values listed in `.env.example`. The React development server
+starts on `http://localhost:3000`.
 
-### [Spring Boot Starter Test](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-testing)
+### Seed data and demo account
 
-- **Scope**: Test
-- **Description**: Starter for testing Spring Boot applications with JUnit.
+The repository does not include seed data or public demo credentials. Start both
+applications, create an account through the registration screen, and complete
+the email-verification flow. This avoids distributing shared passwords and lets
+each developer test against isolated local data.
 
-### [JWT (JSON Web Token)](https://github.com/jwtk/jjwt)
+### Tests
 
-- **Version**: 0.9.1
-- **Description**: Library for working with JSON Web Tokens.
+Backend tests use the `test` Spring profile and an in-memory H2 database, so MySQL,
+Firebase, and SMTP services are not required:
 
-### [Spring Boot Starter Mail](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.mail)
+```sh
+cd backend/tradecards
+./mvnw test
+```
 
-- **Version**: 3.1.2
-- **Description**: Starter for sending email using Spring Framework's JavaMailSender.
+Run the frontend test suite in non-interactive mode:
 
-### [JAXB API](https://javaee.github.io/jaxb-v2/)
+```sh
+cd frontend/tradecards_ui
+npm install
+npm test -- --watchAll=false
+```
 
-- **Version**: 2.3.1
-- **Description**: Java Architecture for XML Binding, used for XML processing.
+Do not commit local `.env` files or credentials. See [SECURITY.md](SECURITY.md)
+for credential-handling requirements and [CONTRIBUTING.md](CONTRIBUTING.md) for
+the project workflow.
 
-### [JUnit](https://junit.org/junit4/)
+## Code-quality reports
 
-- **Version**: 4.13.2
-- **Scope**: Test
-- **Description**: Framework for writing and running tests in Java.
-
-## Build Plugins
-
-### [Maven Surefire Plugin](https://maven.apache.org/surefire/maven-surefire-plugin/)
-
-- **Version**: 3.1.2
-- **Description**: Maven plugin for running tests.
-
-  - Additional Dependencies:
-    - [JUnit Jupiter Engine](https://junit.org/junit5/docs/current/user-guide/#running-tests-build-plugins)
-
-### [Spring Boot Maven Plugin](https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/htmlsingle/)
-
-- **Description**: Maven plugin for building Spring Boot applications.
-
-  - Configuration:
-    - Excludes Lombok during the build.
-
-## How to Build and Run
-
-## Frontend build and run
-
-- npm run build
-
-## Backend build and run
-
-- mvn clean install
-
-  The build artifacts, including the JAR file, will be available in the target directory.
-  To deploy the backend of the full-stack web application, follow these steps:
-
-1. **Copy JAR File:**
-
-   Copy the generated JAR file from the `target` directory after the backend build to your deployment environment.
-   cp backend/target/tradecards.jar /path/to/deployment/directory
-
-2. **Deploy:**
-   java -jar /path/to/deployment/directory/tradecards.jar
-
-### Development Team
-
-Meet the amazing individuals behind TradeCards:
-
-1. **Harshpreet Singh**
-
-   - _Role_: Backend Developer
-   - _GitLab_: [@harshpreet](https://git.cs.dal.ca/harshpreet)
-
-2. **Jayrajsinh Mahavirsinh Jadeja**
-
-   - _Role_: Frontend Developer
-   - _GitLab_: [@jjadeja](https://git.cs.dal.ca/jjadeja)
-
-3. **Kabilesh Ravi chandran**
-
-   - _Role_: Frontend Developer
-   - _GitLab_: [@kchandran](https://git.cs.dal.ca/kchandran)
-
-4. **Parth Pinakin Modi**
-   - _Role_: Backend Developer
-   - _GitLab_: [@ppmodi](https://git.cs.dal.ca/ppmodi)
+Historical Designite reports from before and after refactoring are documented in
+[`docs/code-quality`](docs/code-quality/README.md).
